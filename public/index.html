@@ -325,9 +325,13 @@ async function loadGenImage(kind, caseId, which, container, stillValid){
       const q = kind === "portrait"
         ? `kind=portrait&caseId=${encodeURIComponent(caseId)}&sid=${encodeURIComponent(which)}`
         : `kind=scene&caseId=${encodeURIComponent(caseId)}&panel=${which}`;
+      const _f = kind === "portrait" ? `${caseId}-${which}.png` : `${caseId}-scene-${which}.png`;
+      const staticUrl = "/generated/" + _f;
+      const _h = await fetch(staticUrl, { method: "HEAD" }).catch(()=>null);
+      if(_h && _h.ok){ genImgCache[key] = staticUrl; } else {
       const r = await fetch("/api/image?" + q);
       if(!r.ok) throw new Error("img");
-      genImgCache[key] = (await r.json()).url;
+      genImgCache[key] = (await r.json()).url; }
     }
     const img = new Image();
     img.onload = ()=>{

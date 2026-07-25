@@ -22,9 +22,9 @@ const CHAT_MODEL  = "gemini-3.6-flash";
 const TTS_MODEL   = "gemini-3.1-flash-tts-preview";
 
 const GEN_DIR = path.join(__dirname, "public", "generated");
-fs.mkdirSync(GEN_DIR, { recursive: true });
+try { fs.mkdirSync(GEN_DIR, { recursive: true }); } catch {}
 const TTS_DIR = path.join(GEN_DIR, "voice");
-fs.mkdirSync(TTS_DIR, { recursive: true });
+try { fs.mkdirSync(TTS_DIR, { recursive: true }); } catch {}
 const crypto = require("crypto");
 const ttsCacheFile = (suspectId, text) =>
   path.join(TTS_DIR, suspectId + "-" + crypto.createHash("sha1").update(text).digest("hex").slice(0, 16) + ".wav");
@@ -41,7 +41,7 @@ function rateLimited(ip, max = 30) {
 }
 
 // ---------- shared Gemini call ----------
-async function gemini(model, body, key = GEMINI_KEY, timeoutMs = 10_000) {
+async function gemini(model, body, key = GEMINI_KEY, timeoutMs = Number(process.env.GEMINI_TIMEOUT_MS || 8000)) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
@@ -367,19 +367,18 @@ function pcmToWav(pcm, sampleRate) {
 }
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log("");
-  console.log("  🔎 DETECTIVE is running.");
-  console.log("  Open  http://localhost:" + PORT + "  in your browser.");
-  console.log("  Cases loaded: " + Object.keys(CASES).length);
-  console.log("  Gemini key: " + (GEMINI_KEY ? "found ✓" : "MISSING — create a .env file (see .env.example)"));
-  console.log("  Pollinations key: " + (POLLI_KEY_SET ? "found ✓ (fast lane)" : "not set — slower free lane (add POLLINATIONS_KEY to .env)"));
-  console.log("  Groq key: " + (GROQ_KEY_SET ? "found ✓ (backup brain ready)" : "NOT SET — get a free key at console.groq.com and add GROQ_API_KEY to .env"));
-  console.log("  Voice engine: " + (VOICE_ENGINE === "local" ? "LOCAL (unlimited) — warming up…" : "cloud only (VOICE_ENGINE=cloud)"));
-  console.log("");
-  if (VOICE_ENGINE === "local") {
-    localVoice.warmUp().then(ok => {
-      if (!ok) console.log("⚠ Local voice engine unavailable — run: npm install kokoro-js && npm run voice-setup");
-    });
-  }
-});
+
+// run directly (npm start) → real server.  imported (serverless) → just the app.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log("\n  🔎 DETECTIVE is running.");
+    console.log("  Open  http://localhost:" + PORT + "  in your browser.");
+    console.log("  Cases loaded: " + Object.keys(CASES).length);
+    console.log("  Gemini key: " + (GEMINI_KEY ? "found ✓" : "MISSING"));
+    console.log("  Groq key: " + (GROQ_KEY_SET ? "found ✓" : "NOT SET"));
+    console.log("  Voice engine: " + (VOICE_ENGINE === "local" ? "LOCAL (unlimited)" : "cloud") + "\n");
+    if (VOICE_ENGINE === "local") localVoice.warmUp();
+  });
+}
+
+module.exports = app;
