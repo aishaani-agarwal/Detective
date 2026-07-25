@@ -10,8 +10,6 @@ const path = require("path");
 const fs = require("fs");
 const { CASES, catalog, publicCase, randomCaseId } = require("./cases");
 const IMG = require("./cases/_prompts.js");
-const localVoice = require("./lib-voice.js");
-const VOICE_ENGINE = (process.env.VOICE_ENGINE || "local").toLowerCase(); // "local" (default) or "cloud"
 
 const app = express();
 app.use(express.json({ limit: "200kb" }));
@@ -23,11 +21,6 @@ const TTS_MODEL   = "gemini-3.1-flash-tts-preview";
 
 const GEN_DIR = path.join(__dirname, "public", "generated");
 fs.mkdirSync(GEN_DIR, { recursive: true });
-const TTS_DIR = path.join(GEN_DIR, "voice");
-fs.mkdirSync(TTS_DIR, { recursive: true });
-const crypto = require("crypto");
-const ttsCacheFile = (suspectId, text) =>
-  path.join(TTS_DIR, suspectId + "-" + crypto.createHash("sha1").update(text).digest("hex").slice(0, 16) + ".wav");
 
 // ---------- tiny per-IP rate limiter ----------
 const buckets = new Map();
@@ -254,27 +247,7 @@ app.post("/api/speak", async (req, res) => {
     return res.status(400).json({ error: "Bad speak request" });
   }
 
-  // ---- 0. already spoken once? serve it instantly, no engine at all ----
-  const cachePath = ttsCacheFile(suspectId, text);
-  if (fs.existsSync(cachePath)) {
-    return res.json({ audio: "data:audio/wav;base64," + fs.readFileSync(cachePath).toString("base64") });
-  }
-
-  const send = (buf, mime = "audio/wav") => {
-    try { if (mime === "audio/wav") fs.writeFileSync(cachePath, buf); } catch {}
-    res.json({ audio: `data:${mime};base64,` + buf.toString("base64") });
-  };
-
-  // ---- 1. LOCAL engine: unlimited, consistent, no keys, no rate limits ----
-  if (VOICE_ENGINE === "local" && localVoice.isAvailable()) {
-    try {
-      return send(await localVoice.speakLocal(text, suspect.voice.name));
-    } catch (errL) {
-      console.error("speak (local):", errL.message, "— falling back to cloud voices");
-    }
-  }
-
-  // ---- 2. Gemini acted voices (only when local isn't running) ----
+  // Layer 1: Gemini TTS — the styled, acted voices (tiny free tier, benched when exhausted)
   const userKey = userKeyFrom(req);
   if (userKey || (GEMINI_KEY && geminiReady("tts"))) {
     try {
@@ -284,42 +257,54 @@ app.post("/api/speak", async (req, res) => {
           responseModalities: ["AUDIO"],
           speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: suspect.voice.name } } }
         }
-      }, userKey || GEMINI_KEY, 30_000);
+      }, userKey || GEMINI_KEY);
       const b64pcm = data?.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.data;
-      if (b64pcm) return send(pcmToWav(Buffer.from(b64pcm, "base64"), 24000));
+      if (b64pcm) {
+        const wav = pcmToWav(Buffer.from(b64pcm, "base64"), 24000);
+        return res.json({ audio: "data:audio/wav;base64," + wav.toString("base64") });
+      }
       if (!userKey && data?.error?.code === 429) benchGemini("tts", data);
     } catch (err) {
-      console.error("speak (gemini):", err.message);
+      console.error("speak error (gemini):", err.message, "— using backup voice");
     }
   }
 
-  // ---- 3. Groq Orpheus ----
+  // Layer 2: Groq TTS — neural character voices, generous free tier
   if (layerReady("groqTTS")) {
     try {
       const buf = await speakViaGroq(text, suspect.voice.name);
       layerOk("groqTTS");
-      return send(buf);
+      return res.json({ audio: "data:audio/wav;base64," + buf.toString("base64") });
     } catch (errG) {
       console.error("speak (groq):", errG.message);
-      if (!/HTTP 429/.test(errG.message)) layerFail("groqTTS");
+      layerFail("groqTTS");
     }
   }
 
-  // ---- 4. Pollinations (only if Groq is out too) ----
-  if (!layerReady("groqTTS") && layerReady("polliTTS")) {
+  // Layer 3: Pollinations TTS
+  if (layerReady("polliTTS")) {
     try {
       const buf = await speakViaPollinations(text, POLLI_VOICE[suspect.voice.name] || "alloy");
       layerOk("polliTTS");
-      return send(buf, "audio/mpeg");
+      return res.json({ audio: "data:audio/mpeg;base64," + buf.toString("base64") });
     } catch (err2) {
       console.error("speak (pollinations):", err2.message);
       layerFail("polliTTS");
     }
   }
 
-  // nothing available → browser's character-cast voice speaks immediately
+  // nothing server-side available right now → tell the browser fast so its
+  // character-cast voice can speak immediately instead of after a long wait
   res.status(502).json({ error: "tts failed" });
 });
+
+// which Pollinations voice plays each Gemini voice's roles
+const POLLI_VOICE = {
+  Charon: "onyx",   // older gruff men → warm, rich, low
+  Puck:   "ash",    // younger nervous men → lighter warm male
+  Kore:   "nova",   // sharp younger women → bright, quick
+  Aoede:  "sage"    // cool composed women → calm, measured
+};
 
 // ============================================================
 // GET /api/image?kind=portrait&caseId=X&sid=Y
@@ -375,11 +360,5 @@ app.listen(PORT, () => {
   console.log("  Gemini key: " + (GEMINI_KEY ? "found ✓" : "MISSING — create a .env file (see .env.example)"));
   console.log("  Pollinations key: " + (POLLI_KEY_SET ? "found ✓ (fast lane)" : "not set — slower free lane (add POLLINATIONS_KEY to .env)"));
   console.log("  Groq key: " + (GROQ_KEY_SET ? "found ✓ (backup brain ready)" : "NOT SET — get a free key at console.groq.com and add GROQ_API_KEY to .env"));
-  console.log("  Voice engine: " + (VOICE_ENGINE === "local" ? "LOCAL (unlimited) — warming up…" : "cloud only (VOICE_ENGINE=cloud)"));
   console.log("");
-  if (VOICE_ENGINE === "local") {
-    localVoice.warmUp().then(ok => {
-      if (!ok) console.log("⚠ Local voice engine unavailable — run: npm install kokoro-js && npm run voice-setup");
-    });
-  }
 });

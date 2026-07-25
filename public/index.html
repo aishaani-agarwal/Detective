@@ -678,6 +678,22 @@ function stopAudio(){
   if(window.speechSynthesis) speechSynthesis.cancel();
 }
 
+/* browser voice casting: deterministic per suspect, gender-aware */
+const FEMALE_VOICES = ["Samantha","Victoria","Karen","Moira","Tessa","Fiona","Kate","Serena","Google UK English Female","Google US English"];
+const MALE_VOICES   = ["Daniel","Alex","Oliver","Thomas","Rishi","Fred","Aaron","Arthur","Google UK English Male"];
+function pickBrowserVoice(gender, suspectId){
+  try{
+    const all = speechSynthesis.getVoices().filter(v=>v.lang && v.lang.startsWith("en"));
+    if(!all.length) return null;
+    const wanted = gender === "m" ? MALE_VOICES : FEMALE_VOICES;
+    const named = wanted.map(n => all.find(v=>v.name.indexOf(n)===0)).filter(Boolean);
+    const pool = named.length ? named : all;
+    let h = 0; for(const ch of suspectId) h = (h*31 + ch.charCodeAt(0)) >>> 0; // same suspect → same voice
+    return pool[h % pool.length];
+  }catch(e){ return null; }
+}
+if(window.speechSynthesis) speechSynthesis.getVoices(); // warm the voice list
+
 let speakSeq = 0; // ticket number: only the latest speak() may play
 async function speak(text, suspectId, msgObj){
   stopAudio();
@@ -702,10 +718,14 @@ async function speak(text, suspectId, msgObj){
     audioNow.play().catch(()=>{});
   }catch(e){
     if(myTicket !== speakSeq) return;
-    // graceful fallback: the browser's built-in voice ("budget voice mode")
+    // last resort: the browser's voices — but cast per character, not one robot
     if(window.speechSynthesis){
       const u = new SpeechSynthesisUtterance(text);
-      u.rate = 0.96;
+      const prof = (CASE && CASE.suspects[suspectId] && CASE.suspects[suspectId].voiceProfile) || { gender:"f", pitch:1, rate:0.96 };
+      const v = pickBrowserVoice(prof.gender, suspectId);
+      if(v) u.voice = v;
+      u.pitch = prof.pitch || 1;
+      u.rate  = prof.rate  || 0.96;
       speechSynthesis.speak(u);
     }
   }

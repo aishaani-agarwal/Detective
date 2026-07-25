@@ -224,74 +224,50 @@ async function chatViaGroq(systemText, messages) {
 
 // Groq TTS — real neural character voices on the Groq free tier.
 // Tries the PlayAI voices first, then Orpheus, per-character mapping.
-// Orpheus TTS on Groq — verified voices (autumn/diana/hannah F, austin/daniel/troy M),
-// hard 200-char input limit, supports [vocal directions] for acted delivery.
-// Long replies are split into sentence chunks and the WAVs stitched together.
+// Orpheus TTS on Groq — per-character voice candidates. If a voice name
+// is rejected (400), we walk the list; the last entry is the documented
+// default. Winners are remembered per character.
 const ORPHEUS_MODEL = "canopylabs/orpheus-v1-english";
-const ORPHEUS_VOICE = { Charon: "troy", Puck: "austin", Kore: "autumn", Aoede: "diana" };
-const ORPHEUS_DIRECTION = { Charon: "[low gravelly]", Puck: "[tense]", Kore: "[calm controlled]", Aoede: "[dry composed]" };
-
-function chunkForOrpheus(text, max = 170) {
-  const sentences = text.replace(/\s+/g, " ").trim().match(/[^.!?…]+[.!?…]*\s*/g) || [text];
-  const chunks = [];
-  let cur = "";
-  for (let sen of sentences) {
-    sen = sen.trim();
-    while (sen.length > max) {              // a single monster sentence: hard-split on spaces
-      const cut = sen.lastIndexOf(" ", max);
-      chunks.push(sen.slice(0, cut > 40 ? cut : max).trim());
-      sen = sen.slice(cut > 40 ? cut : max).trim();
-    }
-    if ((cur + " " + sen).trim().length <= max) cur = (cur + " " + sen).trim();
-    else { if (cur) chunks.push(cur); cur = sen; }
-  }
-  if (cur) chunks.push(cur);
-  return chunks.slice(0, 5); // bound latency; voices read at most ~5 chunks
-}
-
-function stitchWavs(bufs) {
-  if (bufs.length === 1) return bufs[0];
-  const dataOf = (b) => { const i = b.indexOf("data"); return { start: i + 8, size: b.readUInt32LE(i + 4), headEnd: i + 8 }; };
-  const first = dataOf(bufs[0]);
-  const payloads = bufs.map(b => { const d = dataOf(b); return b.subarray(d.start, d.start + d.size); });
-  const total = payloads.reduce((n, p) => n + p.length, 0);
-  const head = Buffer.from(bufs[0].subarray(0, first.headEnd));
-  head.writeUInt32LE(head.length - 8 + total, 4);            // RIFF size
-  head.writeUInt32LE(total, first.headEnd - 4);              // data size
-  return Buffer.concat([head, ...payloads]);
-}
-
-async function orpheusChunk(input, voice) {
-  const ctrl = new AbortController();
-  const t = setTimeout(() => ctrl.abort(), 45_000);
-  const r = await fetch("https://api.groq.com/openai/v1/audio/speech", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: "Bearer " + GROQ_KEY },
-    body: JSON.stringify({ model: ORPHEUS_MODEL, voice, input, response_format: "wav" }),
-    signal: ctrl.signal
-  }).finally(() => clearTimeout(t));
-  if (!r.ok) {
-    const detail = (await r.text().catch(() => "")).slice(0, 160);
-    throw new Error(`groq tts HTTP ${r.status} ${detail}`);
-  }
-  const buf = Buffer.from(await r.arrayBuffer());
-  if (buf.length < 1000) throw new Error("groq tts empty chunk");
-  return buf;
-}
+const ORPHEUS_VOICES = {
+  Charon: ["dan", "leo", "troy"],
+  Puck:   ["zac", "leo", "troy"],
+  Kore:   ["jess", "mia", "troy"],
+  Aoede:  ["tara", "leah", "troy"]
+};
+const workingOrpheusVoice = {}; // geminiVoiceName -> confirmed voice
 
 async function speakViaGroq(text, geminiVoiceName) {
   if (!GROQ_KEY) throw new Error("no GROQ_API_KEY in .env");
-  const voice = ORPHEUS_VOICE[geminiVoiceName] || "troy";
-  const direction = ORPHEUS_DIRECTION[geminiVoiceName] || "";
-  const chunks = chunkForOrpheus(text);
-  const bufs = [];
-  for (let i = 0; i < chunks.length; i++) {
-    const input = (i === 0 && direction && (direction.length + 1 + chunks[i].length) <= 195)
-      ? direction + " " + chunks[i]
-      : chunks[i];
-    bufs.push(await orpheusChunk(input, voice));
+  const candidates = workingOrpheusVoice[geminiVoiceName]
+    ? [workingOrpheusVoice[geminiVoiceName]]
+    : (ORPHEUS_VOICES[geminiVoiceName] || ["troy"]);
+  let lastErr = null;
+  for (const voice of candidates) {
+    try {
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), 45_000);
+      const r = await fetch("https://api.groq.com/openai/v1/audio/speech", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: "Bearer " + GROQ_KEY },
+        body: JSON.stringify({ model: ORPHEUS_MODEL, voice, input: text, response_format: "wav" }),
+        signal: ctrl.signal
+      }).finally(() => clearTimeout(t));
+      if (!r.ok) {
+        const detail = (await r.text().catch(() => "")).slice(0, 160);
+        throw new Error(`groq tts HTTP ${r.status} (voice ${voice}) ${detail}`);
+      }
+      const buf = Buffer.from(await r.arrayBuffer());
+      if (buf.length < 2000) throw new Error(`groq tts empty (voice ${voice})`);
+      if (workingOrpheusVoice[geminiVoiceName] !== voice) console.log(`✔ Groq voice for ${geminiVoiceName}: ${voice}`);
+      workingOrpheusVoice[geminiVoiceName] = voice;
+      return buf; // wav bytes
+    } catch (e) {
+      lastErr = e;
+      delete workingOrpheusVoice[geminiVoiceName];
+      if (!/HTTP 400/.test(e.message)) break; // 400 = bad voice → try next name; other errors → stop
+    }
   }
-  return stitchWavs(bufs);
+  throw lastErr;
 }
 
 // one call, whole backup chain: Groq first, Pollinations as last resort
