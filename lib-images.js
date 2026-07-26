@@ -63,12 +63,6 @@ function buildImageTask(IMG, q) {
       file: `${caseId}-${sid}.png`, w: 704, h: 704
     };
   }
-  if (kind === "scene" && cp && cp.intro[Number(panel)]) {
-    return {
-      prompt: `${IMG.SCENE_STYLE} Scene: ${cp.intro[Number(panel)]}.`,
-      file: `${caseId}-scene-${Number(panel)}.png`, w: 1024, h: 576
-    };
-  }
   return null;
 }
 
@@ -80,9 +74,6 @@ function allImageTasks(IMG) {
     for (const sid of Object.keys(cp.suspects)) {
       tasks.push(buildImageTask(IMG, { kind: "portrait", caseId, sid }));
     }
-    cp.intro.forEach((_, i) => {
-      tasks.push(buildImageTask(IMG, { kind: "scene", caseId, panel: String(i) }));
-    });
   }
   return tasks;
 }

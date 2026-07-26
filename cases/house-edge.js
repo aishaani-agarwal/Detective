@@ -10,7 +10,9 @@ ${RULES}`;
 
 module.exports = {
   id: "house-edge",
-  caseNo: "SP-4402 · Sûreté Publique / Gaming Commission",
+  caseNo: "SP-4402H · Sûreté Publique / Gaming Commission",
+  category: "Fraud",
+  level: "hard",
   title: "The House Edge",
   theme: "Casino Conspiracy · Monte Carlo",
   difficulty: "Fraud",
@@ -24,14 +26,6 @@ module.exports = {
     { label: "Scene", parts: [{ t: "Surveillance logs show the suite occupied all night. Staff drinks are logged; a bottle of Krug went up to the suite at 01:20." }] }
   ],
 
-  intro: [
-    { text: "Monte Carlo, one in the morning. At Table 7, a stranger in a midnight-blue tux starts winning — and doesn't stop.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><ellipse cx="200" cy="150" rx="140" ry="45" fill="#0e1311"/><ellipse cx="200" cy="145" rx="140" ry="45" fill="#1a3a2a"/><rect x="184" y="70" width="14" height="20" rx="2" fill="var(--paper)" transform="rotate(-8 191 80)"/><rect x="202" y="68" width="14" height="20" rx="2" fill="var(--paper)" transform="rotate(7 209 78)"/><circle cx="160" cy="140" r="7" fill="var(--tape)"/><circle cx="180" cy="146" r="7" fill="var(--tape)"/><circle cx="240" cy="142" r="7" fill="var(--stamp)"/><text x="200" y="208" text-anchor="middle" font-family="monospace" font-size="10" fill="var(--tape)" letter-spacing="3">TABLE 7 · 01:10</text></svg>` },
-    { text: "€4.2 million later he tips the dealer, thanks the room, and evaporates into the night. Above the table, the cameras were watching a recording of yesterday.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="#0a0d0c"/><rect x="80" y="40" width="240" height="130" rx="6" fill="#111614"/><rect x="95" y="55" width="210" height="100" fill="#0e1a14"/><path d="M95 130 l40 -20 l35 12 l45 -30 l50 18 l40 -14" stroke="var(--tape)" stroke-width="2" fill="none" opacity=".8"/><text x="200" y="105" text-anchor="middle" font-family="monospace" font-size="13" fill="var(--stamp)" letter-spacing="3" opacity=".9">● LOOP</text><text x="200" y="205" text-anchor="middle" font-family="monospace" font-size="11" fill="var(--stamp)" letter-spacing="4">01:00 – 02:00</text></svg>` },
-    { text: "The dealer whose hands touched every card. The host who poured the whale's champagne. The surveillance chief who watches everyone — but who watches her? Faites vos jeux, detective.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><g transform="translate(70,45) rotate(-4)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#2f4a5a"/><circle cx="40" cy="36" r="14" fill="#121e26"/><path d="M18 72 q22 -22 44 0 z" fill="#121e26"/></g><g transform="translate(160,38) rotate(3)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#5a2f3a"/><circle cx="40" cy="36" r="14" fill="#221216"/><path d="M18 72 q22 -22 44 0 z" fill="#221216"/></g><g transform="translate(250,47) rotate(-2)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#4a3a5a"/><circle cx="40" cy="36" r="14" fill="#1c1622"/><path d="M18 72 q22 -22 44 0 z" fill="#1c1622"/></g><text x="200" y="195" text-anchor="middle" font-family="monospace" font-size="12" fill="var(--stamp)" letter-spacing="3">ONE OF THEM DID IT</text></svg>` }
-  ],
 
   suspects: {
     emile: {

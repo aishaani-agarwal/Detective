@@ -12,7 +12,13 @@ for (const c of [
   require("./house-edge.js"),
   require("./dead-weight.js"),
   require("./false-turner.js"),
-  require("./scrubbed.js")
+  require("./scrubbed.js"),
+  require("./closing-time.js"),
+  require("./salt-and-silver.js"),
+  require("./quiet-car.js"),
+  require("./night-shift.js"),
+  require("./cold-chain.js"),
+  require("./ledger.js")
   // add future cases right here
 ]) {
   CASES[c.id] = c;
@@ -26,6 +32,8 @@ function catalog() {
     title: c.title,
     theme: c.theme,
     difficulty: c.difficulty,
+    category: c.category || "Homicide",
+    level: c.level || "medium",
     settingLine: c.settingLine
   }));
 }
@@ -47,14 +55,28 @@ function publicCase(id) {
     theme: c.theme,
     settingLine: c.settingLine,
     facts: c.facts,
-    intro: c.intro,
     suspects
   };
 }
 
-function randomCaseId() {
-  const ids = Object.keys(CASES);
+// The captain's desk. Give it a category and it pulls from that drawer only.
+function randomCaseId(category) {
+  let ids = Object.keys(CASES);
+  if (category) {
+    const filtered = ids.filter(id => (CASES[id].category || "Homicide") === category);
+    if (filtered.length) ids = filtered;
+  }
   return ids[Math.floor(Math.random() * ids.length)];
 }
 
-module.exports = { CASES, catalog, publicCase, randomCaseId };
+// Drawer list for the cabinet, with a count on each label.
+function categories() {
+  const counts = {};
+  for (const c of Object.values(CASES)) {
+    const cat = c.category || "Homicide";
+    counts[cat] = (counts[cat] || 0) + 1;
+  }
+  return counts;
+}
+
+module.exports = { CASES, catalog, publicCase, randomCaseId, categories };

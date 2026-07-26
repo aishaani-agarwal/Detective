@@ -10,7 +10,9 @@ ${RULES}`;
 
 module.exports = {
   id: "gold-dust",
-  caseNo: "ADN-77 · Norwegian Anti-Doping / Politi",
+  caseNo: "ADN-77M · Norwegian Anti-Doping / Politi",
+  category: "Sabotage",
+  level: "medium",
   title: "Gold Dust",
   theme: "Doping Sabotage · Norway",
   difficulty: "Sabotage",
@@ -24,14 +26,6 @@ module.exports = {
     { label: "Stakes", parts: [{ t: "If Ingrid's ban stands, her Olympic spot passes to the second-place finisher." }] }
   ],
 
-  intro: [
-    { text: "Lillehammer. Two days ago Ingrid Solheim skied the race of her life. This morning her B-sample came back positive — for a drug she never touched.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><path d="M0 160 L120 80 L220 140 L320 60 L400 120 V220 H0 Z" fill="#0e1311"/><path d="M0 175 L120 100 L220 155 L320 80 L400 135 V220 H0 Z" fill="var(--paper)" opacity=".12"/><circle cx="340" cy="40" r="12" fill="var(--paper)" opacity=".7"/><text x="200" y="208" text-anchor="middle" font-family="monospace" font-size="10" fill="var(--tape)" letter-spacing="3">LILLEHAMMER · RACE MORNING</text></svg>` },
-    { text: "The drink was spiked in the wax cabin between 06:00 and 06:30 — while a blizzard sealed the only road. Whoever did it was already inside the storm.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="#0a0d0c"/><rect x="140" y="100" width="120" height="80" fill="#111614"/><polygon points="130,100 200,60 270,100" fill="#111614"/><rect x="188" y="130" width="24" height="50" fill="var(--tape)" opacity=".25"/><g fill="var(--paper)" opacity=".55"><circle cx="60" cy="40" r="1.6"/><circle cx="110" cy="90" r="1.6"/><circle cx="90" cy="150" r="1.6"/><circle cx="300" cy="50" r="1.6"/><circle cx="330" cy="120" r="1.6"/><circle cx="250" cy="30" r="1.6"/><circle cx="350" cy="180" r="1.6"/><circle cx="40" cy="190" r="1.6"/></g><text x="200" y="208" text-anchor="middle" font-family="monospace" font-size="11" fill="var(--stamp)" letter-spacing="4">06:00 · ROAD CLOSED</text></svg>` },
-    { text: "The rival who inherits her Olympic spot. The coach with one foot out the door. The physio who knows every bottle. The storm kept everyone else out, investigator — which means it kept one of them in.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><g transform="translate(70,45) rotate(-4)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#3a5a6b"/><circle cx="40" cy="36" r="14" fill="#14222a"/><path d="M18 72 q22 -22 44 0 z" fill="#14222a"/></g><g transform="translate(160,38) rotate(3)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#5a5a3a"/><circle cx="40" cy="36" r="14" fill="#222214"/><path d="M18 72 q22 -22 44 0 z" fill="#222214"/></g><g transform="translate(250,47) rotate(-2)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#6b3a4a"/><circle cx="40" cy="36" r="14" fill="#2a141c"/><path d="M18 72 q22 -22 44 0 z" fill="#2a141c"/></g><text x="200" y="195" text-anchor="middle" font-family="monospace" font-size="12" fill="var(--stamp)" letter-spacing="3">ONE OF THEM DID IT</text></svg>` }
-  ],
 
   suspects: {
     astrid: {

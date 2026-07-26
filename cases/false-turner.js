@@ -10,7 +10,9 @@ ${RULES}`;
 
 module.exports = {
   id: "false-turner",
-  caseNo: "AAU-9016 · Metropolitan Police",
+  caseNo: "AAU-9016M · Metropolitan Police",
+  category: "Fraud",
+  level: "medium",
   title: "The Turner That Never Was",
   theme: "Forgery · London",
   difficulty: "Fraud",
@@ -24,14 +26,6 @@ module.exports = {
     { label: "The House", parts: [{ t: "Hartwell's Old Masters department has had two disastrous seasons and faces closure. The Turner sale was its salvation." }] }
   ],
 
-  intro: [
-    { text: "London. A lost Turner surfaces from a country-house attic, roars through the saleroom, and makes £2.8 million — and Hartwell's Old Masters department is saved.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><rect x="130" y="45" width="140" height="105" fill="var(--tape)" opacity=".18"/><rect x="130" y="45" width="140" height="105" fill="none" stroke="var(--tape)" stroke-width="6" opacity=".85"/><path d="M138 130 q30 -40 60 -12 q35 30 64 -20" stroke="var(--paper)" stroke-width="3" fill="none" opacity=".5"/><path d="M188 168 l12 0 l-3 22 l-6 0 z" fill="#0e1311"/><text x="200" y="212" text-anchor="middle" font-family="monospace" font-size="10" fill="var(--tape)" letter-spacing="3">LOT 12 · SOLD £2,800,000</text></svg>` },
-    { text: "Except Turner never painted it. The 'discovery' rests on one letter, planted in Hartwell's own archive — on the one Thursday a burst pipe put that archive underwater.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="#0a0d0c"/><rect x="90" y="50" width="220" height="140" fill="#111614"/><g fill="#0e1a20"><rect x="90" y="130" width="220" height="60"/></g><path d="M90 130 q28 -8 55 0 t55 0 t55 0 t55 0" stroke="var(--paper)" stroke-width="2" fill="none" opacity=".4"/><rect x="150" y="70" width="40" height="50" fill="var(--paper)" opacity=".85" transform="rotate(-6 170 95)"/><text x="200" y="210" text-anchor="middle" font-family="monospace" font-size="11" fill="var(--stamp)" letter-spacing="4">THURSDAY · 2 PM</text></svg>` },
-    { text: "The department head who needed a miracle. The researcher whose name is on the file. The client liaison who whispered to the buyer. Somebody at Hartwell's forged history itself, detective.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><g transform="translate(70,45) rotate(-4)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#4a3a2f"/><circle cx="40" cy="36" r="14" fill="#1e1712"/><path d="M18 72 q22 -22 44 0 z" fill="#1e1712"/></g><g transform="translate(160,38) rotate(3)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#2f4a3a"/><circle cx="40" cy="36" r="14" fill="#121e17"/><path d="M18 72 q22 -22 44 0 z" fill="#121e17"/></g><g transform="translate(250,47) rotate(-2)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#5a3a2f"/><circle cx="40" cy="36" r="14" fill="#221712"/><path d="M18 72 q22 -22 44 0 z" fill="#221712"/></g><text x="200" y="195" text-anchor="middle" font-family="monospace" font-size="12" fill="var(--stamp)" letter-spacing="3">ONE OF THEM DID IT</text></svg>` }
-  ],
 
   suspects: {
     margaux: {

@@ -10,7 +10,9 @@ ${RULES}`;
 
 module.exports = {
   id: "dead-weight",
-  caseNo: "DEA-MIA-5521 · Joint Task Force",
+  caseNo: "DEA-MIA-5521M · Joint Task Force",
+  category: "Narcotics",
+  level: "medium",
   title: "Dead Weight",
   theme: "Smuggling · Miami / Bimini",
   difficulty: "Narcotics",
@@ -24,14 +26,6 @@ module.exports = {
     { label: "Crew", parts: [{ t: "Captain, first mate, engineer. The engine-room locker has exactly two keys: the engineer's and the captain's." }] }
   ],
 
-  intro: [
-    { text: "Miami, yesterday. A customs dog sits down next to the ANDIAMO's keel and refuses to move. Behind a fresh weld: forty kilos.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><path d="M60 130 L340 130 L310 175 L90 175 Z" fill="#0e1311"/><rect x="180" y="85" width="8" height="45" fill="#0e1311"/><path d="M188 85 L250 110 L188 118 Z" fill="var(--paper)" opacity=".85"/><path d="M170 175 h60 v18 h-60 z" fill="var(--stamp)" opacity=".7"/><path d="M0 195 q50 -10 100 0 t100 0 t100 0 t100 0 V220 H0 Z" fill="#0a1a14"/><text x="200" y="212" text-anchor="middle" font-family="monospace" font-size="10" fill="var(--tape)" letter-spacing="3">PORT OF MIAMI</text></svg>` },
-    { text: "The weld could only happen in Bimini, on stilts, Saturday night — under the noise of a dockside fish-fry — because Sunday the yard's power was dead all day.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="#0a0d0c"/><path d="M80 100 L320 100 L295 145 L105 145 Z" fill="#111614"/><rect x="112" y="145" width="10" height="45" fill="#111614"/><rect x="278" y="145" width="10" height="45" fill="#111614"/><circle cx="200" cy="150" r="9" fill="var(--tape)"/><g stroke="var(--tape)" stroke-width="1.6" opacity=".9"><line x1="200" y1="150" x2="188" y2="168"/><line x1="200" y1="150" x2="212" y2="170"/><line x1="200" y1="150" x2="196" y2="172"/></g><text x="200" y="208" text-anchor="middle" font-family="monospace" font-size="11" fill="var(--stamp)" letter-spacing="4">SATURDAY · 23:00</text></svg>` },
-    { text: "A captain with a wrecked boat and old debts. A first mate with her own little sideline. An engineer whose welder did the work. Three keycards, investigator. One smuggler.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><g transform="translate(70,45) rotate(-4)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#2f4a4a"/><circle cx="40" cy="36" r="14" fill="#121e1e"/><path d="M18 72 q22 -22 44 0 z" fill="#121e1e"/></g><g transform="translate(160,38) rotate(3)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#5a4a2f"/><circle cx="40" cy="36" r="14" fill="#221c12"/><path d="M18 72 q22 -22 44 0 z" fill="#221c12"/></g><g transform="translate(250,47) rotate(-2)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#3a3a5a"/><circle cx="40" cy="36" r="14" fill="#161622"/><path d="M18 72 q22 -22 44 0 z" fill="#161622"/></g><text x="200" y="195" text-anchor="middle" font-family="monospace" font-size="12" fill="var(--stamp)" letter-spacing="3">ONE OF THEM DID IT</text></svg>` }
-  ],
 
   suspects: {
     ray: {

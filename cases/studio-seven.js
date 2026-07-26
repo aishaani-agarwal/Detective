@@ -15,7 +15,9 @@ ${RULES}`;
 
 module.exports = {
   id: "studio-seven",
-  caseNo: "88 / 1977 · Bombay CID",
+  caseNo: "88H / 1977 · Bombay CID",
+  category: "Homicide",
+  level: "hard",
   title: "Last Reel at Studio Seven",
   theme: "Bollywood Noir · 1977",
   difficulty: "Classic",
@@ -29,20 +31,6 @@ module.exports = {
     { label: "Scene", parts: [{ t: "The main floor was deafening — rain machines and full playback. Nobody on set could hear anything from the east block, and nobody in the east block could be seen." }] }
   ],
 
-  intro: [
-    {
-      text: "Bombay, 1977. Studio Seven, last night on 'Toofan'. Rain machines thundering, arc lights blazing, and a director everyone owes, fears, or hates.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><rect x="30" y="70" width="340" height="130" fill="#0e1311"/><path d="M30 70 L200 25 L370 70 Z" fill="#0e1311"/><rect x="60" y="100" width="90" height="70" fill="var(--tape)" opacity=".2"/><g stroke="var(--paper)" stroke-width="1.2" opacity=".45"><line x1="70" y1="96" x2="64" y2="130"/><line x1="95" y1="94" x2="89" y2="128"/><line x1="120" y1="96" x2="114" y2="130"/><line x1="140" y1="94" x2="134" y2="128"/></g><circle cx="330" cy="55" r="10" fill="var(--tape)" opacity=".9"/><path d="M320 60 L250 110 L258 118 L328 66 Z" fill="var(--tape)" opacity=".25"/><rect x="250" y="120" width="70" height="80" fill="#050706"/><text x="200" y="212" text-anchor="middle" font-family="monospace" font-size="11" fill="var(--tape)" letter-spacing="4">STUDIO SEVEN · 1977</text></svg>`
-    },
-    {
-      text: "7:25 PM. Every volt in the east block is diverted to the rain machines. The editing corridor goes black. At 8:05, a spot boy's torch finds the director on the floor of Editing Room 2 — and an empty space on the shelf where a reel should be.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="#0a0d0c"/><rect x="90" y="40" width="220" height="160" fill="#0e1311"/><circle cx="200" cy="120" r="52" fill="var(--tape)" opacity=".13"/><path d="M168 150 q30 -34 64 0 z" fill="#050706"/><circle cx="200" cy="108" r="13" fill="#050706"/><circle cx="258" cy="92" r="18" fill="none" stroke="#050706" stroke-width="7"/><circle cx="258" cy="92" r="4" fill="#050706"/><text x="200" y="214" text-anchor="middle" font-family="monospace" font-size="11" fill="var(--stamp)" letter-spacing="4">8:05 PM</text></svg>`
-    },
-    {
-      text: "The hero who wanted off the picture. The producer whose money wasn't clean. The star whose close-ups were quietly being reshot with someone younger. Roll sound, detective. One of them is acting.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><g transform="translate(70,45) rotate(-5)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#2f5a5a"/><circle cx="40" cy="36" r="14" fill="#122626"/><path d="M18 72 q22 -22 44 0 z" fill="#122626"/></g><g transform="translate(160,38) rotate(2)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#6b5a2f"/><circle cx="40" cy="36" r="14" fill="#2a2414"/><path d="M18 72 q22 -22 44 0 z" fill="#2a2414"/></g><g transform="translate(250,47) rotate(-2)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#6b2f4a"/><circle cx="40" cy="36" r="14" fill="#2a121e"/><path d="M18 72 q22 -22 44 0 z" fill="#2a121e"/></g><text x="200" y="195" text-anchor="middle" font-family="monospace" font-size="12" fill="var(--stamp)" letter-spacing="3">ONE OF THEM DID IT</text></svg>`
-    }
-  ],
 
   suspects: {
     prem: {

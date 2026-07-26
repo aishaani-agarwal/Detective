@@ -35,115 +35,101 @@
   .paper-card::before{content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-2deg);width:110px;height:22px;background:rgba(201,162,39,.55);border-radius:2px}
   .file-label{font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--stamp);margin-bottom:10px}
 
-  /* ============ SELECT screen: the cabinet ============ */
-  #selectSub{margin-top:16px;font-size:15px;color:rgba(233,225,203,.72);max-width:700px;line-height:1.6}
-  .select-grid{display:grid;grid-template-columns:minmax(420px,600px) 1fr;gap:34px;margin-top:24px;align-items:start}
-  @media(max-width:940px){.select-grid{grid-template-columns:1fr}}
+  /* ============ SELECT screen: the filing cabinet ============ */
+  #selectSub{margin-top:18px;font-size:15px;color:rgba(233,225,203,.75);max-width:660px;line-height:1.6}
+  .select-wrap{display:grid;grid-template-columns:minmax(320px,520px) 1fr;gap:40px;margin-top:26px;align-items:start}
+  @media(max-width:900px){.select-wrap{grid-template-columns:1fr}}
 
-  .cab-stage{position:relative;perspective:1400px;perspective-origin:50% 38%}
+  /* --- the cabinet --- */
+  .cabinet{position:relative;border-radius:6px;padding:14px 12px;filter:drop-shadow(0 26px 40px rgba(0,0,0,.6));
+    background:linear-gradient(150deg,#4a5148 0%,#3b423a 18%,#2f352e 50%,#272c26 78%,#1e231d 100%);
+    box-shadow:inset 0 2px 0 rgba(255,255,255,.09), inset 0 -3px 10px rgba(0,0,0,.6), 0 0 0 1px rgba(0,0,0,.5);
+    transition:transform .4s cubic-bezier(.2,.8,.3,1)}
+  .cabinet::after{content:"";position:absolute;inset:0;border-radius:6px;pointer-events:none;opacity:.35;
+    background:repeating-linear-gradient(97deg, transparent 0 22px, rgba(255,255,255,.035) 22px 23px),
+               radial-gradient(circle at 12% 8%, rgba(255,255,255,.08), transparent 45%)}
+  .cab-plate{font-family:'Special Elite',monospace;font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--tape);opacity:.75;text-align:center;padding:2px 0 12px}
+  .drawer{position:relative;display:block;width:100%;border:none;cursor:pointer;padding:0;margin-bottom:9px;height:74px;
+    border-radius:3px;text-align:left;overflow:hidden;
+    background:linear-gradient(180deg,#454d43 0%,#394137 30%,#2c322a 75%,#232821 100%);
+    box-shadow:inset 0 2px 0 rgba(255,255,255,.10), inset 0 -6px 12px rgba(0,0,0,.5), 0 2px 3px rgba(0,0,0,.45);
+    transition:transform .38s cubic-bezier(.2,.85,.3,1.1), opacity .3s, box-shadow .3s}
+  .drawer:last-of-type{margin-bottom:0}
+  .drawer .dlabel{position:absolute;left:18px;top:14px;background:linear-gradient(180deg,#e9e0c8,#d6cbaa);
+    border:1px solid rgba(0,0,0,.35);border-radius:2px;padding:5px 13px 4px;box-shadow:0 1px 2px rgba(0,0,0,.5)}
+  .drawer .dname{display:block;font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink)}
+  .drawer .dsub{display:block;font-size:9.5px;letter-spacing:.04em;color:var(--ink-soft);margin-top:1px}
+  .drawer .dcount{position:absolute;right:70px;top:50%;transform:translateY(-50%);font-family:'Special Elite',monospace;
+    font-size:10px;letter-spacing:.14em;color:rgba(233,225,203,.5);text-transform:uppercase}
+  .drawer .dhandle{position:absolute;right:18px;top:50%;transform:translateY(-50%);width:38px;height:15px;
+    border:3px solid #6e6552;border-top:none;border-radius:0 0 8px 8px;
+    box-shadow:0 2px 3px rgba(0,0,0,.5), inset 0 -2px 2px rgba(255,255,255,.12)}
+  .drawer:hover{transform:translateX(6px)}
+  .drawer:hover .dhandle{border-color:var(--tape)}
+  .cabinet.open .drawer{opacity:.18;pointer-events:none;transform:scaleY(.82)}
+  .cabinet.open .drawer.sel{opacity:0;transform:translateX(60px) scaleY(1)}
 
-  /* --- carcass: grey-green service cabinet, scuffed --- */
-  .cabinet{position:relative;padding:16px;border-radius:4px;transition:filter .45s, transform .45s;
-    background:linear-gradient(168deg,#2c332d 0%,#242b26 35%,#1b211d 72%,#141915 100%);
-    box-shadow:inset 0 1px 0 rgba(233,225,203,.12), inset 0 -12px 22px rgba(0,0,0,.6),
-               inset 12px 0 20px -14px rgba(0,0,0,.65), inset -12px 0 20px -14px rgba(0,0,0,.65),
-               0 26px 46px rgba(0,0,0,.6), 0 0 0 1px rgba(0,0,0,.5)}
-  .cabinet::after{content:"";position:absolute;inset:0;border-radius:4px;pointer-events:none;opacity:.5;
-    background:radial-gradient(120% 70% at 16% 0%, rgba(233,225,203,.07), transparent 55%),
-               radial-gradient(90% 80% at 92% 100%, rgba(0,0,0,.4), transparent 62%)}
-  .cab-crown{height:8px;margin:-8px -8px 13px;border-radius:3px 3px 1px 1px;
-    background:linear-gradient(180deg,#3a423b,#252c27 60%,#171c18);
-    box-shadow:0 3px 6px rgba(0,0,0,.5), inset 0 1px 0 rgba(233,225,203,.16)}
-  .cab-brass{margin-top:13px;text-align:center;font-family:'Special Elite',monospace;
-    font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--tape);opacity:.45}
-
-  .cab-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
-  @media(max-width:520px){.cab-grid{grid-template-columns:1fr}}
-
-  /* --- drawer front --- */
-  .drawer{position:relative;height:112px;border:none;cursor:pointer;padding:0;border-radius:2px;overflow:hidden;
-    transition:transform .4s cubic-bezier(.2,.85,.3,1.05), box-shadow .3s, filter .35s, opacity .3s;
-    background:linear-gradient(178deg,#3d453e 0%,#333a34 30%,#272e29 72%,#1e2420 100%);
-    box-shadow:inset 0 1px 0 rgba(233,225,203,.16), inset 0 -8px 14px rgba(0,0,0,.5),
-               inset 0 0 0 1px rgba(0,0,0,.5), 0 6px 11px rgba(0,0,0,.45)}
-  .drawer::before{content:"";position:absolute;inset:4px;border-radius:1px;pointer-events:none;
-    box-shadow:inset 0 1px 0 rgba(233,225,203,.10), inset 0 -1px 0 rgba(0,0,0,.55),
-               inset 1px 0 0 rgba(233,225,203,.05), inset -1px 0 0 rgba(0,0,0,.4)}
-  .dlabel{position:absolute;left:50%;top:17px;transform:translateX(-50%);width:78%;padding:2px;border-radius:1px;
-    background:linear-gradient(180deg,#6a7269,#4c534b);box-shadow:0 2px 4px rgba(0,0,0,.55)}
-  .dcard{display:block;background:linear-gradient(180deg,var(--paper),var(--paper-2));border-radius:1px;padding:5px 8px 4px;text-align:center}
-  .dname{display:block;font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);line-height:1.15}
-  .dsub{display:block;font-size:8.5px;letter-spacing:.03em;color:var(--ink-soft);margin-top:2px;font-style:italic}
-  .dcount{position:absolute;left:50%;bottom:11px;transform:translateX(-50%);font-family:'Special Elite',monospace;
-    font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(233,225,203,.35)}
-  .dpull{position:absolute;left:50%;bottom:29px;transform:translateX(-50%);width:46px;height:15px;border-radius:0 0 8px 8px;
-    background:linear-gradient(180deg,#7d8479 0%,#5a615a 40%,#3a403b 100%);
-    box-shadow:0 3px 5px rgba(0,0,0,.55), inset 0 1px 0 rgba(233,225,203,.35)}
-  .dpull::after{content:"";position:absolute;left:6px;right:6px;top:3px;height:6px;border-radius:0 0 7px 7px;
-    background:linear-gradient(180deg, rgba(0,0,0,.8), rgba(0,0,0,.3))}
-  .drawer:hover{transform:translateZ(20px) translateY(-2px);box-shadow:0 15px 24px rgba(0,0,0,.55), inset 0 1px 0 rgba(233,225,203,.18)}
-  .drawer:hover .dpull{background:linear-gradient(180deg,#9aa294,#6d746b 40%,#464d46 100%)}
-  .drawer.captain .dlabel{background:linear-gradient(180deg,#7d3a3d,#54262a)}
-  .drawer.captain .dname{color:var(--stamp)}
-  .cab-stage.open .cabinet{filter:brightness(.45) saturate(.7)}
-  .cab-stage.open .drawer.sel{opacity:0}
-
-  /* --- the drawer, pulled out of its own slot --- */
-  #drawerOpen{position:absolute;inset:0;z-index:20;opacity:0;pointer-events:none;
-    transform-origin:var(--ox,50%) var(--oy,50%);transform:translateZ(0) scale(.26);transform-style:preserve-3d}
-  #drawerOpen.show{opacity:1;pointer-events:auto;animation:drawerPull .62s cubic-bezier(.19,.9,.28,1.02) forwards}
-  @keyframes drawerPull{
-    0%   {opacity:.2; transform:translateZ(0)    scale(.26) rotateX(9deg)}
-    38%  {opacity:1;  transform:translateZ(70px) scale(.62) rotateX(5deg)}
-    72%  {            transform:translateZ(104px) scale(1.02) rotateX(1deg)}
-    100% {            transform:translateZ(92px) scale(1)    rotateX(0deg)}}
-  .do-box{position:relative;height:100%;display:flex;flex-direction:column;border-radius:3px;overflow:hidden;cursor:pointer;
-    box-shadow:0 40px 64px rgba(0,0,0,.8), 0 0 0 1px rgba(0,0,0,.65)}
-  /* the runners the drawer slides on */
-  .do-box::before,.do-box::after{content:"";position:absolute;top:34px;bottom:56px;width:5px;z-index:3;pointer-events:none;
-    background:linear-gradient(90deg, rgba(233,225,203,.16), rgba(0,0,0,.5));box-shadow:0 0 10px rgba(0,0,0,.6)}
-  .do-box::before{left:0}
-  .do-box::after{right:0;background:linear-gradient(270deg, rgba(233,225,203,.16), rgba(0,0,0,.5))}
-  .do-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 14px;
-    background:linear-gradient(180deg,#3d453e,#2a312b 65%,#1d231e)}
-  .do-title{font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--tape)}
-  .do-hint{font-family:'Special Elite',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(233,225,203,.32)}
-  .do-inner{flex:1;position:relative;overflow:hidden;padding:24px 16px 0;
-    background:linear-gradient(180deg,#070a07,#0f130e 45%,#161b13);
-    box-shadow:inset 0 16px 28px rgba(0,0,0,.85), inset 0 -30px 40px rgba(0,0,0,.6)}
+  /* --- the pulled-out drawer --- */
+  #drawerOpen{display:none;margin-top:0}
+  #drawerOpen.show{display:block;animation:drawerOut .48s cubic-bezier(.2,.85,.3,1.05) both}
+  @keyframes drawerOut{
+    from{opacity:0;transform:translateY(-26px) scale(.94)}
+    to{opacity:1;transform:none}}
+  .do-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:10px}
+  .do-title{font-family:'Special Elite',monospace;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--tape)}
+  #closeDrawer{background:none;border:none;color:rgba(233,225,203,.55);font-family:'Special Elite',monospace;
+    font-size:11px;letter-spacing:.1em;cursor:pointer;text-transform:uppercase}
+  #closeDrawer:hover{color:var(--stamp)}
+  .cab{position:relative;filter:drop-shadow(0 24px 36px rgba(0,0,0,.55))}
+  .cab-inner{position:relative;background:linear-gradient(180deg,#0d0f0c,#161a15 55%,#1d211a);
+    border-radius:8px 8px 0 0;padding:30px 22px 0;clip-path:polygon(6% 0,94% 0,100% 100%,0 100%);min-height:150px}
   .files{display:flex;flex-direction:column;align-items:center}
-  .folder{position:relative;border:none;background:none;cursor:pointer;padding:0;width:100%;max-width:440px;height:86px;
-    margin-top:-52px;transform:scale(var(--s)) translateY(0);transform-origin:bottom center;z-index:var(--z);
-    transition:transform .25s cubic-bezier(.2,.9,.3,1.2);animation:fileIn .42s cubic-bezier(.2,.8,.3,1) backwards}
+  .folder{position:relative;border:none;background:none;cursor:pointer;padding:0;width:100%;max-width:520px;height:96px;
+    margin-top:-58px;transform:scale(var(--s)) translateY(0);transform-origin:bottom center;z-index:var(--z);
+    transition:transform .25s cubic-bezier(.2,.9,.3,1.2);will-change:transform;animation:fileIn .45s cubic-bezier(.2,.8,.3,1) backwards}
   .folder:first-child{margin-top:0}
-  @keyframes fileIn{from{opacity:0;transform:scale(var(--s)) translateY(24px)}to{opacity:1;transform:scale(var(--s)) translateY(0)}}
-  .folder .ftab{position:absolute;top:0;left:var(--tabx);max-width:52%;font-family:'Special Elite',monospace;font-size:9px;
+  @keyframes fileIn{from{opacity:0;transform:scale(var(--s)) translateY(26px)}to{opacity:1;transform:scale(var(--s)) translateY(0)}}
+  .folder .ftab{position:absolute;top:0;left:var(--tabx);max-width:48%;font-family:'Special Elite',monospace;font-size:9.5px;
     line-height:1.2;letter-spacing:.03em;text-transform:uppercase;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-    background:linear-gradient(180deg,#f0e7d0,#e2d7ba);padding:5px 12px 4px;border-radius:6px 6px 0 0;
+    background:linear-gradient(180deg,#f0e7d0,#e2d7ba);padding:6px 13px 5px;border-radius:7px 7px 0 0;
     box-shadow:inset 0 2px 0 rgba(255,255,255,.35), 0 -1px 2px rgba(0,0,0,.15)}
-  .folder .fbody{position:absolute;top:24px;left:0;right:0;bottom:0;background:linear-gradient(180deg,#e6dcc2,var(--paper-2) 40%,#cfc4a6);
+  .folder .fbody{position:absolute;top:27px;left:0;right:0;bottom:0;background:linear-gradient(180deg,#e6dcc2,var(--paper-2) 40%,#cfc4a6);
     border-radius:4px 4px 0 0;box-shadow:inset 0 5px 7px -4px rgba(255,255,255,.4), inset 0 -8px 10px -8px rgba(0,0,0,.35), 0 -2px 4px rgba(0,0,0,.28)}
-  .folder .fno{position:absolute;top:31px;right:13px;font-family:'Special Elite',monospace;font-size:8px;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase;opacity:.85}
-  .folder .pips{position:absolute;top:32px;left:14px;display:flex;gap:3px}
-  .folder .pips i{width:5.5px;height:5.5px;border:1px solid rgba(42,36,32,.5);border-radius:1px;display:block}
+  .folder .fno{position:absolute;top:34px;right:14px;font-family:'Special Elite',monospace;font-size:8.5px;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase;opacity:.85}
+  .folder .pips{position:absolute;top:35px;left:16px;display:flex;gap:3px}
+  .folder .pips i{width:6px;height:6px;border:1px solid rgba(42,36,32,.5);border-radius:1px;display:block}
   .folder .pips i.on{background:var(--ink-soft)}
-  .folder:hover{transform:scale(var(--s)) translateY(-11px)}
-  .folder.raised{transform:scale(calc(var(--s)*1.02)) translateY(-28px);z-index:99}
-  .folder.raised .fbody{box-shadow:0 16px 26px rgba(0,0,0,.6), inset 0 5px 7px -4px rgba(255,255,255,.4)}
-  .do-front{position:relative;height:56px;border-radius:0 0 3px 3px;
-    background:linear-gradient(178deg,#3d453e 0%,#333a34 30%,#272e29 72%,#1e2420 100%);
-    box-shadow:inset 0 2px 0 rgba(233,225,203,.16), inset 0 -10px 16px rgba(0,0,0,.55)}
-  .do-front .handle{position:absolute;left:50%;top:16px;transform:translateX(-50%);width:110px;height:17px;border-radius:0 0 9px 9px;
-    background:linear-gradient(180deg,#7d8479 0%,#5a615a 40%,#3a403b 100%);
-    box-shadow:0 3px 6px rgba(0,0,0,.55), inset 0 1px 0 rgba(233,225,203,.35)}
-  .do-front .handle::after{content:"";position:absolute;left:8px;right:8px;top:3px;height:7px;border-radius:0 0 8px 8px;
-    background:linear-gradient(180deg, rgba(0,0,0,.8), rgba(0,0,0,.3))}
+  .folder:hover{transform:scale(var(--s)) translateY(-12px)}
+  .folder.raised{transform:scale(calc(var(--s)*1.02)) translateY(-32px);z-index:99}
+  .folder.raised .fbody{box-shadow:0 16px 26px rgba(0,0,0,.55), inset 0 5px 7px -4px rgba(255,255,255,.4)}
+  .cab-front{position:relative;height:96px;margin:0 -8px;z-index:60;border-radius:0 0 10px 10px;
+    background:linear-gradient(180deg,#3c443e,#272c28 32%,#1b201c 88%,#141815);
+    box-shadow:inset 0 3px 0 rgba(255,255,255,.08), inset 0 -8px 14px rgba(0,0,0,.55), 0 2px 0 rgba(0,0,0,.4)}
+  .cab-front .plate{position:absolute;left:50%;top:12px;transform:translateX(-50%);font-family:'Special Elite',monospace;font-size:9.5px;
+    letter-spacing:.28em;color:var(--tape);border:1px solid rgba(201,162,39,.5);padding:3px 16px;text-transform:uppercase;background:rgba(0,0,0,.3);white-space:nowrap}
+  .cab-front .handle{position:absolute;left:50%;top:46px;transform:translateX(-50%);width:150px;height:19px;
+    border:4px solid #6e6552;border-top:none;border-radius:0 0 12px 12px;box-shadow:0 3px 5px rgba(0,0,0,.4), inset 0 -2px 2px rgba(255,255,255,.12)}
+  .cab-front .keyhole{position:absolute;left:50%;top:74px;transform:translateX(-50%);width:12px;height:12px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #7a7260, #2a2620 70%);box-shadow:0 1px 0 rgba(255,255,255,.15)}
 
-  /* --- right column --- */
-  .preview-hint{font-family:'Special Elite',monospace;font-size:13.5px;letter-spacing:.05em;color:rgba(233,225,203,.45);line-height:1.85;max-width:400px}
+  /* --- captain's desk --- */
+  .captain{margin-top:18px;position:relative;border-radius:4px;padding:16px 18px 16px;
+    background:linear-gradient(165deg,#3a2f22,#2b231a 60%,#221b14);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 12px 26px rgba(0,0,0,.45);
+    border-left:3px solid rgba(201,162,39,.5)}
+  .captain h3{font-family:'Special Elite',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--tape);margin-bottom:6px}
+  .captain p{font-size:13px;color:rgba(233,225,203,.62);line-height:1.5;font-style:italic}
+  #assignBtn{margin-top:12px;background:none;border:2px solid var(--stamp);color:var(--stamp);font-family:'Special Elite',monospace;
+    font-size:12px;letter-spacing:.14em;padding:8px 16px;cursor:pointer;text-transform:uppercase;border-radius:2px}
+  #assignBtn:hover{background:rgba(176,36,44,.15)}
+
+  /* --- preview column --- */
+  .preview-hint{font-family:'Special Elite',monospace;font-size:14px;letter-spacing:.05em;color:rgba(233,225,203,.5);line-height:1.7;padding-top:12px;max-width:360px}
   #filePreview{max-width:560px;display:none;cursor:pointer;text-align:left;width:100%;
     background:linear-gradient(180deg,var(--paper),var(--paper-2));color:var(--ink);border:none;border-radius:3px;
-    padding:22px 22px 18px;position:relative;box-shadow:0 16px 36px rgba(0,0,0,.55);
+    padding:22px 22px 18px;position:relative;box-shadow:0 14px 34px rgba(0,0,0,.5);
     animation:prevIn .3s cubic-bezier(.2,.8,.3,1)}
   @keyframes prevIn{from{opacity:0;transform:translateY(14px) rotate(-.6deg)}to{opacity:1;transform:none}}
   #filePreview.show{display:block}
@@ -159,6 +145,7 @@
   #filePreview .plevel .pips i.on{background:var(--ink-soft)}
   #filePreview .popen{margin-top:12px;font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.1em;color:var(--stamp);text-transform:uppercase}
   #filePreview:hover .popen{text-decoration:underline}
+  @media(max-width:900px){.preview-hint{padding-top:4px}}
 
   /* ============ GAME screen ============ */
   .grid{display:grid;grid-template-columns:340px 1fr;gap:22px;margin-top:22px}
@@ -264,28 +251,37 @@
       <div class="confidential">Confidential</div>
     </header>
     <p id="selectSub">Every file in this drawer is an unsolved case — murders, heists, forgeries, sabotage. Three suspects, all of them lying about something, one of them guilty. Pull a file to read it. Pull it again to take the case.</p>
-    <div class="select-grid">
-      <div class="cab-stage" id="cabStage">
+    <div class="select-wrap">
+      <div>
         <div class="cabinet" id="cabinet">
-          <div class="cab-crown"></div>
-          <div class="cab-grid" id="drawerList"></div>
-          <div class="cab-brass">Metropolitan Crime Branch</div>
+          <div class="cab-plate">Cold &amp; Cursed Files · Unsolved</div>
+          <div id="drawerList"></div>
         </div>
 
         <div id="drawerOpen">
-          <div class="do-box">
-            <div class="do-head">
-              <span class="do-title" id="doTitle"></span>
-              <span class="do-hint">push the drawer to close</span>
-            </div>
-            <div class="do-inner"><div class="files" id="folderRow"></div></div>
-            <div class="do-front"><span class="handle"></span></div>
+          <div class="do-head">
+            <span class="do-title" id="doTitle"></span>
+            <button id="closeDrawer">← close drawer</button>
           </div>
+          <div class="cab">
+            <div class="cab-inner"><div class="files" id="folderRow"></div></div>
+            <div class="cab-front">
+              <span class="plate" id="doPlate"></span>
+              <span class="handle"></span>
+              <span class="keyhole"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="captain">
+          <h3>Captain's Desk</h3>
+          <p>"You don't pick your cases, detective. Not on my watch."</p>
+          <button id="assignBtn">Assign me a case</button>
         </div>
       </div>
 
       <div class="preview-col">
-        <p class="preview-hint" id="previewHint">Six drawers. Pull one open.<br><br>Every file inside is unsolved, and every suspect in it is lying about something.</p>
+        <p class="preview-hint" id="previewHint">Five drawers. Open one, pull a file, read the label.<br><br>Pull it again and the case is yours.</p>
         <button id="filePreview"></button>
       </div>
     </div>
@@ -499,77 +495,50 @@ function pipsHTML(level, n){
   return `<span class="pips">${out}</span>`;
 }
 
-/* ---- the cabinet: two banks of three ---- */
+/* ---- the cabinet ---- */
 function renderCabinet(){
   const counts = {};
   CATALOG.forEach(c => { const k = c.category || "Homicide"; counts[k] = (counts[k]||0)+1; });
   const list = $("drawerList");
   list.innerHTML = "";
-
   CAT_ORDER.forEach(cat => {
-    if(!counts[cat]) return;
+    if(!counts[cat]) return;                       // no empty drawers
     const meta = CAT_META[cat] || { label: cat, sub: "" };
     const b = document.createElement("button");
     b.className = "drawer";
     b.dataset.cat = cat;
-    b.innerHTML = `<span class="dlabel"><span class="dcard">
-                     <span class="dname">${esc(meta.label)}</span>
-                     <span class="dsub">${esc(meta.sub)}</span>
-                   </span></span>
-                   <span class="dpull"></span>
-                   <span class="dcount">${counts[cat]} ${counts[cat]===1?"file":"files"}</span>`;
+    b.innerHTML = `<span class="dlabel"><span class="dname">${esc(meta.label)}</span><span class="dsub">${esc(meta.sub)}</span></span>
+                   <span class="dcount">${counts[cat]} ${counts[cat]===1?"file":"files"}</span>
+                   <span class="dhandle"></span>`;
     b.onclick = (e)=>{ e.stopPropagation(); openDrawer(cat, b); };
     list.appendChild(b);
   });
-
-  // the captain keeps his own drawer
-  const cap = document.createElement("button");
-  cap.className = "drawer captain";
-  cap.innerHTML = `<span class="dlabel"><span class="dcard">
-                     <span class="dname">Captain's Desk</span>
-                     <span class="dsub">he picks, you go</span>
-                   </span></span>
-                   <span class="dpull"></span>
-                   <span class="dcount">unassigned</span>`;
-  cap.onclick = (e)=>{ e.stopPropagation(); openCase(null, openCat); };
-  list.appendChild(cap);
 }
 
 function openDrawer(cat, btn){
   openCat = cat;
   lowerFolder();
-
-  // grow the open drawer out of the slot that was actually clicked
-  const stage = $("cabStage").getBoundingClientRect();
-  const r = btn.getBoundingClientRect();
-  const ox = ((r.left + r.width / 2) - stage.left) / stage.width * 100;
-  const oy = ((r.top + r.height / 2) - stage.top) / stage.height * 100;
-  const panel = $("drawerOpen");
-  panel.style.setProperty("--ox", ox.toFixed(1) + "%");
-  panel.style.setProperty("--oy", oy.toFixed(1) + "%");
-
-  $("cabStage").classList.add("open");
+  $("cabinet").classList.add("open");
   document.querySelectorAll(".drawer").forEach(d => d.classList.toggle("sel", d === btn));
-
   const meta = CAT_META[cat] || { label: cat };
   $("doTitle").textContent = meta.label;
-
+  $("doPlate").textContent = meta.label + " · Unsolved";
   const cases = CATALOG.filter(c => (c.category || "Homicide") === cat);
   const row = $("folderRow");
   row.innerHTML = "";
-  cases.forEach((c, i) => row.appendChild(makeFolder(c, i, cases.length)));
-
-  panel.classList.add("show");
+  cases.forEach((c,i) => row.appendChild(makeFolder(c, i, cases.length)));
+  $("drawerOpen").classList.add("show");
   $("previewHint").innerHTML = "Pull a file to read its label.<br><br>Pull it again and the case is yours.";
+  $("drawerOpen").scrollIntoView({ behavior:"smooth", block:"nearest" });
 }
 
 function closeDrawer(){
   openCat = null;
   lowerFolder();
-  $("cabStage").classList.remove("open");
+  $("cabinet").classList.remove("open");
   document.querySelectorAll(".drawer").forEach(d => d.classList.remove("sel"));
   $("drawerOpen").classList.remove("show");
-  $("previewHint").innerHTML = "Six drawers. Pull one open.<br><br>Every file inside is unsolved, and every suspect in it is lying about something.";
+  $("previewHint").innerHTML = "Five drawers. Open one, pull a file, read the label.<br><br>Pull it again and the case is yours.";
 }
 
 /* ---- files inside the open drawer ---- */
@@ -577,11 +546,11 @@ const TAB_X = ["7%","37%","63%"];
 function makeFolder(caseData, depthIndex, total){
   const b = document.createElement("button");
   b.className = "folder";
-  const s = 0.82 + 0.18 * (total > 1 ? depthIndex/(total-1) : 1);
+  const s = 0.80 + 0.20 * (total > 1 ? depthIndex/(total-1) : 1);
   b.style.setProperty("--s", s.toFixed(3));
   b.style.setProperty("--z", depthIndex + 1);
   b.style.setProperty("--tabx", TAB_X[depthIndex % 3]);
-  b.style.animationDelay = (330 + (total - depthIndex) * 60) + "ms";   // wait for the drawer to come out
+  b.style.animationDelay = ((total - depthIndex) * 55) + "ms";
   const no = "No. " + String(caseData.caseNo).split("·")[0].trim();
   b.innerHTML = `<span class="ftab">${esc(caseData.title)}</span><span class="fbody"></span>
                  ${pipsHTML(caseData.level)}<span class="fno">${esc(no)}</span>`;
@@ -615,14 +584,15 @@ function raiseFolder(entry){
       <div class="popen">⟶ Take this case</div>`;
   $("previewHint").style.display = "none";
   $("filePreview").classList.add("show");
+  $("filePreview").scrollIntoView({ behavior:"smooth", block:"nearest" });
 }
 
-// pushing the drawer shuts it — anywhere except on a file
-if($("drawerOpen")) $("drawerOpen").onclick = (e)=>{
+/* ---- captain's desk ---- */
+if($("assignBtn")) $("assignBtn").onclick = (e)=>{
   e.stopPropagation();
-  if(e.target.closest(".folder")) return;      // that's a file, not the drawer
-  closeDrawer();
+  openCase(null, openCat);          // open drawer? he picks from it. otherwise anything.
 };
+if($("closeDrawer")) $("closeDrawer").onclick = (e)=>{ e.stopPropagation(); closeDrawer(); };
 
 async function loadCatalog(){
   try{

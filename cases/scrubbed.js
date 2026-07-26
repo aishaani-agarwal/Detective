@@ -10,7 +10,9 @@ ${RULES}`;
 
 module.exports = {
   id: "scrubbed",
-  caseNo: "FBI-LA-30291 · FAA Joint Investigation",
+  caseNo: "FBI-LA-30291H · FAA Joint Investigation",
+  category: "Sabotage",
+  level: "hard",
   title: "Scrubbed",
   theme: "Sabotage · Mojave Desert",
   difficulty: "Sabotage",
@@ -24,14 +26,6 @@ module.exports = {
     { label: "Context", parts: [{ t: "Vantage is racing a rival to a crewed-flight contract. Internal reports flagged the valve supplier's batch quality twice this year; both reports were closed \"no action.\"" }] }
   ],
 
-  intro: [
-    { text: "The Mojave, T-minus one day. The Meridian stands fueled on the pad — a company's future, a crewed contract, and three hundred careers balanced on one maiden flight.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><path d="M0 170 L90 140 L180 165 L280 135 L400 160 V220 H0 Z" fill="#0e1311"/><rect x="190" y="45" width="20" height="105" rx="4" fill="var(--paper)" opacity=".85"/><path d="M190 45 q10 -18 20 0 z" fill="var(--paper)" opacity=".85"/><path d="M186 150 h28 l8 18 h-44 z" fill="#0e1311"/><rect x="238" y="95" width="8" height="72" fill="#0e1311"/><circle cx="70" cy="45" r="12" fill="var(--paper)" opacity=".6"/><text x="200" y="210" text-anchor="middle" font-family="monospace" font-size="10" fill="var(--tape)" letter-spacing="3">MOJAVE · T-1 DAY</text></svg>` },
-    { text: "22:00, shift change, Cleanroom 4. Someone in a bunny suit reaches the main fuel valve — and two hours before liftoff, pre-flight finds the contamination that would have torn the Meridian apart.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="#0a0d0c"/><rect x="80" y="40" width="240" height="150" fill="#101614"/><rect x="80" y="40" width="240" height="150" fill="var(--tape)" opacity=".05"/><rect x="60" y="90" width="20" height="60" fill="#050706"/><text x="70" y="82" text-anchor="middle" font-family="monospace" font-size="8" fill="var(--stamp)">A ✕</text><rect x="320" y="90" width="20" height="60" fill="var(--tape)" opacity=".4"/><text x="330" y="82" text-anchor="middle" font-family="monospace" font-size="8" fill="var(--tape)">B</text><circle cx="200" cy="110" r="14" fill="#050706"/><path d="M182 190 q18 -50 36 0 z" fill="#050706"/><circle cx="200" cy="140" r="26" fill="var(--ok)" opacity=".18"/><text x="200" y="210" text-anchor="middle" font-family="monospace" font-size="11" fill="var(--stamp)" letter-spacing="4">22:00 · SHIFT CHANGE</text></svg>` },
-    { text: "The flight director holding the schedule together with signatures. The propulsion engineer whose warnings were buried. The consultant selling access to everyone. One of them stopped this launch, investigator — the question is what else they'd have stopped.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><g transform="translate(70,45) rotate(-4)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#3a4a6b"/><circle cx="40" cy="36" r="14" fill="#161d2a"/><path d="M18 72 q22 -22 44 0 z" fill="#161d2a"/></g><g transform="translate(160,38) rotate(3)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#4a5a2f"/><circle cx="40" cy="36" r="14" fill="#1c2212"/><path d="M18 72 q22 -22 44 0 z" fill="#1c2212"/></g><g transform="translate(250,47) rotate(-2)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#5a4a5a"/><circle cx="40" cy="36" r="14" fill="#221c22"/><path d="M18 72 q22 -22 44 0 z" fill="#221c22"/></g><text x="200" y="195" text-anchor="middle" font-family="monospace" font-size="12" fill="var(--stamp)" letter-spacing="3">ONE OF THEM DID IT</text></svg>` }
-  ],
 
   suspects: {
     hannah: {

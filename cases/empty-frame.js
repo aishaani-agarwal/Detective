@@ -10,7 +10,9 @@ ${RULES}`;
 
 module.exports = {
   id: "empty-frame",
-  caseNo: "AC-1187 · Amsterdam Art Crimes",
+  caseNo: "AC-1187M · Amsterdam Art Crimes",
+  category: "Theft",
+  level: "medium",
   title: "The Empty Frame",
   theme: "Art Heist · Amsterdam",
   difficulty: "Theft",
@@ -24,14 +26,6 @@ module.exports = {
     { label: "Scene", parts: [{ t: "Two of Gallery 7's cameras were offline since 21:30. A scheduled pigment-authentication lab test on the Vermeer was due next week." }] }
   ],
 
-  intro: [
-    { text: "Amsterdam. Champagne, tuxedos, and ninety million euros of Vermeer hanging in Gallery 7 — until the fire alarm screams at 22:40.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><rect x="60" y="50" width="280" height="150" fill="#0e1311"/><rect x="150" y="80" width="100" height="80" fill="var(--tape)" opacity=".2"/><rect x="150" y="80" width="100" height="80" fill="none" stroke="var(--tape)" stroke-width="5" opacity=".8"/><circle cx="110" cy="200" r="3" fill="var(--paper)"/><circle cx="290" cy="200" r="3" fill="var(--paper)"/><text x="200" y="212" text-anchor="middle" font-family="monospace" font-size="10" fill="var(--tape)" letter-spacing="3">GALLERY 7 · 22:39</text></svg>` },
-    { text: "Fifteen minutes of red emergency light and an empty courtyard headcount later, the all-clear sounds. The frame still hangs. The canvas is gone.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="#170a0a"/><rect x="150" y="70" width="100" height="80" fill="none" stroke="var(--stamp)" stroke-width="6"/><text x="200" y="118" text-anchor="middle" font-family="monospace" font-size="12" fill="var(--stamp)" opacity=".8">EMPTY</text><text x="200" y="205" text-anchor="middle" font-family="monospace" font-size="11" fill="var(--stamp)" letter-spacing="4">22:55 · ALL CLEAR</text></svg>` },
-    { text: "The security chief whose cameras were dark. The insurance assessor with a test to schedule. The restorer who knew the painting like his own hand. One of them walked out with a Vermeer under their coat.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><g transform="translate(70,45) rotate(-4)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#3a4a5a"/><circle cx="40" cy="36" r="14" fill="#141c22"/><path d="M18 72 q22 -22 44 0 z" fill="#141c22"/></g><g transform="translate(160,38) rotate(3)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#5a4a3a"/><circle cx="40" cy="36" r="14" fill="#221c14"/><path d="M18 72 q22 -22 44 0 z" fill="#221c14"/></g><g transform="translate(250,47) rotate(-2)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#4a5a3a"/><circle cx="40" cy="36" r="14" fill="#1c2214"/><path d="M18 72 q22 -22 44 0 z" fill="#1c2214"/></g><text x="200" y="195" text-anchor="middle" font-family="monospace" font-size="12" fill="var(--stamp)" letter-spacing="3">ONE OF THEM DID IT</text></svg>` }
-  ],
 
   suspects: {
     hendrik: {

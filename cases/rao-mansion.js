@@ -15,7 +15,9 @@ ${RULES}`;
 
 module.exports = {
   id: "rao-mansion",
-  caseNo: "47 / 2026 · Indiranagar Division",
+  caseNo: "47E / 2026 · Indiranagar Division",
+  category: "Homicide",
+  level: "easy",
   title: "The Rao Mansion Murder",
   theme: "Tech Money · Bangalore",
   difficulty: "Classic",
@@ -29,20 +31,6 @@ module.exports = {
     { label: "Scene", parts: [{ t: "Study door unlocked. No forced entry. ~40 guests downstairs and on the terrace; fireworks 9:00 – 9:45 PM." }] }
   ],
 
-  intro: [
-    {
-      text: "Diwali night, Indiranagar. The Rao mansion glows — diyas on every ledge, fireworks over the terrace, forty guests who all want something from the host.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><circle cx="330" cy="40" r="16" fill="var(--paper)" opacity=".85"/><rect x="70" y="90" width="260" height="110" fill="#0e1311"/><polygon points="70,90 200,40 330,90" fill="#0e1311"/><rect x="100" y="115" width="26" height="30" fill="var(--tape)" opacity=".9"/><rect x="150" y="115" width="26" height="30" fill="var(--tape)" opacity=".7"/><rect x="230" y="115" width="26" height="30" fill="var(--tape)" opacity=".8"/><rect x="278" y="115" width="26" height="30" fill="var(--tape)" opacity=".55"/><rect x="185" y="150" width="34" height="50" fill="#050706"/><circle cx="90" cy="205" r="3" fill="var(--tape)"/><circle cx="130" cy="207" r="3" fill="var(--tape)"/><circle cx="270" cy="206" r="3" fill="var(--tape)"/><circle cx="315" cy="204" r="3" fill="var(--tape)"/><path d="M60 30 l6 10 -6 -3 -6 3 z" fill="var(--stamp)"/><path d="M110 18 l5 8 -5 -2 -5 2 z" fill="var(--tape)"/></svg>`
-    },
-    {
-      text: "9:20 PM. The generator coughs and dies. Fifteen minutes of darkness. When the lights return, the housekeeper's scream cuts through the fireworks — the host is dead in his study.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="#0a0d0c"/><rect x="120" y="30" width="160" height="190" fill="#111614"/><rect x="150" y="55" width="100" height="140" fill="var(--tape)" opacity=".14"/><rect x="150" y="55" width="100" height="140" fill="none" stroke="#050706" stroke-width="6"/><path d="M175 195 q25 -60 50 0 z" fill="#050706"/><rect x="185" y="80" width="30" height="60" fill="#050706"/><circle cx="200" cy="70" r="12" fill="#050706"/><text x="200" y="215" text-anchor="middle" font-family="monospace" font-size="11" fill="var(--stamp)" letter-spacing="4">9:35 PM</text></svg>`
-    },
-    {
-      text: "Three people had reasons. Three people have stories. All three are lying to you about something, detective — but only one of them is a killer.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><g transform="translate(70,45) rotate(-5)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#5a4a7a"/><circle cx="40" cy="36" r="14" fill="#241f2e"/><path d="M18 72 q22 -22 44 0 z" fill="#241f2e"/></g><g transform="translate(160,38) rotate(2)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#7a4a3a"/><circle cx="40" cy="36" r="14" fill="#2e211c"/><path d="M18 72 q22 -22 44 0 z" fill="#2e211c"/></g><g transform="translate(250,47) rotate(-2)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#3a5a4a"/><circle cx="40" cy="36" r="14" fill="#1a2a21"/><path d="M18 72 q22 -22 44 0 z" fill="#1a2a21"/></g><text x="200" y="195" text-anchor="middle" font-family="monospace" font-size="12" fill="var(--stamp)" letter-spacing="3">ONE OF THEM DID IT</text></svg>`
-    }
-  ],
 
   suspects: {
     meera: {

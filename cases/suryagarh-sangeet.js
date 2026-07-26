@@ -15,7 +15,9 @@ ${RULES}`;
 
 module.exports = {
   id: "suryagarh-sangeet",
-  caseNo: "213 / 2026 · Jodhpur Rural",
+  caseNo: "213M / 2026 · Jodhpur Rural",
+  category: "Homicide",
+  level: "medium",
   title: "Sangeet at Suryagarh",
   theme: "Palace Wedding · Rajasthan",
   difficulty: "Classic",
@@ -29,20 +31,6 @@ module.exports = {
     { label: "Scene", parts: [{ t: "The Sheesh Mahal is reached only by the spiral stair from the courtyard arcade. ~200 guests; drinks were circulating on trays all night." }] }
   ],
 
-  intro: [
-    {
-      text: "Suryagarh Palace, sangeet night. Two hundred guests, a qawwali troupe, and enough old money in one courtyard to buy a small state.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><rect x="40" y="80" width="320" height="120" fill="#0e1311"/><path d="M40 80 h320 v-14 h-24 v8 h-24 v-8 h-24 v8 h-24 v-8 h-24 v8 h-24 v-8 h-24 v8 h-24 v-8 h-24 v8 h-24 v-8 h-24 v8 h-24 v-8 h-32 z" fill="#0e1311"/><path d="M90 200 v-52 a18 22 0 0 1 36 0 v52 z" fill="var(--tape)" opacity=".25"/><path d="M182 200 v-52 a18 22 0 0 1 36 0 v52 z" fill="var(--tape)" opacity=".35"/><path d="M274 200 v-52 a18 22 0 0 1 36 0 v52 z" fill="var(--tape)" opacity=".25"/><circle cx="60" cy="34" r="14" fill="var(--paper)" opacity=".8"/><circle cx="120" cy="50" r="2" fill="var(--tape)"/><circle cx="300" cy="40" r="2" fill="var(--tape)"/></svg>`
-    },
-    {
-      text: "11:15 PM. The sky tears open. The courtyard empties in a laughing, shrieking scramble for the Durbar Hall — and somewhere above, in the hall of mirrors, a glass of thandai sits half-finished.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="#0a0d0c"/><g stroke="var(--paper)" stroke-width="1.4" opacity=".5"><line x1="60" y1="10" x2="48" y2="60"/><line x1="120" y1="0" x2="108" y2="55"/><line x1="185" y1="12" x2="173" y2="66"/><line x1="250" y1="4" x2="238" y2="58"/><line x1="315" y1="14" x2="303" y2="68"/><line x1="365" y1="6" x2="353" y2="60"/></g><rect x="150" y="90" width="100" height="130" fill="#111614"/><rect x="170" y="110" width="60" height="80" fill="var(--tape)" opacity=".12"/><path d="M196 168 h10 l-2 -26 h-6 z" fill="var(--paper)" opacity=".85"/><path d="M192 142 h18 l-4 -12 h-10 z" fill="var(--paper)" opacity=".85"/><text x="200" y="212" text-anchor="middle" font-family="monospace" font-size="11" fill="var(--stamp)" letter-spacing="4">11:15 PM</text></svg>`
-    },
-    {
-      text: "The brother who sold his stake. The sister who wasn't invited. The wedding planner whose invoices didn't add up. All three were near the spiral stair, detective. One of them carried the glass.",
-      svg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="220" fill="var(--desk)"/><g transform="translate(70,45) rotate(-4)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#6b4a2f"/><circle cx="40" cy="36" r="14" fill="#2a1f14"/><path d="M18 72 q22 -22 44 0 z" fill="#2a1f14"/></g><g transform="translate(160,38) rotate(3)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#5a3a5a"/><circle cx="40" cy="36" r="14" fill="#241626"/><path d="M18 72 q22 -22 44 0 z" fill="#241626"/></g><g transform="translate(250,47) rotate(-2)"><rect width="80" height="100" fill="var(--paper)"/><rect x="8" y="8" width="64" height="64" fill="#3a4a6b"/><circle cx="40" cy="36" r="14" fill="#161d2a"/><path d="M18 72 q22 -22 44 0 z" fill="#161d2a"/></g><text x="200" y="195" text-anchor="middle" font-family="monospace" font-size="12" fill="var(--stamp)" letter-spacing="3">ONE OF THEM DID IT</text></svg>`
-    }
-  ],
 
   suspects: {
     yashwant: {

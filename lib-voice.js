@@ -20,6 +20,24 @@ const SAMPLE_RATE = 24000;
 // three suspects always sound clearly different.
 // Edit any line here to re-cast a character, then run `npm run voice-setup` to audition.
 const CAST = {
+  "closing-time:vivienne":         { voice: "af_nicole", speed: 1.02 },
+  "closing-time:teddy":            { voice: "am_fenrir", speed: 0.98 },
+  "closing-time:roland":           { voice: "am_puck", speed: 1.12 },
+  "salt-and-silver:anselmo":       { voice: "pm_santa", speed: 0.98 },
+  "salt-and-silver:ignacio":       { voice: "em_alex", speed: 1.1 },
+  "salt-and-silver:beatriz":       { voice: "ef_dora", speed: 1.06 },
+  "quiet-car:renata":              { voice: "bf_emma", speed: 1.04 },
+  "quiet-car:marco":               { voice: "im_nicola", speed: 1.0 },
+  "quiet-car:silvan":              { voice: "am_michael", speed: 1.08 },
+  "night-shift:fiona":             { voice: "bf_isabella", speed: 1.1 },
+  "night-shift:ari":               { voice: "am_puck", speed: 1.12 },
+  "night-shift:grant":             { voice: "am_fenrir", speed: 1.02 },
+  "cold-chain:wim":                { voice: "am_onyx", speed: 0.98 },
+  "cold-chain:yasmin":             { voice: "af_heart", speed: 1.1 },
+  "cold-chain:ruud":               { voice: "bm_fable", speed: 1.12 },
+  "ledger:jiwoo":                  { voice: "am_puck", speed: 1.08 },
+  "ledger:claire":                 { voice: "bf_emma", speed: 1.04 },
+  "ledger:daehyun":                { voice: "am_michael", speed: 1.0 },
   // Bangalore — Indian voices
   "rao-mansion:meera":          { voice: "hf_beta",     speed: 1.06 },
   "rao-mansion:arjun":          { voice: "hm_omega",    speed: 1.05 },
