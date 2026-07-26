@@ -37,13 +37,13 @@
 
   /* ============ SELECT screen: the cabinet ============ */
   #selectSub{margin-top:16px;font-size:15px;color:rgba(233,225,203,.72);max-width:700px;line-height:1.6}
-  .select-grid{display:grid;grid-template-columns:minmax(520px,760px) 1fr;gap:38px;margin-top:24px;align-items:start}
+  .select-grid{display:grid;grid-template-columns:minmax(420px,600px) 1fr;gap:34px;margin-top:24px;align-items:start}
   @media(max-width:940px){.select-grid{grid-template-columns:1fr}}
 
   .cab-stage{position:relative;perspective:1400px;perspective-origin:50% 38%}
 
   /* --- carcass: grey-green service cabinet, scuffed --- */
-  .cabinet{position:relative;padding:20px;border-radius:4px;transition:filter .45s, transform .45s;
+  .cabinet{position:relative;padding:16px;border-radius:4px;transition:filter .45s, transform .45s;
     background:linear-gradient(168deg,#2c332d 0%,#242b26 35%,#1b211d 72%,#141915 100%);
     box-shadow:inset 0 1px 0 rgba(233,225,203,.12), inset 0 -12px 22px rgba(0,0,0,.6),
                inset 12px 0 20px -14px rgba(0,0,0,.65), inset -12px 0 20px -14px rgba(0,0,0,.65),
@@ -57,11 +57,11 @@
   .cab-brass{margin-top:13px;text-align:center;font-family:'Special Elite',monospace;
     font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--tape);opacity:.45}
 
-  .cab-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .cab-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
   @media(max-width:520px){.cab-grid{grid-template-columns:1fr}}
 
   /* --- drawer front --- */
-  .drawer{position:relative;height:140px;border:none;cursor:pointer;padding:0;border-radius:2px;overflow:hidden;
+  .drawer{position:relative;height:112px;border:none;cursor:pointer;padding:0;border-radius:2px;overflow:hidden;
     transition:transform .4s cubic-bezier(.2,.85,.3,1.05), box-shadow .3s, filter .35s, opacity .3s;
     background:linear-gradient(178deg,#3d453e 0%,#333a34 30%,#272e29 72%,#1e2420 100%);
     box-shadow:inset 0 1px 0 rgba(233,225,203,.16), inset 0 -8px 14px rgba(0,0,0,.5),
@@ -69,14 +69,14 @@
   .drawer::before{content:"";position:absolute;inset:4px;border-radius:1px;pointer-events:none;
     box-shadow:inset 0 1px 0 rgba(233,225,203,.10), inset 0 -1px 0 rgba(0,0,0,.55),
                inset 1px 0 0 rgba(233,225,203,.05), inset -1px 0 0 rgba(0,0,0,.4)}
-  .dlabel{position:absolute;left:50%;top:24px;transform:translateX(-50%);width:78%;padding:2px;border-radius:1px;
+  .dlabel{position:absolute;left:50%;top:17px;transform:translateX(-50%);width:78%;padding:2px;border-radius:1px;
     background:linear-gradient(180deg,#6a7269,#4c534b);box-shadow:0 2px 4px rgba(0,0,0,.55)}
   .dcard{display:block;background:linear-gradient(180deg,var(--paper),var(--paper-2));border-radius:1px;padding:5px 8px 4px;text-align:center}
-  .dname{display:block;font-family:'Special Elite',monospace;font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);line-height:1.15}
-  .dsub{display:block;font-size:10px;letter-spacing:.03em;color:var(--ink-soft);margin-top:2px;font-style:italic}
-  .dcount{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);font-family:'Special Elite',monospace;
-    font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(233,225,203,.35)}
-  .dpull{position:absolute;left:50%;bottom:38px;transform:translateX(-50%);width:56px;height:18px;border-radius:0 0 8px 8px;
+  .dname{display:block;font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);line-height:1.15}
+  .dsub{display:block;font-size:8.5px;letter-spacing:.03em;color:var(--ink-soft);margin-top:2px;font-style:italic}
+  .dcount{position:absolute;left:50%;bottom:11px;transform:translateX(-50%);font-family:'Special Elite',monospace;
+    font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(233,225,203,.35)}
+  .dpull{position:absolute;left:50%;bottom:29px;transform:translateX(-50%);width:46px;height:15px;border-radius:0 0 8px 8px;
     background:linear-gradient(180deg,#7d8479 0%,#5a615a 40%,#3a403b 100%);
     box-shadow:0 3px 5px rgba(0,0,0,.55), inset 0 1px 0 rgba(233,225,203,.35)}
   .dpull::after{content:"";position:absolute;left:6px;right:6px;top:3px;height:6px;border-radius:0 0 7px 7px;
@@ -112,7 +112,7 @@
     background:linear-gradient(180deg,#070a07,#0f130e 45%,#161b13);
     box-shadow:inset 0 16px 28px rgba(0,0,0,.85), inset 0 -30px 40px rgba(0,0,0,.6)}
   .files{display:flex;flex-direction:column;align-items:center}
-  .folder{position:relative;border:none;background:none;cursor:pointer;padding:0;width:100%;max-width:500px;height:92px;
+  .folder{position:relative;border:none;background:none;cursor:pointer;padding:0;width:100%;max-width:440px;height:86px;
     margin-top:var(--fold,-52px);transform:scale(var(--s)) translateY(0);transform-origin:bottom center;z-index:var(--z);
     transition:transform .25s cubic-bezier(.2,.9,.3,1.2);animation:fileIn .42s cubic-bezier(.2,.8,.3,1) backwards}
   .folder:first-child{margin-top:0}
@@ -318,20 +318,14 @@
   /* ---- per-case atmosphere (set CASE_THEMING to false in the script to switch off) ---- */
   #screen-game.themed{position:relative}
   #screen-game.themed::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-    background:radial-gradient(115% 80% at 82% -8%, var(--wash, transparent), transparent 58%),
-               radial-gradient(85% 65% at -5% 105%, var(--wash, transparent), transparent 55%),
-               linear-gradient(180deg, var(--wash-thin, transparent), transparent 30%)}
+    background:radial-gradient(120% 90% at 78% -10%, var(--wash, transparent), transparent 62%),
+               radial-gradient(90% 70% at 0% 100%, var(--wash, transparent), transparent 58%)}
   #screen-game.themed > *{position:relative;z-index:1}
-  #screen-game.themed header{border-bottom-color:var(--accent-line, rgba(233,225,203,.25))}
   #screen-game.themed .case-no{color:var(--accent)}
-  #screen-game.themed h1{color:var(--accent);text-shadow:0 0 26px var(--accent-glow, transparent)}
-  #screen-game.themed .file-label{color:var(--accent);filter:saturate(.9) brightness(.7)}
-  #screen-game.themed .paper-card::before{background:var(--accent-tape, rgba(201,162,39,.55))}
-  #screen-game.themed .fact .hot{background:var(--accent-soft, rgba(176,36,44,.12))}
+  #screen-game.themed h1{color:var(--accent)}
+  #screen-game.themed .file-label{color:var(--accent);filter:saturate(.85) brightness(.75)}
   #screen-game.themed .chat-head .who{color:var(--accent)}
-  #screen-game.themed .polaroid.sel{outline:2px solid var(--accent);box-shadow:0 0 22px var(--accent-glow, transparent)}
-  #screen-game.themed #chat .msg.sus .tag{color:var(--accent)}
-  #screen-game.themed .pin-item{border-left:2px solid var(--accent-line, transparent)}
+  #screen-game.themed .polaroid.sel{outline:2px solid var(--accent)}
 
 </style>
 </head>
@@ -652,7 +646,7 @@ function openDrawer(cat, btn){
   // work out how much each file can show and set the overlap to match.
   const inner = row.parentElement;
   const n = cases.length;
-  const FILE_H = 92;
+  const FILE_H = 86;
   const avail = Math.max(200, inner.clientHeight - 34);
   const step = n > 1 ? Math.min(34, Math.max(13, (avail - FILE_H) / (n - 1))) : 34;
   row.style.setProperty("--fold", (-(FILE_H - step)).toFixed(1) + "px");
@@ -1230,24 +1224,12 @@ window.addEventListener("popstate", ()=>{
 /* Set this to false and every case looks identical again. */
 const CASE_THEMING = true;
 
-function hexToRGB(hex){
-  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(String(hex || ""));
-  return m ? [parseInt(m[1],16), parseInt(m[2],16), parseInt(m[3],16)] : null;
-}
-
 function applyCaseTheme(){
   const g = $("screen-game");
   if(!g) return;
   if(CASE_THEMING && CASE && CASE.theme_accent){
-    const rgb = hexToRGB(CASE.theme_accent);
-    const a = (alpha) => rgb ? `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})` : "transparent";
     g.style.setProperty("--accent", CASE.theme_accent);
-    g.style.setProperty("--wash", a(.16));        // the room's colour, bleeding in from the corners
-    g.style.setProperty("--wash-thin", a(.07));   // a wash down from the top edge
-    g.style.setProperty("--accent-soft", a(.20)); // highlighted facts
-    g.style.setProperty("--accent-line", a(.42)); // rules and edges
-    g.style.setProperty("--accent-tape", a(.62)); // the tape on the paper cards
-    g.style.setProperty("--accent-glow", a(.30));
+    g.style.setProperty("--wash", CASE.theme_wash || "transparent");
     g.classList.add("themed");
   }else{
     g.classList.remove("themed");

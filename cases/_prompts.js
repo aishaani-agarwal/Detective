@@ -211,6 +211,76 @@ module.exports = {
         orla: "Young Irish groom woman, 27, padded gilet and yard boots, hair tied back, blunt direct expression, horse transport crate on apron",
         dermot: "Irish ground handling supervisor man, 50, glasses, hi-vis jacket, chatty open face, floodlit airport apron at night"
       }
+    },
+    "northern-lights": {
+      suspects: {
+        sigrun: "Icelandic woman, 49, wool sweater, hair in a loose bun, calm composed face, timber lodge interior at night",
+        keiko: "Japanese woman, 37, dark cardigan and reading glasses pushed up, exacting quiet expression, book-lined room",
+        pall: "Young Icelandic man, 33, pale, tousled hair, thin sweater, eager anxious smile, dark window behind"
+      }
+    },
+    "base-camp": {
+      suspects: {
+        dawa: "Nepali climbing sirdar man, 41, weathered sun-darkened face, down jacket and beanie, spare steady gaze, high altitude camp",
+        priya: "Indian expedition doctor woman, 36, down jacket, hair tied back, clipped clinical expression, tent interior with medical kit",
+        elliot: "British expedition leader man, 52, glasses, expensive down jacket, hearty commercial smile, snow and tents behind"
+      }
+    },
+    "prize-day": {
+      suspects: {
+        verity: "English deputy headmistress, 51, tailored suit, greying hair pinned up, clipped institutional expression, school quad",
+        tom: "English schoolboy of eighteen, blazer and tie, confident performed smile, marquee on a school lawn",
+        graham: "English school bursar man, 56, moustache, tweed jacket and tie, fussy proper expression, wood-panelled bursary office"
+      }
+    },
+    "chapel-of-rest": {
+      suspects: {
+        celeste: "New Orleans funeral director woman, 61, elegant dark dress, silver hair, gracious formal face, chapel interior with candles",
+        dev: "Young American night attendant man, 28, rumpled shirt and tie, jumpy anxious expression, dim funeral home corridor",
+        antoine: "New Orleans embalmer man, 53, glasses, surgical gown over shirt, courteous unshockable face, preparation room"
+      }
+    },
+    "dead-air": {
+      suspects: {
+        kessi: "Young Jamaican singer woman, 26, braids, hoop earrings, guarded warm expression, recording studio live room",
+        junior: "Jamaican session bassist man, 44, greying locs and moustache, open shirt, wry unhurried face, bass guitar visible",
+        delroy: "Jamaican studio engineer man, 38, glasses, headphones round neck, friendly quick expression, mixing desk glow"
+      }
+    },
+    "deep-six": {
+      suspects: {
+        ines: "Portuguese marine conservator woman, 35, lab coat over fleece, hair tied back, exacting expression, ship conservation lab",
+        tobias: "American expedition backer man, 58, moustache, expensive polo and deck shoes, expansive confident face, salvage vessel deck",
+        markus: "Portuguese-South African dive supervisor man, 47, glasses, dive crew jacket, methodical calm expression, decompression chamber behind"
+      }
+    },
+    "carbon": {
+      suspects: {
+        beatriz: "Brazilian project director woman, 47, linen blazer, hair in a low bun, polished guarded expression, office with forest maps",
+        joaquim: "Brazilian field auditor man, 39, moustache, field shirt and cap, plain uncomfortable expression, forest edge",
+        rafael: "Brazilian technical lead man, 44, glasses, short-sleeved shirt, articulate confident face, screens with satellite imagery"
+      }
+    },
+    "ninth-wave": {
+      suspects: {
+        morven: "Scottish engineer woman, 36, waterproof jacket and hard hat under arm, hair tied back, direct expression, harbour with turbines",
+        petra: "Swedish investment representative woman, 52, sharp coat, short blonde hair, cool unsentimental face, windswept pier",
+        callum: "Orcadian marine technician man, 44, moustache, worn waterproofs, dry weathered face, grey sea behind"
+      }
+    },
+    "milk-run": {
+      suspects: {
+        sinead: "Northern Irish depot supervisor woman, 46, fleece and hi-vis, hair short, brisk dry expression, dairy tanker depot",
+        davy: "Young Northern Irish tanker driver man, 34, hoodie and work trousers, nervy chatty face, tanker cab",
+        gerry: "Northern Irish tank inspector man, 57, grey moustache, overalls and clipboard, affable rambling expression, stainless tanker behind"
+      }
+    },
+    "bunker": {
+      suspects: {
+        stavros: "Greek chief officer man, 48, moustache, ship's uniform shirt with epaulettes, formal weary face, ship deck at night",
+        liza: "Filipina second engineer woman, 33, boiler suit, hair tied back, precise guarded expression, engine control room",
+        panos: "Greek bunker surveyor man, 51, glasses, hi-vis over polo, affable talkative face, floodlit deck and fuel manifold"
+      }
     }
   }
 };
