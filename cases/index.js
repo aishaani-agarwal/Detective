@@ -18,7 +18,21 @@ for (const c of [
   require("./quiet-car.js"),
   require("./night-shift.js"),
   require("./cold-chain.js"),
-  require("./ledger.js")
+  require("./ledger.js"),
+  require("./pit-lane.js"),
+  require("./deep-freeze.js"),
+  require("./box-114.js"),
+  require("./the-understudy.js"),
+  require("./ghost-wards.js"),
+  require("./slack-water.js"),
+  require("./green-room.js"),
+  require("./service.js"),
+  require("./vintage.js"),
+  require("./the-scholarship.js"),
+  require("./proof.js"),
+  require("./second-serve.js"),
+  require("./the-relay.js"),
+  require("./airside.js")
   // add future cases right here
 ]) {
   CASES[c.id] = c;

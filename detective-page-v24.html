@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Detective — The Interrogation Files</title>
+<title>Case in Point — The Interrogation Files</title>
 <meta name="description" content="Murder mysteries you solve by interrogating AI suspects. Every suspect is lying. Only one is a killer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -160,6 +160,7 @@
   #filePreview .popen{margin-top:12px;font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.1em;color:var(--stamp);text-transform:uppercase}
   #filePreview:hover .popen{text-decoration:underline}
 
+
   /* ============ GAME screen ============ */
   .grid{display:grid;grid-template-columns:340px 1fr;gap:22px;margin-top:22px}
   @media(max-width:880px){.grid{grid-template-columns:1fr}}
@@ -249,6 +250,70 @@
   .v-lose{color:var(--stamp);border-color:var(--stamp)}
   .truth{border-top:1px dashed var(--line);margin-top:14px;padding-top:12px}
   .truth h3{font-family:'Special Elite',monospace;font-weight:400;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--stamp);margin-bottom:6px}
+
+
+  /* ---- detective credentials ---- */
+  #badgeChip{position:fixed;left:18px;bottom:16px;z-index:400;display:none;align-items:center;gap:9px;cursor:default;
+    background:linear-gradient(180deg,#242b26,#171c18);border:1px solid rgba(233,225,203,.16);border-radius:3px;
+    padding:7px 12px;cursor:pointer;box-shadow:0 8px 18px rgba(0,0,0,.5)}
+  #badgeChip.show{display:flex}
+  #badgeChip .shield{width:16px;height:19px;background:linear-gradient(180deg,#c9a24d,#7d5f18);
+    clip-path:polygon(50% 0,100% 22%,100% 62%,50% 100%,0 62%,0 22%);flex:0 0 auto}
+  #badgeChip .who{font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.1em;color:#e9e1cb;text-transform:uppercase;line-height:1.3}
+  #badgeChip .no{display:block;font-size:9px;letter-spacing:.22em;color:#c9a227;opacity:.85}
+  @media(max-width:620px){#badgeChip{left:10px;bottom:10px;padding:5px 9px}}
+
+  #credOverlay{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;
+    background:rgba(8,10,8,.9);padding:20px}
+  #credOverlay.show{display:flex}
+  .cred-card{width:min(430px,100%);background:linear-gradient(180deg,#e9e1cb,#ded4b8);color:#2a2420;
+    border-radius:3px;padding:26px 26px 22px;position:relative;box-shadow:0 26px 60px rgba(0,0,0,.7)}
+  .cred-card::before{content:"";position:absolute;top:-11px;left:50%;transform:translateX(-50%) rotate(-2deg);
+    width:120px;height:23px;background:rgba(201,162,39,.55);border-radius:2px}
+  .cred-card h2{font-family:'Special Elite',monospace;font-size:19px;margin:2px 0 4px}
+  .cred-card .dept{font-family:'Special Elite',monospace;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:#b0242c}
+  .cred-card p{font-size:13.5px;color:#5a5044;line-height:1.55;margin:10px 0 14px}
+  #credName{width:100%;background:rgba(255,255,255,.55);border:1px solid rgba(42,36,32,.18);border-radius:2px;
+    padding:11px 13px;font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:#2a2420;box-sizing:border-box}
+  #credName:focus{outline:2px solid #b0242c}
+  .cred-issued{margin-top:14px;display:flex;align-items:center;gap:12px;border-top:1px dashed rgba(42,36,32,.18);padding-top:14px}
+  .cred-issued .lbl{font-family:'Special Elite',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#5a5044}
+  .cred-issued .num{font-family:'Special Elite',monospace;font-size:22px;letter-spacing:.2em;color:#b0242c}
+  #credGo{margin-top:16px;width:100%;font-family:'Special Elite',monospace;background:#b0242c;color:#e9e1cb;
+    border:none;padding:11px;cursor:pointer;font-size:14px;letter-spacing:.12em;border-radius:2px;text-transform:uppercase}
+  #credGo:hover{filter:brightness(1.12)}
+
+
+  .sub-title{font-family:'Special Elite',monospace;font-size:13px;letter-spacing:.26em;text-transform:uppercase;
+    color:rgba(233,225,203,.45);margin-top:2px}
+
+  /* ---- badge check before a case opens ---- */
+  #gateOverlay{position:fixed;inset:0;z-index:520;display:none;align-items:center;justify-content:center;
+    background:rgba(8,10,8,.92);padding:20px}
+  #gateOverlay.show{display:flex}
+  .gate-card{width:min(420px,100%);background:linear-gradient(180deg,#e9e1cb,#ded4b8);color:#2a2420;
+    border-radius:3px;padding:24px 24px 20px;position:relative;box-shadow:0 26px 60px rgba(0,0,0,.75)}
+  .gate-card::before{content:"";position:absolute;top:-11px;left:50%;transform:translateX(-50%) rotate(-2deg);
+    width:120px;height:23px;background:rgba(201,162,39,.55);border-radius:2px}
+  .gate-card .stamp{position:absolute;top:14px;right:16px;font-family:'Special Elite',monospace;font-size:9.5px;
+    letter-spacing:.14em;border:2px solid #b0242c;color:#b0242c;padding:2px 8px;transform:rotate(6deg);text-transform:uppercase}
+  .gate-card .dept{font-family:'Special Elite',monospace;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:#b0242c}
+  .gate-card h2{font-family:'Special Elite',monospace;font-size:18px;margin:4px 0 2px;line-height:1.2}
+  .gate-card .gcase{font-size:13px;color:#5a5044;font-style:italic}
+  .gate-card p{font-size:13px;color:#5a5044;line-height:1.5;margin:12px 0 12px}
+  #gateInput{width:100%;background:rgba(255,255,255,.55);border:1px solid rgba(42,36,32,.18);border-radius:2px;
+    padding:11px 13px;font-family:'Special Elite',monospace;font-size:19px;letter-spacing:.24em;text-align:center;
+    color:#2a2420;box-sizing:border-box;text-transform:uppercase}
+  #gateInput:focus{outline:2px solid #b0242c}
+  #gateErr{min-height:17px;margin-top:8px;font-size:12px;color:#b0242c;font-family:'Special Elite',monospace;letter-spacing:.06em}
+  .gate-actions{display:flex;gap:10px;margin-top:6px}
+  #gateGo{flex:1;font-family:'Special Elite',monospace;background:#b0242c;color:#e9e1cb;border:none;padding:11px;
+    cursor:pointer;font-size:13px;letter-spacing:.12em;border-radius:2px;text-transform:uppercase}
+  #gateCancel{background:none;border:none;color:#5a5044;font-family:'Special Elite',monospace;font-size:11px;
+    letter-spacing:.08em;cursor:pointer;text-transform:uppercase;padding:0 6px}
+  .gate-shake{animation:gshake .4s}
+  @keyframes gshake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+
 </style>
 </head>
 <body>
@@ -259,7 +324,8 @@
     <header>
       <div>
         <div class="case-no">Metropolitan Crime Branch · Cold &amp; Cursed Files Unit</div>
-        <h1>The Interrogation Files</h1>
+        <h1>Case in Point</h1>
+      <p class="sub-title">The Interrogation Files</p>
       </div>
       <div class="confidential">Confidential</div>
     </header>
@@ -474,6 +540,9 @@ function showScreen(name){
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("show"));
   $("screen-"+name).classList.add("show");
   window.scrollTo(0,0);
+  // credentials belong on the desk, not in the interrogation room
+  const chip = document.getElementById("badgeChip");
+  if(chip) chip.classList.toggle("show", name === "select" && !!DETECTIVE.badge);
 }
 
 /* ================= SELECT screen: the filing cabinet ================= */
@@ -489,6 +558,7 @@ const LEVEL_PIPS = { easy: 1, medium: 2, hard: 3 };
 const LEVEL_WORD = { easy: "Straightforward", medium: "Involved", hard: "Difficult" };
 
 let CATALOG = [];
+let gatePassed = false;   // set only for the moment between passing the check and loading
 let openCat = null;
 let raisedFolder = null;
 
@@ -639,6 +709,12 @@ async function loadCatalog(){
 
 async function openCase(id, category){
   lowerFolder();
+  // a badge check at the door, every time
+  if(DETECTIVE.badge && !gatePassed){
+    const info = id ? CATALOG.find(c => c.id === id) : null;
+    askBadgeFor(info, ()=>{ gatePassed = true; openCase(id, category); gatePassed = false; });
+    return;
+  }
   try{
     const url = id ? "/api/case?id=" + encodeURIComponent(id)
                    : "/api/case?random=1" + (category ? "&category=" + encodeURIComponent(category) : "");
@@ -657,7 +733,9 @@ function startCase(c){
   histories = {}; greeted = {}; pins = []; current = null; busy = false; caseClosed = false;
   stopAudio();
   Object.keys(c.suspects).forEach(id=>{ histories[id]=[]; greeted[id]=false; });
+  history.pushState({ screen: "game" }, "");
   enterGame();
+  saveSession();
 }
 
 /* ================= GAME screen ================= */
@@ -764,6 +842,7 @@ function addSys(text){
 }
 
 function renderPins(){
+  saveSession();
   $("nbEmpty").style.display = pins.length ? "none" : "block";
   const list = $("nbList"); list.innerHTML = "";
   pins.forEach((p,i)=>{
@@ -786,6 +865,7 @@ async function askSuspect(){
   stopListening(false); setListenBar(false);
 
   histories[current].push({role:"user", content:q});
+  saveSession();
   addBubble("det", q, null);
 
   const t = document.createElement("div");
@@ -795,7 +875,7 @@ async function askSuspect(){
   try{
     const resp = await fetch("/api/interrogate", {
       method:"POST", headers:apiHeaders(),
-      body:JSON.stringify({ caseId: CASE.id, suspectId: current,
+      body:JSON.stringify({ caseId: CASE.id, suspectId: current, detective: DETECTIVE,
         // send only role+content — cached audio (_audio) is huge and stays in the browser
         messages: histories[current].map(m => ({ role: m.role, content: m.content })) })
     });
@@ -806,6 +886,7 @@ async function askSuspect(){
     if(!resp.ok || !data.reply) throw new Error(data.error || "no reply");
     const msgObj = {role:"assistant", content:data.reply};
     histories[current].push(msgObj);
+    saveSession();
     addBubble("sus", data.reply, msgObj);
     if(voiceOn) speak(data.reply, current, msgObj);
   }catch(err){
@@ -1017,7 +1098,7 @@ if($("micBtn")) $("micBtn").onclick = ()=>{
 let pendingAccuse = null;
 $("accuseBtn").onclick = ()=>{ if(!caseClosed && CASE){ $("accuseHint").textContent=""; $("accuseOverlay").classList.add("show"); } };
 $("accuseCancel").onclick = ()=>$("accuseOverlay").classList.remove("show");
-$("backBtn").onclick = ()=>{ stopAudio(); showScreen("select"); };
+$("backBtn").onclick = ()=>{ stopAudio(); clearSession(); history.pushState({ screen: "select" }, ""); showScreen("select"); };
 
 $("accuseSubmit").onclick = async ()=>{
   const reasoning = $("accuseReason").value.trim();
@@ -1083,6 +1164,7 @@ async function deliverVerdict(id, reasoning){
 
   $("accuseOverlay").classList.remove("show");
   caseClosed = true;
+  saveSession();
   stopAudio();
   $("msgInput").disabled = true; $("sendBtn").disabled = true; $("micBtn").disabled = true;
   const m = $("verdictModal");
@@ -1105,7 +1187,180 @@ async function deliverVerdict(id, reasoning){
 }
 
 /* ================= boot ================= */
-loadCatalog();
+loadCatalog().then(()=>{ restoreSession(); });
+
+window.addEventListener("popstate", ()=>{
+  // the browser Back button walks you to the desk, not off the site
+  if($("screen-game").classList.contains("show")){ stopAudio(); clearSession(); showScreen("select"); }
+});
+
+
+/* ================= badge check at the door ================= */
+const normBadge = (v) => String(v || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+
+function gateMount(){
+  if(document.getElementById("gateOverlay")) return;
+  const wrap = document.createElement("div");
+  wrap.innerHTML = `
+    <div id="gateOverlay">
+      <div class="gate-card" id="gateCard">
+        <div class="stamp">Restricted</div>
+        <div class="dept">Metropolitan Crime Branch</div>
+        <h2 id="gateTitle">Identify yourself.</h2>
+        <div class="gcase" id="gateCase"></div>
+        <p id="gateLine">Case files are restricted to serving officers. Enter your badge number to take this one.</p>
+        <input id="gateInput" type="text" maxlength="8" placeholder="XX-XXX" autocomplete="off">
+        <div id="gateErr"></div>
+        <div class="gate-actions">
+          <button id="gateGo">Enter</button>
+          <button id="gateCancel">Not now</button>
+        </div>
+      </div>
+    </div>`;
+  document.body.appendChild(wrap.firstElementChild);
+}
+
+const GATE_LINES = {
+  Homicide:  "The scene is still sealed. Officers only past this point — badge number, please.",
+  Theft:     "Evidence room access is logged. Enter your badge number to sign the file out.",
+  Fraud:     "These records are restricted. Enter your badge number to open the file.",
+  Narcotics: "Seized-goods files are controlled. Enter your badge number to proceed.",
+  Sabotage:  "The site is under investigation. Enter your badge number to be admitted."
+};
+
+function askBadgeFor(caseData, onPass){
+  gateMount();
+  const overlay = $("gateOverlay"), input = $("gateInput"), err = $("gateErr"), card = $("gateCard");
+  $("gateCase").textContent = caseData ? `${caseData.title} · No. ${caseData.caseNo}` : "Case assignment from the captain's desk";
+  $("gateLine").textContent = (caseData && GATE_LINES[caseData.category]) || GATE_LINES.Fraud;
+  input.value = ""; err.textContent = "";
+  overlay.classList.add("show");
+  setTimeout(()=>{ try{ input.focus(); }catch(e){} }, 60);
+
+  const close = ()=>{ overlay.classList.remove("show"); };
+  const check = ()=>{
+    if(normBadge(input.value) === normBadge(DETECTIVE.badge)){ close(); onPass(); }
+    else{
+      err.textContent = "That number isn't on the roster.";
+      card.classList.remove("gate-shake"); void card.offsetWidth; card.classList.add("gate-shake");
+      input.select();
+    }
+  };
+  $("gateGo").onclick = check;
+  $("gateCancel").onclick = close;
+  input.onkeydown = (e)=>{ if(e.key === "Enter") check(); };
+}
+
+/* ================= session memory ================= */
+/* A reload or a back-button press shouldn't throw you out of an interrogation. */
+const SESSION_KEY = "caseSession";
+
+function saveSession(){
+  if(!CASE) return;
+  try{
+    localStorage.setItem(SESSION_KEY, JSON.stringify({
+      caseId: CASE.id,
+      current, greeted, pins, caseClosed,
+      histories: Object.fromEntries(Object.entries(histories).map(
+        ([k, msgs]) => [k, msgs.map(m => ({ role: m.role, content: m.content }))]
+      )),
+      ts: Date.now()
+    }));
+  }catch(e){}
+}
+function clearSession(){ try{ localStorage.removeItem(SESSION_KEY); }catch(e){} }
+
+async function restoreSession(){
+  let saved = null;
+  try{ saved = JSON.parse(localStorage.getItem(SESSION_KEY) || "null"); }catch(e){}
+  if(!saved || !saved.caseId) return false;
+  if(Date.now() - (saved.ts || 0) > 12 * 60 * 60 * 1000){ clearSession(); return false; }  // stale after half a day
+  try{
+    const r = await fetch("/api/case?id=" + encodeURIComponent(saved.caseId));
+    const data = await r.json();
+    if(!r.ok) throw new Error("gone");
+    CASE = data.case;
+    histories = saved.histories || {};
+    greeted = saved.greeted || {};
+    pins = saved.pins || [];
+    caseClosed = !!saved.caseClosed;
+    current = null; busy = false;
+    Object.keys(CASE.suspects).forEach(id=>{ if(!histories[id]) histories[id] = []; });
+    enterGame();
+    renderPins();
+    if(saved.current && CASE.suspects[saved.current]) selectSuspect(saved.current);
+    history.pushState({ screen: "game" }, "");
+    return true;
+  }catch(e){ clearSession(); return false; }
+}
+
+/* ================= detective credentials ================= */
+/* This block builds its own DOM, so it doesn't matter where the script sits. */
+let DETECTIVE = { name: "", badge: "" };
+(function setupCredentials(){
+  const BADGE_CHARS = "ACDEFHJKLMNPRTVWXY3479";
+  const makeBadge = () => {
+    let out = "";
+    for(let i=0;i<5;i++) out += BADGE_CHARS[Math.floor(Math.random()*BADGE_CHARS.length)];
+    return out.slice(0,2) + "-" + out.slice(2);
+  };
+  const cleanName = (raw) =>
+    String(raw || "").replace(/[^A-Za-z \-']/g, "").replace(/\s+/g, " ").trim().slice(0, 24);
+
+  const mount = document.createElement("div");
+  mount.innerHTML = `
+    <div id="credOverlay">
+      <div class="cred-card">
+        <div class="dept">Metropolitan Crime Branch</div>
+        <h2>Sign in for the shift.</h2>
+        <p>Cold cases only. Give the desk a name and you'll be issued a number — the suspects will know who they're talking to.</p>
+        <input id="credName" type="text" maxlength="24" placeholder="Your name" autocomplete="off">
+        <div class="cred-issued"><span class="lbl">Badge</span><span class="num" id="credNo">—</span></div>
+        <button id="credGo">Report for duty</button>
+      </div>
+    </div>
+    <div id="badgeChip"><span class="shield"></span><span class="who"><span id="chipName">Detective</span><span class="no" id="chipNo"></span></span></div>`;
+  while(mount.firstElementChild) document.body.appendChild(mount.firstElementChild);
+
+  const overlay = document.getElementById("credOverlay");
+  const chip    = document.getElementById("badgeChip");
+
+  function showChip(){
+    if(!DETECTIVE.badge) return;
+    document.getElementById("chipName").textContent = DETECTIVE.name ? ("Det. " + DETECTIVE.name) : "Detective";
+    document.getElementById("chipNo").textContent = DETECTIVE.badge;
+    chip.classList.add("show");
+  }
+  function ask(){
+    const pending = makeBadge();
+    document.getElementById("credNo").textContent = pending;
+    const input = document.getElementById("credName");
+    input.value = DETECTIVE.name || "";
+    overlay.classList.add("show");
+    setTimeout(()=>{ try{ input.focus(); }catch(e){} }, 60);
+    const go = ()=>{
+      DETECTIVE = { name: cleanName(input.value), badge: pending };
+      try{ localStorage.setItem("detectiveId", JSON.stringify(DETECTIVE)); }catch(e){}
+      overlay.classList.remove("show");
+      showChip();
+    };
+    document.getElementById("credGo").onclick = go;
+    input.onkeydown = (e)=>{ if(e.key === "Enter") go(); };
+  }
+
+  let known = false;
+  try{
+    const raw = localStorage.getItem("detectiveId");
+    if(raw){ const d = JSON.parse(raw); if(d && d.badge){ DETECTIVE = d; known = true; } }
+  }catch(e){}
+  if(known) showChip(); else ask();
+})();
+
+
 </script>
+
+
+
+
 </body>
 </html>

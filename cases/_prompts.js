@@ -113,6 +113,104 @@ module.exports = {
         claire: "Korean-American compliance officer woman, 44, immaculate charcoal suit, hair in a low bun, polished corporate composure, glass office at night",
         daehyun: "Korean executive man, 49, late forties, dark suit and tie, grey at the temples, measured authoritative gaze, corporate boardroom at night"
       }
+    },
+    "pit-lane": {
+      suspects: {
+        tomas: "Spanish chief mechanic man, 47, grey moustache, team polo shirt and headset around neck, gruff weathered face, motorsport garage at night",
+        dani: "Young Spanish racing driver man, 21, race suit unzipped to the waist, damp hair, cocky brittle expression, pit lane at dusk",
+        elena: "Spanish race engineer woman, 34, team softshell jacket, hair tied back, headset, analytical unsmiling face, pit wall with screens"
+      }
+    },
+    "deep-freeze": {
+      suspects: {
+        ingvild: "Norwegian polar station leader woman, 51, weathered face, thermal layers and unzipped red parka, calm authority, Antarctic station interior",
+        priya: "Indian glaciologist woman, 38, fleece and beanie, glasses fogged at the edge, warm anxious expression, polar laboratory",
+        rune: "Norwegian station engineer man, 44, heavy beard, oil-marked overalls over thermals, dry weathered face, generator shed"
+      }
+    },
+    "box-114": {
+      suspects: {
+        joana: "Portuguese bank manager woman, 52, tailored navy suit, short greying hair, formal composed expression, marble bank interior",
+        marta: "Portuguese woman, 36, dark coat and simple jewellery, sharp guarded expression, bank lobby",
+        rui: "Portuguese bank clerk man, 41, glasses, shirtsleeves and tie, mild helpful face, vault corridor with deposit boxes"
+      }
+    },
+    "the-understudy": {
+      suspects: {
+        lukas: "Austrian stage manager man, 49, dark clothes, headset, clipboard, harried precise face, backstage of a concert hall",
+        anneke: "Dutch concert violinist woman, 33, black concert gown, hair up, poised strained expression, concert hall wings",
+        nina: "Austrian orchestral violinist woman, 29, black concert dress, hair in a low bun, quiet watchful face, orchestra pit lighting"
+      }
+    },
+    "ghost-wards": {
+      suspects: {
+        lorna: "Filipina hospital billing supervisor woman, 45, office blouse and lanyard, hair clipped up, harried defensive face, hospital admin office",
+        ramon: "Filipino records officer man, 38, glasses, polo shirt and ID badge, anxious careful expression, server room",
+        emil: "Filipino hospital director man, 56, white coat over shirt and tie, greying moustache, warm authoritative face, hospital corridor"
+      }
+    },
+    "slack-water": {
+      suspects: {
+        morag: "Scottish woman, 54, wool jumper and scarf, greying hair pinned back, contained grieving face, window with grey sea behind",
+        lena: "German woman, 41, walking jacket and short practical hair, watchful reserved expression, coastal hotel lounge",
+        dougal: "Scottish groundsman man, 47, waxed jacket and moustache, weathered ruddy face, slow steady gaze, island shoreline at dusk"
+      }
+    },
+    "green-room": {
+      suspects: {
+        dev: "British-Indian tour manager man, 43, glasses, laminate pass and black jacket, exhausted alert face, festival backstage at night",
+        saff: "Young Black British security supervisor woman, 30, hi-vis over black, hair braided back, direct unsentimental face, festival gate at night",
+        joss: "Young British DJ man, 27, streetwear and chains, fresh fade, charming quick smile, festival compound at night"
+      }
+    },
+    "service": {
+      suspects: {
+        freja: "Danish sous chef woman, 31, chef whites with sleeves rolled, hair scraped back, sharp tired face, stainless steel kitchen at night",
+        ivan: "Bulgarian electrician man, 56, grey moustache, work jacket and tool belt, careful guarded expression, dim service corridor",
+        mads: "Danish restaurateur man, 49, well-cut dark shirt, greying hair swept back, practised charming smile, empty dining room at night"
+      }
+    },
+    "vintage": {
+      suspects: {
+        hugo: "Young French man, 34, expensive rumpled shirt, tousled hair, faintly petulant expression, chateau interior",
+        yves: "Old French cellar master, 61, weathered face and white moustache, worn work coat, proud stubborn gaze, barrel cellar by lamplight",
+        claire: "French estate manager woman, 42, tailored blazer, hair in a neat twist, composed commercial expression, chateau office"
+      }
+    },
+    "the-scholarship": {
+      suspects: {
+        denise: "African-American financial aid officer woman, 39, cardigan and lanyard, warm tired face, cluttered campus office",
+        tarun: "Indian-American systems analyst man, 33, glasses, plain shirt, literal unsmiling expression, screens glowing behind",
+        gregory: "American university administrator man, 57, blazer and tie, silver hair and moustache, avuncular confident face, wood-panelled office"
+      }
+    },
+    "proof": {
+      suspects: {
+        isla: "Scottish distillery manager woman, 46, quilted jacket over shirt, hair tied back, measured commercial expression, warehouse of casks",
+        ewan: "Older Scottish warehouseman, 58, flat cap and work coat, weathered dry face, dim bonded warehouse",
+        dougie: "Scottish distiller man, 52, glasses, wool jumper, quiet thoughtful face, copper stills behind him"
+      }
+    },
+    "second-serve": {
+      suspects: {
+        valeria: "Argentine tournament director woman, 48, smart blazer with accreditation pass, dark hair up, brisk political expression, stadium corridor",
+        nico: "Young Argentine tennis player man, 24, damp hair and training top, proud defensive expression, clay court at dusk",
+        matias: "Argentine chair umpire man, 41, glasses, official polo shirt and cap, formal composed face, umpire's chair"
+      }
+    },
+    "the-relay": {
+      suspects: {
+        thandiwe: "South African control room supervisor woman, 43, hi-vis vest over blouse, hair braided back, sharp procedural expression, wall of control screens",
+        kagiso: "Young South African technician man, 29, hard hat and hi-vis, wary guarded face, electrical substation yard",
+        pieter: "South African engineer man, 51, grey moustache, hi-vis over shirt, dry senior expression, substation switchgear"
+      }
+    },
+    "airside": {
+      suspects: {
+        yusuf: "British-Nigerian loadmaster man, 45, hi-vis over flight crew shirt, headset around neck, weary precise face, cargo aircraft hold",
+        orla: "Young Irish groom woman, 27, padded gilet and yard boots, hair tied back, blunt direct expression, horse transport crate on apron",
+        dermot: "Irish ground handling supervisor man, 50, glasses, hi-vis jacket, chatty open face, floodlit airport apron at night"
+      }
     }
   }
 };
