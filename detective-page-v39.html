@@ -1059,7 +1059,7 @@ function raiseFolder(entry){
       ${(()=>{ const s = liveSessions()[c.id]; if(!s) return "";
         const q = Object.values(s.histories || {}).reduce((n, ms) => n + ms.filter(x => x.role === "user").length, 0);
         return `<div class="wipnote">Left mid-interrogation — <b>${q}</b> question${q===1?"":"s"} in${(s.pins||[]).length?`, <b>${s.pins.length}</b> pinned`:""}.
-                  <span class="wipreset" id="wipReset" data-armed="0">put it back in the drawer</span></div>`; })()}
+                  <span class="wipreset" id="wipReset" data-armed="0">start it over</span></div>`; })()}
       <div class="popen">⟶ ${liveSessions()[c.id] ? "Pick it back up" : (RECORD.closed[c.id] ? "Reopen this case" : "Take this case")}</div>`;
   $("previewHint").style.display = "none";
   $("filePreview").classList.add("show");
@@ -1074,9 +1074,9 @@ function raiseFolder(entry){
       if(reset.dataset.armed !== "1"){
         reset.dataset.armed = "1";
         reset.classList.add("arm");
-        reset.textContent = "sure? the questions so far are lost";
+        reset.textContent = "sure? this wipes what you asked";
         setTimeout(()=>{ if(reset.dataset.armed === "1"){
-          reset.dataset.armed = "0"; reset.classList.remove("arm"); reset.textContent = "put it back in the drawer";
+          reset.dataset.armed = "0"; reset.classList.remove("arm"); reset.textContent = "start it over";
         } }, 4000);
         return;
       }
@@ -1085,7 +1085,7 @@ function raiseFolder(entry){
       lowerFolder();
       renderCabinet();
       const back = CAT_META[c.category] ? CAT_META[c.category].label : "its drawer";
-      $("previewHint").innerHTML = `<b>${esc(c.title)}</b> is back in ${esc(back)}, as if you never opened it.<br><br>Pull a file to read its label.`;
+      $("previewHint").innerHTML = `<b>${esc(c.title)}</b> is back in ${esc(back)}, untouched.<br><br>Pull a file to read its label.`;
       $("previewHint").style.display = "";
     };
   }

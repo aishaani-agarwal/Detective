@@ -504,11 +504,6 @@
     font-size:8.5px;letter-spacing:.14em;color:#8a6d1f;border:1px solid #8a6d1f;padding:1px 5px;transform:rotate(-4deg)}
   #filePreview .wipnote{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;font-size:13px;color:var(--ink-soft)}
   #filePreview .wipnote b{color:var(--ink)}
-  #filePreview .wipreset{display:inline-block;margin-top:9px;font-family:'Special Elite',monospace;font-size:10.5px;
-    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px dashed rgba(42,36,32,.35);
-    cursor:pointer;padding-bottom:1px}
-  #filePreview .wipreset:hover{color:var(--stamp);border-bottom-color:var(--stamp)}
-  #filePreview .wipreset.arm{color:var(--stamp);border-bottom-color:var(--stamp);font-weight:600}
 
 
   /* ---- online rooms ---- */
@@ -1058,37 +1053,10 @@ function raiseFolder(entry){
                 filed ${new Date(r.ts).toLocaleDateString()}</div>` })() : ""}
       ${(()=>{ const s = liveSessions()[c.id]; if(!s) return "";
         const q = Object.values(s.histories || {}).reduce((n, ms) => n + ms.filter(x => x.role === "user").length, 0);
-        return `<div class="wipnote">Left mid-interrogation — <b>${q}</b> question${q===1?"":"s"} in${(s.pins||[]).length?`, <b>${s.pins.length}</b> pinned`:""}.
-                  <span class="wipreset" id="wipReset" data-armed="0">put it back in the drawer</span></div>`; })()}
+        return `<div class="wipnote">Left mid-interrogation — <b>${q}</b> question${q===1?"":"s"} in${(s.pins||[]).length?`, <b>${s.pins.length}</b> pinned`:""}.</div>`; })()}
       <div class="popen">⟶ ${liveSessions()[c.id] ? "Pick it back up" : (RECORD.closed[c.id] ? "Reopen this case" : "Take this case")}</div>`;
   $("previewHint").style.display = "none";
   $("filePreview").classList.add("show");
-
-  // "start it over" wipes the parked interrogation and puts the file back
-  // in its own drawer. Two taps, since there's no undo.
-  const reset = document.getElementById("wipReset");
-  if(reset){
-    reset.onclick = (e)=>{
-      e.stopPropagation();          // don't let this count as opening the case
-      e.preventDefault();
-      if(reset.dataset.armed !== "1"){
-        reset.dataset.armed = "1";
-        reset.classList.add("arm");
-        reset.textContent = "sure? the questions so far are lost";
-        setTimeout(()=>{ if(reset.dataset.armed === "1"){
-          reset.dataset.armed = "0"; reset.classList.remove("arm"); reset.textContent = "put it back in the drawer";
-        } }, 4000);
-        return;
-      }
-      clearSession(c.id);
-      SFX.file();
-      lowerFolder();
-      renderCabinet();
-      const back = CAT_META[c.category] ? CAT_META[c.category].label : "its drawer";
-      $("previewHint").innerHTML = `<b>${esc(c.title)}</b> is back in ${esc(back)}, as if you never opened it.<br><br>Pull a file to read its label.`;
-      $("previewHint").style.display = "";
-    };
-  }
 }
 
 // pushing the drawer shuts it — anywhere except on a file
