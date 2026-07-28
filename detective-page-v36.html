@@ -1092,8 +1092,7 @@ async function openCase(id, category){
     askBadgeFor(info, ()=>{
       const go = ()=>{ gatePassed = true; openCase(id, category); gatePassed = false; };
       if(PLAY_MODE === "online" && ONLINE_ROLE === "host" && onlineAvailable() && info){
-        if(ROOM.on){ ONLINE.setCase(info.id); go(); }
-        else ONLINE.createRoom(info.id).then(()=>{
+        ONLINE.createRoom(info.id).then(()=>{
           ROOM.on = true; wireRoom(); renderRoomBar(); renderRoomHud(); go();
         }).catch(err=>{
           alert("Couldn't open the room: " + err.message + "\nStarting it on your own instead.");
@@ -2120,41 +2119,9 @@ function roleCard(){
     <button id="teamBack">← never mind</button>`;
 
   const close = ()=>overlay.classList.remove("show");
-  $("roleHost").onclick = async ()=>{
-    ONLINE_ROLE = "host"; setMode("online");
-    $("lobbyErr").textContent = "opening a room…";
-    try{
-      await ONLINE.createRoom(null);          // the room first, the case in a moment
-      ROOM.on = true; wireRoom(); renderRoomBar(); renderRoomHud();
-      hostOpenCard();
-    }catch(e){ $("lobbyErr").textContent = e.message; }
-  };
+  $("roleHost").onclick = ()=>{ ONLINE_ROLE = "host"; setMode("online"); close(); };
   $("roleJoin").onclick = ()=>{ ONLINE_ROLE = "join"; close(); joinCard(); };
   $("teamBack").onclick = ()=>{ close(); setMode("solo"); };
-  overlay.classList.add("show");
-}
-
-function hostOpenCard(){
-  gateMount();
-  const overlay = $("gateOverlay"), card = $("gateCard");
-  card.innerHTML = `
-    <div class="stamp">Open</div>
-    <div class="dept">Metropolitan Crime Branch</div>
-    <h2>Your room is open.</h2>
-    <p>Give this code to whoever's joining. It stays in the corner of your screen, so they can come in at any point.</p>
-    <div class="cred-issued" style="justify-content:center">
-      <span class="num" id="hostCode" style="font-size:34px;letter-spacing:.34em">${esc(ONLINE.code() || "")}</span>
-    </div>
-    <div id="lobbyErr"></div>
-    <div class="gate-actions">
-      <button id="teamGo">Pick a case</button>
-      <button id="teamSolo">Copy code</button>
-    </div>`;
-  $("teamGo").onclick = ()=>{ overlay.classList.remove("show"); };
-  $("teamSolo").onclick = ()=>{
-    try{ navigator.clipboard.writeText(ONLINE.code() || ""); $("lobbyErr").textContent = "copied."; }
-    catch(e){ $("lobbyErr").textContent = "select it and copy by hand."; }
-  };
   overlay.classList.add("show");
 }
 
@@ -2180,18 +2147,6 @@ function joinCard(){
     try{
       const res = await ONLINE.joinRoom(c);
       ROOM.on = true; wireRoom(); renderRoomBar(); renderRoomHud();
-      if(!res.caseId){
-        // in the room, waiting on the host
-        err("");
-        card.innerHTML = `
-          <div class="stamp">Waiting</div>
-          <div class="dept">Metropolitan Crime Branch</div>
-          <h2>You're in room ${esc(ONLINE.code())}.</h2>
-          <p>Nobody's opened a case yet. Sit tight — the moment the host picks one, you'll be pulled straight into it.</p>
-          <div class="gate-actions"><button id="teamGo">Wait at the desk</button></div>`;
-        $("teamGo").onclick = ()=>overlay.classList.remove("show");
-        return;
-      }
       overlay.classList.remove("show");
       const r = await fetch("/api/case?id=" + encodeURIComponent(res.caseId));
       const data = await r.json();
@@ -2293,17 +2248,6 @@ function wireRoom(){
   });
 
   ONLINE.on("verdict", (p)=>{ if(p && p.result) paintVerdict(p.result); });
-
-  ONLINE.on("case", async (p)=>{
-    // the host has chosen — everyone follows them into it
-    if(!p || !p.caseId) return;
-    if(CASE && CASE.id === p.caseId) return;
-    try{
-      const r = await fetch("/api/case?id=" + encodeURIComponent(p.caseId));
-      const data = await r.json();
-      if(r.ok) startCase(data.case);
-    }catch(e){}
-  });
 
   ONLINE.on("busy", ()=>setRoomBusy(true));
   ONLINE.on("idle", ()=>setRoomBusy(false));

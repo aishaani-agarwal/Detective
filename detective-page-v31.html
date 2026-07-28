@@ -37,13 +37,13 @@
 
   /* ============ SELECT screen: the cabinet ============ */
   #selectSub{margin-top:16px;font-size:15px;color:rgba(233,225,203,.72);max-width:700px;line-height:1.6}
-  .select-grid{display:grid;grid-template-columns:minmax(420px,600px) 1fr;gap:34px;margin-top:24px;align-items:start}
+  .select-grid{display:grid;grid-template-columns:minmax(520px,760px) 1fr;gap:38px;margin-top:24px;align-items:start}
   @media(max-width:940px){.select-grid{grid-template-columns:1fr}}
 
   .cab-stage{position:relative;perspective:1400px;perspective-origin:50% 38%}
 
   /* --- carcass: grey-green service cabinet, scuffed --- */
-  .cabinet{position:relative;padding:16px;border-radius:4px;transition:filter .45s, transform .45s;
+  .cabinet{position:relative;padding:20px;border-radius:4px;transition:filter .45s, transform .45s;
     background:linear-gradient(168deg,#2c332d 0%,#242b26 35%,#1b211d 72%,#141915 100%);
     box-shadow:inset 0 1px 0 rgba(233,225,203,.12), inset 0 -12px 22px rgba(0,0,0,.6),
                inset 12px 0 20px -14px rgba(0,0,0,.65), inset -12px 0 20px -14px rgba(0,0,0,.65),
@@ -57,11 +57,11 @@
   .cab-brass{margin-top:13px;text-align:center;font-family:'Special Elite',monospace;
     font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--tape);opacity:.45}
 
-  .cab-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+  .cab-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   @media(max-width:520px){.cab-grid{grid-template-columns:1fr}}
 
   /* --- drawer front --- */
-  .drawer{position:relative;height:112px;border:none;cursor:pointer;padding:0;border-radius:2px;overflow:hidden;
+  .drawer{position:relative;height:140px;border:none;cursor:pointer;padding:0;border-radius:2px;overflow:hidden;
     transition:transform .4s cubic-bezier(.2,.85,.3,1.05), box-shadow .3s, filter .35s, opacity .3s;
     background:linear-gradient(178deg,#3d453e 0%,#333a34 30%,#272e29 72%,#1e2420 100%);
     box-shadow:inset 0 1px 0 rgba(233,225,203,.16), inset 0 -8px 14px rgba(0,0,0,.5),
@@ -69,14 +69,14 @@
   .drawer::before{content:"";position:absolute;inset:4px;border-radius:1px;pointer-events:none;
     box-shadow:inset 0 1px 0 rgba(233,225,203,.10), inset 0 -1px 0 rgba(0,0,0,.55),
                inset 1px 0 0 rgba(233,225,203,.05), inset -1px 0 0 rgba(0,0,0,.4)}
-  .dlabel{position:absolute;left:50%;top:17px;transform:translateX(-50%);width:78%;padding:2px;border-radius:1px;
+  .dlabel{position:absolute;left:50%;top:24px;transform:translateX(-50%);width:78%;padding:2px;border-radius:1px;
     background:linear-gradient(180deg,#6a7269,#4c534b);box-shadow:0 2px 4px rgba(0,0,0,.55)}
   .dcard{display:block;background:linear-gradient(180deg,var(--paper),var(--paper-2));border-radius:1px;padding:5px 8px 4px;text-align:center}
-  .dname{display:block;font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);line-height:1.15}
-  .dsub{display:block;font-size:8.5px;letter-spacing:.03em;color:var(--ink-soft);margin-top:2px;font-style:italic}
-  .dcount{position:absolute;left:50%;bottom:11px;transform:translateX(-50%);font-family:'Special Elite',monospace;
-    font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(233,225,203,.35)}
-  .dpull{position:absolute;left:50%;bottom:29px;transform:translateX(-50%);width:46px;height:15px;border-radius:0 0 8px 8px;
+  .dname{display:block;font-family:'Special Elite',monospace;font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);line-height:1.15}
+  .dsub{display:block;font-size:10px;letter-spacing:.03em;color:var(--ink-soft);margin-top:2px;font-style:italic}
+  .dcount{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);font-family:'Special Elite',monospace;
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(233,225,203,.35)}
+  .dpull{position:absolute;left:50%;bottom:38px;transform:translateX(-50%);width:56px;height:18px;border-radius:0 0 8px 8px;
     background:linear-gradient(180deg,#7d8479 0%,#5a615a 40%,#3a403b 100%);
     box-shadow:0 3px 5px rgba(0,0,0,.55), inset 0 1px 0 rgba(233,225,203,.35)}
   .dpull::after{content:"";position:absolute;left:6px;right:6px;top:3px;height:6px;border-radius:0 0 7px 7px;
@@ -112,8 +112,8 @@
     background:linear-gradient(180deg,#070a07,#0f130e 45%,#161b13);
     box-shadow:inset 0 16px 28px rgba(0,0,0,.85), inset 0 -30px 40px rgba(0,0,0,.6)}
   .files{display:flex;flex-direction:column;align-items:center}
-  .folder{position:relative;border:none;background:none;cursor:pointer;padding:0;width:100%;max-width:440px;height:86px;
-    margin-top:-52px;transform:scale(var(--s)) translateY(0);transform-origin:bottom center;z-index:var(--z);
+  .folder{position:relative;border:none;background:none;cursor:pointer;padding:0;width:100%;max-width:500px;height:92px;
+    margin-top:var(--fold,-52px);transform:scale(var(--s)) translateY(0);transform-origin:bottom center;z-index:var(--z);
     transition:transform .25s cubic-bezier(.2,.9,.3,1.2);animation:fileIn .42s cubic-bezier(.2,.8,.3,1) backwards}
   .folder:first-child{margin-top:0}
   @keyframes fileIn{from{opacity:0;transform:scale(var(--s)) translateY(24px)}to{opacity:1;transform:scale(var(--s)) translateY(0)}}
@@ -174,7 +174,12 @@
   #notebook .pin button{position:absolute;top:6px;right:8px;border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:13px}
   #notebook .empty{font-size:13px;color:var(--ink-soft);font-style:italic;margin-top:4px}
 
-  .suspect-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .suspect-row{display:grid;grid-template-columns:repeat(var(--cols,3),1fr);gap:14px}
+  .suspect-row.many{gap:10px}
+  .suspect-row.many .polaroid{padding:7px 7px 9px}
+  .suspect-row.many .nm{font-size:12px}
+  .suspect-row.many .rl{font-size:9.5px}
+  @media(max-width:900px){.suspect-row{grid-template-columns:repeat(min(var(--cols,3),3),1fr)}}
   @media(max-width:560px){.suspect-row{gap:8px}}
   .polaroid{background:var(--paper);color:var(--ink);border:none;cursor:pointer;padding:10px 10px 12px;border-radius:2px;box-shadow:0 8px 20px rgba(0,0,0,.4);transform:rotate(var(--tilt,0deg));transition:transform .18s ease, outline .1s;text-align:center;outline:3px solid transparent}
   .polaroid:hover{transform:rotate(0deg) translateY(-3px)}
@@ -245,6 +250,7 @@
     overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .modal .minor{font-size:12.5px;color:var(--ink-soft)}
   .modal .close{margin-top:8px;font-family:'Special Elite',monospace;background:none;border:2px solid var(--ink-soft);color:var(--ink-soft);padding:7px 16px;cursor:pointer;font-size:13px;letter-spacing:.1em}
+  .msg .side .playbtn.playing{color:var(--stamp)}
   .verdict-stamp{font-family:'Special Elite',monospace;border:4px solid;display:inline-block;padding:8px 18px;font-size:22px;letter-spacing:.2em;transform:rotate(-5deg);margin:6px 0 12px;text-transform:uppercase}
   .v-win{color:var(--ok);border-color:var(--ok)}
   .v-lose{color:var(--stamp);border-color:var(--stamp)}
@@ -257,10 +263,10 @@
     background:linear-gradient(180deg,#242b26,#171c18);border:1px solid rgba(233,225,203,.16);border-radius:3px;
     padding:7px 12px;cursor:pointer;box-shadow:0 8px 18px rgba(0,0,0,.5)}
   #badgeChip.show{display:flex}
-  #badgeChip .shield{width:16px;height:19px;background:linear-gradient(180deg,#c9a24d,#7d5f18);
+  #badgeChip .shield{width:22px;height:26px;background:linear-gradient(180deg,#c9a24d,#7d5f18);
     clip-path:polygon(50% 0,100% 22%,100% 62%,50% 100%,0 62%,0 22%);flex:0 0 auto}
-  #badgeChip .who{font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.1em;color:#e9e1cb;text-transform:uppercase;line-height:1.3}
-  #badgeChip .no{display:block;font-size:9px;letter-spacing:.22em;color:#c9a227;opacity:.85}
+  #badgeChip .who{font-family:'Special Elite',monospace;font-size:15px;letter-spacing:.1em;color:#e9e1cb;text-transform:uppercase;line-height:1.3}
+  #badgeChip .no{display:block;font-size:12.5px;letter-spacing:.24em;margin-top:2px;color:#c9a227;opacity:.85}
   @media(max-width:620px){#badgeChip{left:10px;bottom:10px;padding:5px 9px}}
 
   #credOverlay{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;
@@ -314,6 +320,169 @@
   .gate-shake{animation:gshake .4s}
   @keyframes gshake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
 
+
+  /* ---- per-case atmosphere (set CASE_THEMING to false in the script to switch off) ---- */
+  #screen-game.themed{position:relative}
+  #screen-game.themed::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(115% 80% at 82% -8%, var(--wash, transparent), transparent 58%),
+               radial-gradient(85% 65% at -5% 105%, var(--wash, transparent), transparent 55%),
+               linear-gradient(180deg, var(--wash-thin, transparent), transparent 30%)}
+  #screen-game.themed > *{position:relative;z-index:1}
+  #screen-game.themed header{border-bottom-color:var(--accent-line, rgba(233,225,203,.25))}
+  #screen-game.themed .case-no{color:var(--accent)}
+  #screen-game.themed h1{color:var(--accent);text-shadow:0 0 26px var(--accent-glow, transparent)}
+  #screen-game.themed .file-label{color:var(--accent);filter:saturate(.9) brightness(.7)}
+  #screen-game.themed .paper-card::before{background:var(--accent-tape, rgba(201,162,39,.55))}
+  #screen-game.themed .fact .hot{background:var(--accent-soft, rgba(176,36,44,.12))}
+  #screen-game.themed .chat-head .who{color:var(--accent)}
+  #screen-game.themed .polaroid.sel{outline:2px solid var(--accent);box-shadow:0 0 22px var(--accent-glow, transparent)}
+  #screen-game.themed #chat .msg.sus .tag{color:var(--accent)}
+  #screen-game.themed .pin-item{border-left:2px solid var(--accent-line, transparent)}
+
+
+  /* ---- rank, records and the debrief ---- */
+  .drawer.major .dlabel{background:linear-gradient(180deg,#7a6a4e,#4f4230)}
+  .drawer.major .dname{color:#4a3a1e}
+  .drawer.records .dlabel{background:linear-gradient(180deg,#6a7a5e,#47533f)}
+  .drawer.records .dname{color:#3d4a35}
+  .folder.done .fbody::after{content:"✓";position:absolute;right:52px;top:26px;font-family:'Special Elite',monospace;
+    font-size:13px;color:var(--ok)}
+  .folder.miss .fbody::after{content:"✕";position:absolute;right:52px;top:26px;font-family:'Special Elite',monospace;
+    font-size:13px;color:var(--stamp)}
+
+  .debrief{margin:14px 0 4px;border-top:1px dashed var(--line);padding-top:14px}
+  .debrief h3{font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+  .db-rows{display:grid;grid-template-columns:1fr auto;gap:5px 14px;font-size:13.5px;color:var(--ink-soft)}
+  .db-rows b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+  .db-note{margin-top:10px;font-size:13px;color:var(--ink-soft);font-style:italic;line-height:1.5}
+  .rankbar{margin-top:12px}
+  .rankbar .rb-line{display:flex;justify-content:space-between;font-family:'Special Elite',monospace;font-size:10.5px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+  .rankbar .rb-track{height:7px;background:rgba(42,36,32,.14);border-radius:4px;overflow:hidden}
+  .rankbar .rb-fill{height:100%;background:var(--stamp);border-radius:4px;transition:width .8s cubic-bezier(.2,.8,.3,1)}
+  .rank-up{margin-top:10px;font-family:'Special Elite',monospace;font-size:13px;letter-spacing:.1em;color:var(--stamp);text-transform:uppercase}
+
+  #filePreview .rec{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;font-size:13px;color:var(--ink-soft)}
+  #filePreview .rec b{color:var(--ink)}
+  #filePreview .rec .outcome{font-family:'Special Elite',monospace;letter-spacing:.12em;text-transform:uppercase;font-size:11px}
+  #filePreview .rec .won{color:var(--ok)}
+  #filePreview .rec .lost{color:var(--stamp)}
+
+
+  /* ---- timeline ---- */
+  #tlWrap{margin-top:12px;border:1px solid rgba(233,225,203,.14);border-radius:4px;background:rgba(0,0,0,.22);overflow:hidden}
+  #tlHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 14px;cursor:pointer;
+    font-family:'Special Elite',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--tape)}
+  #tlHead:hover{color:var(--paper)}
+  #tlHead .hint{color:rgba(233,225,203,.35);letter-spacing:.06em;text-transform:none;font-size:11px;font-style:italic}
+  #tlBody{display:none;padding:4px 16px 16px}
+  #tlBody.show{display:block}
+
+  .tl-axis{position:relative;height:118px;margin:10px 0 6px;border-radius:3px;
+    background:linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.12));border:1px solid rgba(233,225,203,.10)}
+  .tl-tick{position:absolute;top:0;bottom:0;width:1px;background:rgba(233,225,203,.10)}
+  .tl-tick span{position:absolute;bottom:2px;left:3px;font-family:'Special Elite',monospace;font-size:8.5px;
+    letter-spacing:.08em;color:rgba(233,225,203,.32)}
+  .tl-band{position:absolute;top:10px;height:26px;border-radius:2px;display:flex;align-items:center;padding:0 7px;
+    background:rgba(201,162,39,.16);border:1px solid rgba(201,162,39,.42);overflow:hidden}
+  .tl-band b{font-family:'Special Elite',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--tape);white-space:nowrap}
+  .tl-mark{position:absolute;top:10px;height:26px;width:2px;background:rgba(201,162,39,.7)}
+  .tl-mark span{position:absolute;top:-1px;left:5px;font-family:'Special Elite',monospace;font-size:8.5px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--tape);white-space:nowrap}
+
+  .tl-chip{position:absolute;top:48px;transform:translateX(-50%);max-width:190px;cursor:grab;
+    background:linear-gradient(180deg,var(--paper),var(--paper-2));color:var(--ink);border-radius:2px;
+    padding:5px 8px;box-shadow:0 5px 12px rgba(0,0,0,.5);font-size:11.5px;line-height:1.3;user-select:none}
+  .tl-chip:active{cursor:grabbing}
+  .tl-chip .w{display:block;font-family:'Special Elite',monospace;font-size:8.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-soft)}
+  .tl-chip .t{display:block;font-family:'Special Elite',monospace;font-size:9px;color:var(--stamp);letter-spacing:.06em}
+  .tl-chip::after{content:"";position:absolute;left:50%;top:-9px;width:1px;height:9px;background:rgba(233,225,203,.5)}
+  .tl-chip.clash{outline:2px solid var(--stamp);box-shadow:0 5px 16px rgba(176,36,44,.5)}
+  .tl-chip .rm{position:absolute;top:-7px;right:-7px;width:16px;height:16px;border-radius:50%;border:none;cursor:pointer;
+    background:var(--stamp);color:var(--paper);font-size:10px;line-height:16px;padding:0}
+
+  .tl-src{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .tl-src .src{display:flex;align-items:center;gap:7px;background:rgba(233,225,203,.06);border:1px solid rgba(233,225,203,.14);
+    border-radius:3px;padding:5px 8px;font-size:12px;color:rgba(233,225,203,.8);max-width:340px}
+  .tl-src .src .q{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:210px}
+  .tl-src .src input{width:64px;background:rgba(0,0,0,.35);border:1px solid rgba(233,225,203,.2);border-radius:2px;
+    color:var(--paper);font-family:'Special Elite',monospace;font-size:11px;padding:3px 5px;text-align:center}
+  .tl-src .src button{background:none;border:1px solid rgba(201,162,39,.5);color:var(--tape);border-radius:2px;
+    font-family:'Special Elite',monospace;font-size:10px;letter-spacing:.08em;padding:3px 7px;cursor:pointer}
+  .tl-src .src button:hover{background:rgba(201,162,39,.14)}
+  .tl-empty{font-size:12.5px;color:rgba(233,225,203,.38);font-style:italic;margin-top:10px}
+
+
+  /* ---- sound toggle ---- */
+  #sfxBtn{position:fixed;right:18px;bottom:16px;z-index:400;background:linear-gradient(180deg,#242b26,#171c18);
+    border:1px solid rgba(233,225,203,.16);border-radius:3px;color:rgba(233,225,203,.6);cursor:pointer;
+    font-size:15px;padding:8px 11px;line-height:1}
+  #sfxBtn:hover{border-color:var(--tape);color:var(--paper)}
+  @media(max-width:620px){#sfxBtn{right:10px;bottom:10px}}
+
+  /* ---- the case you walked away from ---- */
+  #resumeCard{display:none;margin:0 0 20px;width:100%;max-width:620px;text-align:left;position:relative;cursor:pointer;
+    background:linear-gradient(180deg,var(--paper),var(--paper-2));color:var(--ink);border:none;border-radius:3px;
+    padding:16px 18px 14px;box-shadow:0 14px 30px rgba(0,0,0,.5);
+    animation:prevIn .35s cubic-bezier(.2,.8,.3,1)}
+  #resumeCard.show{display:block}
+  #resumeCard::before{content:"";position:absolute;top:-9px;left:34px;width:92px;height:20px;
+    background:rgba(201,162,39,.55);border-radius:2px;transform:rotate(-3deg)}
+  #resumeCard .rc-stamp{position:absolute;top:12px;right:14px;font-family:'Special Elite',monospace;font-size:9.5px;
+    letter-spacing:.14em;border:2px solid var(--tape);color:#8a6d1f;padding:2px 8px;transform:rotate(5deg);text-transform:uppercase}
+  #resumeCard .rc-lbl{font-family:'Special Elite',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
+  #resumeCard .rc-title{font-family:'Special Elite',monospace;font-size:19px;margin:4px 0 2px}
+  #resumeCard .rc-meta{font-size:13px;color:var(--ink-soft)}
+  #resumeCard .rc-acts{margin-top:11px;display:flex;gap:14px;align-items:center}
+  #resumeCard .rc-go{font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--stamp)}
+  #resumeCard:hover .rc-go{text-decoration:underline}
+  #resumeCard .rc-drop{background:none;border:none;font-family:'Special Elite',monospace;font-size:10.5px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer;padding:0}
+  #resumeCard .rc-drop:hover{color:var(--stamp)}
+
+
+  /* ---- team play on one screen ---- */
+  #teamBar{display:none;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 14px;
+    border-bottom:1px solid rgba(233,225,203,.12);background:rgba(0,0,0,.18)}
+  #teamBar.show{display:flex}
+  #teamBar .lbl{font-family:'Special Elite',monospace;font-size:9.5px;letter-spacing:.2em;
+    text-transform:uppercase;color:rgba(233,225,203,.4)}
+  .tmember{display:flex;align-items:center;gap:7px;border:1px solid rgba(233,225,203,.16);border-radius:3px;
+    padding:4px 10px;cursor:pointer;background:rgba(0,0,0,.2)}
+  .tmember:hover{border-color:var(--tape)}
+  .tmember.active{border-color:var(--stamp);background:rgba(176,36,44,.16)}
+  .tmember .nm{font-family:'Special Elite',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--paper)}
+  .tmember .bd{font-family:'Special Elite',monospace;font-size:9px;letter-spacing:.14em;color:var(--tape);opacity:.75}
+  .tmember .ct{font-size:10.5px;color:rgba(233,225,203,.45);font-variant-numeric:tabular-nums}
+  #teamBar .turn{margin-left:auto;font-family:'Special Elite',monospace;font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--stamp)}
+
+  .msg .asker{display:block;font-family:'Special Elite',monospace;font-size:8.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:rgba(233,225,203,.45);margin-bottom:2px}
+
+  #teamSetup .row{display:flex;gap:8px;margin-bottom:8px}
+  #teamSetup input{flex:1;background:rgba(255,255,255,.5);border:1px solid var(--line);border-radius:2px;
+    padding:9px 11px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:var(--ink)}
+  #teamSetup .badge{font-family:'Special Elite',monospace;font-size:13px;letter-spacing:.16em;color:var(--stamp);
+    align-self:center;min-width:66px;text-align:center}
+  #teamAdd{background:none;border:1px dashed var(--line);border-radius:2px;padding:8px;width:100%;cursor:pointer;
+    font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  #teamAdd:hover{border-color:var(--stamp);color:var(--stamp)}
+
+  .votes{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+  .votes h4{font-family:'Special Elite',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:8px}
+  .voterow{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap}
+  .voterow .who{font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.06em;min-width:92px;color:var(--ink)}
+  .voterow button{background:rgba(255,255,255,.45);border:1px solid var(--line);border-radius:2px;padding:4px 9px;
+    font-size:12px;cursor:pointer;color:var(--ink)}
+  .voterow button.picked{border-color:var(--stamp);background:rgba(176,36,44,.12);font-weight:600}
+  .db-votes{margin-top:10px;font-size:13px;color:var(--ink-soft);line-height:1.6}
+  .db-votes .right{color:var(--ok);font-weight:600}
+  .db-votes .wrong{color:var(--stamp)}
+
 </style>
 </head>
 <body>
@@ -330,6 +499,8 @@
       <div class="confidential">Confidential</div>
     </header>
     <p id="selectSub">Every file in this drawer is an unsolved case — murders, heists, forgeries, sabotage. Three suspects, all of them lying about something, one of them guilty. Pull a file to read it. Pull it again to take the case.</p>
+    <button id="resumeCard"></button>
+
     <div class="select-grid">
       <div class="cab-stage" id="cabStage">
         <div class="cabinet" id="cabinet">
@@ -392,6 +563,7 @@
             <button id="keyBtn" title="Use your own free Gemini API key (stored only in this browser) for your own private quota">🔑</button>
             <button id="voiceToggle" title="Suspects speak their answers aloud">🔇 voice off</button>
           </div>
+          <div id="teamBar"></div>
           <div id="chat"></div>
           <div id="listenBar"><span class="dot"></span><span id="listenLabel">Listening…</span><span class="heard" id="listenHeard"></span></div>
           <div class="inputbar">
@@ -400,9 +572,18 @@
             <button id="sendBtn" disabled>Ask</button>
           </div>
         </div>
+        <div id="tlWrap">
+          <div id="tlHead"><span>⏱ Timeline</span><span class="hint">put their accounts next to the facts</span></div>
+          <div id="tlBody">
+            <div class="tl-axis" id="tlAxis"></div>
+            <div id="tlSources" class="tl-src"></div>
+            <div class="tl-empty" id="tlEmpty">Pin a statement in the interrogation, then give it a time here. Anything that lands inside a fact from the file will show it.</div>
+          </div>
+        </div>
+
         <div class="accuse-bar">
           <button id="accuseBtn">⚖ Accuse</button><br>
-          <button id="backBtn">← abandon case, return to the desk</button>
+          <button id="backBtn">← leave the case for now</button>
         </div>
       </main>
     </div>
@@ -546,13 +727,14 @@ function showScreen(name){
 }
 
 /* ================= SELECT screen: the filing cabinet ================= */
-const CAT_ORDER = ["Homicide", "Theft", "Fraud", "Narcotics", "Sabotage"];
+const CAT_ORDER = ["Homicide", "Theft", "Fraud", "Narcotics", "Sabotage", "Major"];
 const CAT_META = {
   Homicide:  { label: "Homicide",        sub: "bodies, blackouts, blunt instruments" },
   Theft:     { label: "Theft & Heist",   sub: "galleries, vaults, empty frames" },
   Fraud:     { label: "Fraud & Forgery", sub: "paper, provenance, impossible luck" },
   Narcotics: { label: "Narcotics",       sub: "hulls, harbours, hidden weight" },
-  Sabotage:  { label: "Sabotage",        sub: "valves, blizzards, ruined machines" }
+  Sabotage:  { label: "Sabotage",        sub: "valves, blizzards, ruined machines" },
+  Major:     { label: "Major Cases",     sub: "five suspects, no shortcuts" }
 };
 const LEVEL_PIPS = { easy: 1, medium: 2, hard: 3 };
 const LEVEL_WORD = { easy: "Straightforward", medium: "Involved", hard: "Difficult" };
@@ -580,7 +762,7 @@ function renderCabinet(){
     if(!counts[cat]) return;
     const meta = CAT_META[cat] || { label: cat, sub: "" };
     const b = document.createElement("button");
-    b.className = "drawer";
+    b.className = "drawer" + (cat === "Major" ? " major" : "");
     b.dataset.cat = cat;
     b.innerHTML = `<span class="dlabel"><span class="dcard">
                      <span class="dname">${esc(meta.label)}</span>
@@ -591,6 +773,20 @@ function renderCabinet(){
     b.onclick = (e)=>{ e.stopPropagation(); openDrawer(cat, b); };
     list.appendChild(b);
   });
+
+  // your own closed files
+  const rec = document.createElement("button");
+  const n = closedCount();
+  rec.className = "drawer records";
+  rec.dataset.cat = "__records";
+  rec.innerHTML = `<span class="dlabel"><span class="dcard">
+                     <span class="dname">Case Records</span>
+                     <span class="dsub">${solvedCount()} closed, ${Math.max(0, n - solvedCount())} misjudged</span>
+                   </span></span>
+                   <span class="dpull"></span>
+                   <span class="dcount">${n} ${n===1?"file":"files"}</span>`;
+  rec.onclick = (e)=>{ e.stopPropagation(); openDrawer("__records", rec); };
+  list.appendChild(rec);
 
   // the captain keeps his own drawer
   const cap = document.createElement("button");
@@ -621,15 +817,35 @@ function openDrawer(cat, btn){
   $("cabStage").classList.add("open");
   document.querySelectorAll(".drawer").forEach(d => d.classList.toggle("sel", d === btn));
 
-  const meta = CAT_META[cat] || { label: cat };
+  const meta = cat === "__records" ? { label: "Case Records" } : (CAT_META[cat] || { label: cat });
   $("doTitle").textContent = meta.label;
 
-  const cases = CATALOG.filter(c => (c.category || "Homicide") === cat);
+  const cases = cat === "__records"
+    ? CATALOG.filter(c => RECORD.closed[c.id])
+             .sort((a, b) => RECORD.closed[b.id].ts - RECORD.closed[a.id].ts)
+    : CATALOG.filter(c => (c.category || "Homicide") === cat);
+  if(cat === "__records" && !cases.length){
+    $("doTitle").textContent = "Case Records";
+    $("folderRow").innerHTML = "";
+    panel.classList.add("show");
+    $("previewHint").innerHTML = "Nothing filed yet.<br><br>Close a case and it comes back here with your name on it.";
+    return;
+  }
   const row = $("folderRow");
   row.innerHTML = "";
   cases.forEach((c, i) => row.appendChild(makeFolder(c, i, cases.length)));
 
+  // a full drawer has to hold ten files as tidily as it holds three:
+  // work out how much each file can show and set the overlap to match.
+  const inner = row.parentElement;
+  const n = cases.length;
+  const FILE_H = 92;
+  const avail = Math.max(200, inner.clientHeight - 34);
+  const step = n > 1 ? Math.min(34, Math.max(13, (avail - FILE_H) / (n - 1))) : 34;
+  row.style.setProperty("--fold", (-(FILE_H - step)).toFixed(1) + "px");
+
   panel.classList.add("show");
+  SFX.drawerOpen();
   $("previewHint").innerHTML = "Pull a file to read its label.<br><br>Pull it again and the case is yours.";
 }
 
@@ -639,6 +855,7 @@ function closeDrawer(){
   $("cabStage").classList.remove("open");
   document.querySelectorAll(".drawer").forEach(d => d.classList.remove("sel"));
   $("drawerOpen").classList.remove("show");
+  SFX.drawerShut();
   $("previewHint").innerHTML = "Six drawers. Pull one open.<br><br>Every file inside is unsolved, and every suspect in it is lying about something.";
 }
 
@@ -647,12 +864,15 @@ const TAB_X = ["7%","37%","63%"];
 function makeFolder(caseData, depthIndex, total){
   const b = document.createElement("button");
   b.className = "folder";
-  const s = 0.82 + 0.18 * (total > 1 ? depthIndex/(total-1) : 1);
+  const floor = total > 7 ? 0.90 : 0.82;   // deep stacks stay readable
+  const s = floor + (1 - floor) * (total > 1 ? depthIndex/(total-1) : 1);
   b.style.setProperty("--s", s.toFixed(3));
   b.style.setProperty("--z", depthIndex + 1);
   b.style.setProperty("--tabx", TAB_X[depthIndex % 3]);
   b.style.animationDelay = (330 + (total - depthIndex) * 60) + "ms";   // wait for the drawer to come out
   const no = "No. " + String(caseData.caseNo).split("·")[0].trim();
+  const rec = RECORD.closed[caseData.id];
+  if(rec) b.classList.add(rec.win ? "done" : "miss");
   b.innerHTML = `<span class="ftab">${esc(caseData.title)}</span><span class="fbody"></span>
                  ${pipsHTML(caseData.level)}<span class="fno">${esc(no)}</span>`;
   const entry = { id: caseData.id, el: b, data: caseData };
@@ -674,6 +894,7 @@ function raiseFolder(entry){
   if(raisedFolder && raisedFolder.el !== entry.el) raisedFolder.el.classList.remove("raised");
   raisedFolder = entry;
   entry.el.classList.add("raised");
+  SFX.file();
   const c = entry.data;
   $("filePreview").innerHTML = `
       <div class="pstamp">${esc(c.difficulty || "")}</div>
@@ -681,8 +902,12 @@ function raiseFolder(entry){
       <div class="ptitle">${esc(c.title)}</div>
       <div class="ptheme">${esc(c.theme)}</div>
       <div class="pline">${esc(c.settingLine)}</div>
-      <div class="plevel">${pipsHTML(c.level)} ${esc(LEVEL_WORD[c.level] || "")}</div>
-      <div class="popen">⟶ Take this case</div>`;
+      <div class="plevel">${pipsHTML(c.level)} ${esc(LEVEL_WORD[c.level] || "")}${c.castSize && c.castSize > 3 ? ` · ${c.castSize} suspects` : ""}</div>
+      ${RECORD.closed[c.id] ? (()=>{ const r = RECORD.closed[c.id];
+        return `<div class="rec"><span class="outcome ${r.win?"won":"lost"}">${r.win?"Case closed":"Wrong arrest"}</span>
+                — <b>${r.questions}</b> questions, warrant graded <b>${esc(r.grade||"solid")}</b>,
+                filed ${new Date(r.ts).toLocaleDateString()}</div>` })() : ""}
+      <div class="popen">⟶ ${RECORD.closed[c.id] ? "Reopen this case" : "Take this case"}</div>`;
   $("previewHint").style.display = "none";
   $("filePreview").classList.add("show");
 }
@@ -712,7 +937,12 @@ async function openCase(id, category){
   // a badge check at the door, every time
   if(DETECTIVE.badge && !gatePassed){
     const info = id ? CATALOG.find(c => c.id === id) : null;
-    askBadgeFor(info, ()=>{ gatePassed = true; openCase(id, category); gatePassed = false; });
+    askBadgeFor(info, ()=>{
+      teamSetupCard((team)=>{
+        TEAM = team; turnIdx = 0; teamVotes = {};
+        gatePassed = true; openCase(id, category); gatePassed = false;
+      });
+    });
     return;
   }
   try{
@@ -730,7 +960,7 @@ async function openCase(id, category){
 /* ================= straight into the case ================= */
 function startCase(c){
   CASE = c;
-  histories = {}; greeted = {}; pins = []; current = null; busy = false; caseClosed = false;
+  histories = {}; greeted = {}; pins = []; tlPlaced = []; current = null; busy = false; caseClosed = false;
   stopAudio();
   Object.keys(c.suspects).forEach(id=>{ histories[id]=[]; greeted[id]=false; });
   history.pushState({ screen: "game" }, "");
@@ -740,6 +970,8 @@ function startCase(c){
 
 /* ================= GAME screen ================= */
 function enterGame(){
+  applyCaseTheme();
+  renderTeamBar();
   $("gCaseNo").textContent = "Case No. " + CASE.caseNo;
   $("gTitle").textContent = CASE.title;
 
@@ -754,6 +986,9 @@ function enterGame(){
 
   // suspects
   const row = $("suspectRow"); row.innerHTML = "";
+  const cast = Object.keys(CASE.suspects).length;
+  row.style.setProperty("--cols", Math.min(cast, cast > 4 ? 3 : cast));
+  row.classList.toggle("many", cast > 3);
   Object.values(CASE.suspects).forEach(s=>{
     const b = document.createElement("button");
     b.className = "polaroid";
@@ -770,6 +1005,34 @@ function enterGame(){
   // accuse choices — selecting, not firing; the warrant needs reasoning too
   pendingAccuse = null;
   $("accuseReason").value = "";
+  // in a team, each detective commits to a name first
+  const oldVotes = $("accuseVotes");
+  if(oldVotes) oldVotes.remove();
+  if(inTeam()){
+    const wrap = document.createElement("div");
+    wrap.className = "votes"; wrap.id = "accuseVotes";
+    wrap.innerHTML = `<h4>Who does each of you like for it?</h4>`;
+    TEAM.forEach((p, pi) => {
+      const row = document.createElement("div");
+      row.className = "voterow";
+      row.innerHTML = `<span class="who">${esc(p.name)}</span>`;
+      Object.values(CASE.suspects).forEach(s => {
+        const b = document.createElement("button");
+        b.textContent = s.name.split(" ")[0];
+        if(teamVotes[pi] === s.id) b.classList.add("picked");
+        b.onclick = (e)=>{
+          e.preventDefault();
+          teamVotes[pi] = s.id;
+          row.querySelectorAll("button").forEach(x=>x.classList.remove("picked"));
+          b.classList.add("picked");
+        };
+        row.appendChild(b);
+      });
+      wrap.appendChild(row);
+    });
+    $("accuseChoices").parentElement.insertBefore(wrap, $("accuseChoices"));
+  }
+
   const choices = $("accuseChoices"); choices.innerHTML = "";
   Object.values(CASE.suspects).forEach(s=>{
     const b = document.createElement("button");
@@ -815,18 +1078,24 @@ function addBubble(kind, text, msgObj, scroll=true){
   const d = document.createElement("div");
   d.className = "msg "+kind;
   const tag = kind==="det" ? "You" : CASE.suspects[current].name;
-  d.innerHTML = `<span class="tag">${esc(tag)}</span>${esc(text)}`;
+  const by = (kind === "det" && msgObj && msgObj.by) ? `<span class="asker">${esc(msgObj.by)}</span>` : "";
+  d.innerHTML = `${by}<span class="tag">${esc(tag)}</span>${esc(text)}`;
   if(kind==="sus"){
     const side = document.createElement("div");
     side.className = "side-btns";
     const pb = document.createElement("button");
     pb.title="Pin to notebook"; pb.textContent="📌";
     const who = CASE.suspects[current].name;
-    pb.onclick = ()=>{ pins.push({who, quote:text}); renderPins(); };
+    pb.onclick = ()=>{ pins.push({who, quote:text}); SFX.pin(); renderPins(); };
     side.appendChild(pb);
     const vb = document.createElement("button");
-    vb.title="Hear them say it"; vb.textContent="▶";
-    vb.onclick = ()=>speak(text, current, msgObj);
+    vb.title = "Hear them say it"; vb.textContent = "▶";
+    vb.className = "playbtn";
+    if(msgObj) msgObj._btn = vb;
+    vb.onclick = ()=>{
+      if(speakingBtn === vb){ stopAudio(); return; }   // pressing it again shuts them up
+      speak(text, current, msgObj, vb);
+    };
     side.appendChild(vb);
     d.appendChild(side);
   }
@@ -843,6 +1112,7 @@ function addSys(text){
 
 function renderPins(){
   saveSession();
+  if($("tlBody") && $("tlBody").classList.contains("show")) renderTimeline();
   $("nbEmpty").style.display = pins.length ? "none" : "block";
   const list = $("nbList"); list.innerHTML = "";
   pins.forEach((p,i)=>{
@@ -861,10 +1131,13 @@ async function askSuspect(){
   const input = $("msgInput");
   const q = input.value.trim();
   if(!q || busy || !current || caseClosed) return;
+  SFX.key();
   busy = true; input.value=""; input.disabled=true; $("sendBtn").disabled=true;
   stopListening(false); setListenBar(false);
 
-  histories[current].push({role:"user", content:q});
+  const asker = activePlayer();
+  histories[current].push({role:"user", content:q, by: asker ? asker.name : null});
+  if(asker){ asker.asked++; turnIdx = (turnIdx + 1) % TEAM.length; renderTeamBar(); }
   saveSession();
   addBubble("det", q, null);
 
@@ -888,7 +1161,7 @@ async function askSuspect(){
     histories[current].push(msgObj);
     saveSession();
     addBubble("sus", data.reply, msgObj);
-    if(voiceOn) speak(data.reply, current, msgObj);
+    if(voiceOn) speak(data.reply, current, msgObj, msgObj._btn);
   }catch(err){
     t.remove();
     histories[current].pop();
@@ -910,6 +1183,7 @@ $("voiceToggle").onclick = ()=>{
 
 function stopAudio(){
   speakSeq++;   // invalidate any clip still being fetched
+  clearPlaying();
   if(audioNow){ audioNow.pause(); audioNow = null; }
   if(window.speechSynthesis) speechSynthesis.cancel();
 }
@@ -930,16 +1204,31 @@ function pickBrowserVoice(gender, suspectId){
 }
 if(window.speechSynthesis) speechSynthesis.getVoices(); // warm the voice list
 
-let speakSeq = 0; // ticket number: only the latest speak() may play
+let speakSeq = 0;      // ticket number: only the latest speak() may play
+let speakingBtn = null;  // the ▶ that is currently mid-sentence
+
+function setPlaying(btn){
+  if(speakingBtn && speakingBtn !== btn){ speakingBtn.textContent = "▶"; speakingBtn.classList.remove("playing"); }
+  speakingBtn = btn || null;
+  if(btn){ btn.textContent = "⏸"; btn.classList.add("playing"); }
+}
+function clearPlaying(){ setPlaying(null); }
 
 /* split a reply into short groups so the FIRST audio arrives fast
    (we generate + play group 1 while group 2 is still being made) */
-function splitSpeech(text, max = 210){
+function splitSpeech(text, max = 240, first = 46){
   const sentences = String(text).replace(/\s+/g," ").trim().match(/[^.!?…]+[.!?…]*\s*/g) || [text];
   const out=[]; let cur="";
+  const cap = () => out.length === 0 ? first : max;   // keep the opening line short so it lands fast
   for(let sen of sentences){
     sen = sen.trim();
-    if((cur+" "+sen).trim().length <= max) cur = (cur+" "+sen).trim();
+    // a long opening sentence gets split at a comma rather than held back whole
+    if(out.length === 0 && !cur && sen.length > first){
+      let cut = sen.lastIndexOf(",", first);
+      if(cut < 18) cut = sen.lastIndexOf(" ", first);
+      if(cut > 14){ out.push(sen.slice(0, cut + 1).trim()); sen = sen.slice(cut + 1).trim(); }
+    }
+    if((cur+" "+sen).trim().length <= cap()) cur = (cur+" "+sen).trim();
     else { if(cur) out.push(cur); cur = sen; }
   }
   if(cur) out.push(cur);
@@ -949,7 +1238,9 @@ function splitSpeech(text, max = 210){
 function playClip(url, ticket){
   return new Promise(resolve=>{
     if(ticket !== speakSeq) return resolve();
-    const a = new Audio(url);
+    const a = new Audio();
+    a.preload = "auto";
+    a.src = url;
     audioNow = a;
     a.onended = resolve;
     a.onerror = resolve;
@@ -967,8 +1258,9 @@ async function fetchClip(part, suspectId){
   return data.audio;
 }
 
-async function speak(text, suspectId, msgObj){
+async function speak(text, suspectId, msgObj, btn){
   stopAudio();
+  setPlaying(btn || null);
   const myTicket = ++speakSeq;
   const parts = splitSpeech(text);
   const cache = (msgObj && msgObj._clips) || [];
@@ -1002,7 +1294,7 @@ async function speak(text, suspectId, msgObj){
       await new Promise(done=>{ u.onend = done; u.onerror = done; speechSynthesis.speak(u); });
     }
   }finally{
-    if(myTicket === speakSeq) onSuspectFinishedSpeaking();
+    if(myTicket === speakSeq){ clearPlaying(); onSuspectFinishedSpeaking(); }
   }
 }
 
@@ -1098,12 +1390,16 @@ if($("micBtn")) $("micBtn").onclick = ()=>{
 let pendingAccuse = null;
 $("accuseBtn").onclick = ()=>{ if(!caseClosed && CASE){ $("accuseHint").textContent=""; $("accuseOverlay").classList.add("show"); } };
 $("accuseCancel").onclick = ()=>$("accuseOverlay").classList.remove("show");
-$("backBtn").onclick = ()=>{ stopAudio(); clearSession(); history.pushState({ screen: "select" }, ""); showScreen("select"); };
+$("backBtn").onclick = ()=>{ stopAudio(); saveSession(); history.pushState({ screen: "select" }, ""); showScreen("select"); renderResume(); };
 
 $("accuseSubmit").onclick = async ()=>{
   const reasoning = $("accuseReason").value.trim();
   if(!pendingAccuse){ $("accuseHint").textContent = "Pick a suspect first."; return; }
   if(reasoning.length < 20){ $("accuseHint").textContent = "The commissioner wants real reasoning — at least a sentence or two."; return; }
+  if(inTeam() && Object.keys(teamVotes).length < TEAM.length){
+    $("accuseHint").textContent = "Everyone names someone first — that's how a team gets it wrong together.";
+    return;
+  }
   $("accuseSubmit").disabled = true;
   $("accuseHint").textContent = "The commissioner is reading your warrant…";
   await deliverVerdict(pendingAccuse, reasoning);
@@ -1167,11 +1463,68 @@ async function deliverVerdict(id, reasoning){
   saveSession();
   stopAudio();
   $("msgInput").disabled = true; $("sendBtn").disabled = true; $("micBtn").disabled = true;
+  // ---- the debrief: what you did, what it earned you ----
+  const asked = Object.values(histories).reduce((n, ms) => n + ms.filter(x => x.role === "user").length, 0);
+  const perSuspect = Object.keys(CASE.suspects)
+    .map(id => `${CASE.suspects[id].name.split(" ")[0]} ${histories[id] ? histories[id].filter(x=>x.role==="user").length : 0}`)
+    .join(" · ");
+  const level = CASE.level || "medium";
+
+  const before = totalPoints();
+  const rankBefore = rankFor(before).cur;
+  const prev = RECORD.closed[CASE.id];
+  // a case only ever counts its best outcome
+  if(!prev || (v.win && !prev.win)){
+    RECORD.closed[CASE.id] = { win: !!v.win, grade: v.grade, caught: v.caught || "neither",
+                               questions: asked, level, ts: Date.now() };
+    saveRecord();
+  }
+  const after = totalPoints();
+  const { cur, next } = rankFor(after);
+  const earned = after - before;
+  const promoted = cur.name !== rankBefore.name;
+  const span = next ? (next.at - cur.at) : 1;
+  const into = next ? (after - cur.at) : 1;
+
+  const v_culprit = v.culpritId || null;
+
+  const CAUGHT_LINE = {
+    impossible: "You caught the thing that couldn't have happened.",
+    withheld:   "You caught them knowing something they were never told.",
+    both:       "You caught both the impossible detail and the knowledge they shouldn't have had.",
+    neither:    "You made the arrest without ever pinning down a contradiction."
+  };
+
   const m = $("verdictModal");
   m.innerHTML = `
     <div class="verdict-stamp ${v.win?"v-win":"v-lose"}">${v.win?"Case Closed":"Wrong Arrest"}</div>
     <h2>${v.win ? "You got them." : "You accused " + esc(v.accusedName) + "."}</h2>
     <p>${esc(v.epilogue)}</p>
+
+    <div class="debrief">
+      <h3>Debrief</h3>
+      <div class="db-rows">
+        <span>Questions put to suspects</span><b>${asked}</b>
+        <span>Split</span><b>${esc(perSuspect)}</b>
+        <span>Statements pinned</span><b>${pins.length}</b>
+        <span>Case difficulty</span><b>${esc(level)}</b>
+        <span>Warrant graded</span><b>${esc(v.grade || "solid")}</b>
+      </div>
+      <div class="db-note">${esc(CAUGHT_LINE[v.caught] || CAUGHT_LINE.neither)}</div>
+      <div class="rankbar">
+        <div class="rb-line"><span>${esc(cur.name)}</span><span>${next ? (next.at - after) + " to " + esc(next.name) : "Top of the service"}</span></div>
+        <div class="rb-track"><div class="rb-fill" style="width:${Math.max(4, Math.round(into / span * 100))}%"></div></div>
+      </div>
+      ${inTeam() ? `<div class="db-votes">${TEAM.map((p, pi) => {
+          const v = teamVotes[pi];
+          const nm = (v && CASE.suspects[v]) ? CASE.suspects[v].name : "no call";
+          const ok = v && v === v_culprit;
+          return `${esc(p.name)} said <b>${esc(nm)}</b> — <span class="${ok ? "right" : "wrong"}">${ok ? "right" : "wrong"}</span> · ${p.asked} question${p.asked === 1 ? "" : "s"}`;
+        }).join("<br>")}</div>` : ""}
+      ${earned > 0 ? `<div class="rank-up">+${earned} commendation${earned>1?"s":""} · ${solvedCount()} of ${CATALOG.length} closed</div>` : ""}
+      ${promoted ? `<div class="rank-up">Promoted to ${esc(cur.name)}</div>` : ""}
+    </div>
+
     <div class="truth">
       <h3>What actually happened</h3>
       <p>${v.truth.split("\n\n").map(esc).join("</p><p>")}</p>
@@ -1180,20 +1533,531 @@ async function deliverVerdict(id, reasoning){
     <button class="close" id="verdictBack">Back to the desk</button>
   `;
   $("verdictOverlay").classList.add("show");
+  SFX.stamp();
   $("verdictBack").onclick = ()=>{
     $("verdictOverlay").classList.remove("show");
+    clearSession();
+    renderCabinet();
+    renderResume();
+    showChip();
     showScreen("select");
   };
 }
 
 /* ================= boot ================= */
-loadCatalog().then(()=>{ restoreSession(); });
+loadRecord();
+loadCatalog().then(()=>{ renderResume(); });
 
 window.addEventListener("popstate", ()=>{
   // the browser Back button walks you to the desk, not off the site
-  if($("screen-game").classList.contains("show")){ stopAudio(); clearSession(); showScreen("select"); }
+  if($("screen-game").classList.contains("show")){ stopAudio(); saveSession(); showScreen("select"); renderResume(); }
 });
 
+
+
+
+
+
+/* ================= sound =================
+   Everything here is generated in the browser — no audio files. A drawer roll
+   is filtered noise with a falling cutoff; a stamp is a click over a low thump;
+   the room tone is very quiet brown noise. Change the numbers, change the room. */
+const SFX = (() => {
+  let ctx = null, on = true;
+  try { on = localStorage.getItem("sfxOff") !== "1"; } catch(e){}
+
+  function audio(){
+    if(!on) return null;
+    if(!ctx){
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC) return null;
+      try{ ctx = new AC(); }catch(e){ return null; }
+    }
+    if(ctx.state === "suspended") ctx.resume();
+    return ctx;
+  }
+
+  function noise(seconds, brown){
+    const c = audio(); if(!c) return null;
+    const len = Math.max(1, Math.floor(c.sampleRate * seconds));
+    const buf = c.createBuffer(1, len, c.sampleRate);
+    const d = buf.getChannelData(0);
+    let last = 0;
+    for(let i=0;i<len;i++){
+      const w = Math.random() * 2 - 1;
+      if(brown){ last = (last + 0.02 * w) / 1.02; d[i] = last * 3.5; }
+      else d[i] = w;
+    }
+    const src = c.createBufferSource();
+    src.buffer = buf;
+    return src;
+  }
+
+  // a drawer coming out: rolling noise, cutoff falling, then a soft stop
+  function drawer(opening){
+    const c = audio(); if(!c) return;
+    const t = c.currentTime, dur = opening ? 0.5 : 0.38;
+    const src = noise(dur + 0.1, true); if(!src) return;
+    const lp = c.createBiquadFilter(); lp.type = "lowpass";
+    lp.frequency.setValueAtTime(opening ? 1100 : 800, t);
+    lp.frequency.exponentialRampToValueAtTime(opening ? 260 : 180, t + dur);
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(opening ? 0.22 : 0.18, t + 0.06);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    src.connect(lp).connect(g).connect(c.destination);
+    src.start(t); src.stop(t + dur + 0.05);
+
+    const thunk = c.createOscillator(), tg = c.createGain();
+    thunk.type = "sine"; thunk.frequency.setValueAtTime(opening ? 92 : 74, t + dur - 0.02);
+    tg.gain.setValueAtTime(0.0001, t + dur - 0.02);
+    tg.gain.exponentialRampToValueAtTime(0.30, t + dur);
+    tg.gain.exponentialRampToValueAtTime(0.0001, t + dur + 0.20);
+    thunk.connect(tg).connect(c.destination);
+    thunk.start(t + dur - 0.02); thunk.stop(t + dur + 0.25);
+  }
+
+  // paper: a file sliding, or a statement going on the board
+  function paper(bright){
+    const c = audio(); if(!c) return;
+    const t = c.currentTime, dur = bright ? 0.16 : 0.26;
+    const src = noise(dur, false); if(!src) return;
+    const bp = c.createBiquadFilter(); bp.type = "bandpass";
+    bp.frequency.setValueAtTime(bright ? 3600 : 1900, t);
+    bp.Q.value = 0.8;
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(bright ? 0.10 : 0.075, t + 0.03);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    src.connect(bp).connect(g).connect(c.destination);
+    src.start(t); src.stop(t + dur);
+  }
+
+  // one typewriter key
+  function key(){
+    const c = audio(); if(!c) return;
+    const t = c.currentTime;
+    const src = noise(0.035, false); if(!src) return;
+    const hp = c.createBiquadFilter(); hp.type = "highpass"; hp.frequency.value = 1800;
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.13, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.035);
+    src.connect(hp).connect(g).connect(c.destination);
+    src.start(t); src.stop(t + 0.04);
+    const o = c.createOscillator(), og = c.createGain();
+    o.type = "triangle"; o.frequency.setValueAtTime(320, t);
+    og.gain.setValueAtTime(0.06, t);
+    og.gain.exponentialRampToValueAtTime(0.0001, t + 0.06);
+    o.connect(og).connect(c.destination);
+    o.start(t); o.stop(t + 0.07);
+  }
+
+  // the rubber stamp coming down
+  function stamp(){
+    const c = audio(); if(!c) return;
+    const t = c.currentTime;
+    const src = noise(0.07, false); if(!src) return;
+    const bp = c.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 1400; bp.Q.value = 0.7;
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.30, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.07);
+    src.connect(bp).connect(g).connect(c.destination);
+    src.start(t); src.stop(t + 0.08);
+    const o = c.createOscillator(), og = c.createGain();
+    o.type = "sine"; o.frequency.setValueAtTime(110, t); o.frequency.exponentialRampToValueAtTime(58, t + 0.18);
+    og.gain.setValueAtTime(0.42, t);
+    og.gain.exponentialRampToValueAtTime(0.0001, t + 0.26);
+    o.connect(og).connect(c.destination);
+    o.start(t); o.stop(t + 0.3);
+  }
+
+  function setOn(v){
+    on = v;
+    try{ localStorage.setItem("sfxOff", v ? "0" : "1"); }catch(e){}
+  }
+
+  return {
+    drawerOpen: ()=>drawer(true), drawerShut: ()=>drawer(false),
+    file: ()=>paper(false), pin: ()=>paper(true),
+    key, stamp,
+    isOn: ()=>on, setOn
+  };
+})();
+
+(function mountSoundButton(){
+  const b = document.createElement("button");
+  b.id = "sfxBtn";
+  b.title = "Sound on/off";
+  b.textContent = SFX.isOn() ? "🔊" : "🔇";
+  b.onclick = (e)=>{
+    e.stopPropagation();
+    const now = !SFX.isOn();
+    SFX.setOn(now);
+    b.textContent = now ? "🔊" : "🔇";
+    if(now) SFX.file();
+  };
+  document.body.appendChild(b);
+})();
+
+/* ================= timeline ================= */
+/* Reads the clock times out of the case file, draws them as fixed bands,
+   and lets you place what suspects told you against them. It never says
+   "contradiction" — it just puts the two things side by side and lets you look. */
+
+let tlPlaced = [];          // { who, quote, mins }
+let tlRange = { from: 0, to: 1440 };
+let tlBands = [];           // { label, from, to }  — from the case file
+
+function tlParseTimes(text){
+  const out = [];
+  const re = /(\d{1,2})[:.](\d{2})\s*(am|pm)?/gi;
+  let m;
+  while((m = re.exec(text)) !== null){
+    let hh = parseInt(m[1], 10), mm = parseInt(m[2], 10);
+    const ap = (m[3] || "").toLowerCase();
+    if(ap === "pm" && hh < 12) hh += 12;
+    if(ap === "am" && hh === 12) hh = 0;
+    if(hh > 23 || mm > 59) continue;
+    out.push({ mins: hh * 60 + mm, hadMeridiem: !!ap, index: m.index });
+  }
+  return out;
+}
+
+function tlFromCase(){
+  tlBands = [];
+  if(!CASE || !CASE.facts) return;
+  CASE.facts.forEach(f => {
+    const text = f.parts.map(p => p.t).join("");
+    // a window that genuinely spans days (Friday evening to Monday morning) can't sit
+    // on a 24-hour clock; one weekday mentioned in passing is fine.
+    const days = (text.match(/\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/gi) || [])
+      .map(d => d.toLowerCase());
+    if(new Set(days).size > 1) return;
+    const times = tlParseTimes(text);
+    if(!times.length) return;
+    if(times.length >= 2){
+      let a = times[0].mins, b = times[1].mins;
+      // "9:15 – 9:35 PM": the meridiem on the second one governs both
+      if(!times[0].hadMeridiem && times[1].hadMeridiem && b >= 720 && a < 720) a += 720;
+      if(b < a) b += 0;                        // don't try to wrap midnight; just draw what we have
+      if(b > a && b - a <= 12 * 60) tlBands.push({ label: f.label, from: a, to: b });
+      else tlBands.push({ label: f.label, from: a, to: a });
+    }else{
+      tlBands.push({ label: f.label, from: times[0].mins, to: times[0].mins });
+    }
+  });
+
+  if(!tlBands.length){ tlRange = { from: 0, to: 1440 }; return; }
+  const lo = Math.min(...tlBands.map(b => b.from), ...tlPlaced.map(p => p.mins));
+  const hi = Math.max(...tlBands.map(b => b.to),   ...tlPlaced.map(p => p.mins));
+  const pad = Math.max(45, Math.round((hi - lo) * 0.25));
+  tlRange = { from: Math.max(0, lo - pad), to: Math.min(1440, hi + pad) };
+  if(tlRange.to - tlRange.from < 120) tlRange.to = Math.min(1440, tlRange.from + 120);
+}
+
+const tlPct = (mins) => ((mins - tlRange.from) / (tlRange.to - tlRange.from)) * 100;
+const tlFmt = (mins) => String(Math.floor(mins / 60)).padStart(2, "0") + ":" + String(mins % 60).padStart(2, "0");
+function tlParseOne(v){
+  const t = tlParseTimes(String(v));
+  return t.length ? t[0].mins : null;
+}
+
+function renderTimeline(){
+  const axis = $("tlAxis");
+  if(!axis) return;
+  tlFromCase();
+  axis.innerHTML = "";
+
+  // hour ticks
+  const startH = Math.ceil(tlRange.from / 60), endH = Math.floor(tlRange.to / 60);
+  const stepH = (endH - startH) > 10 ? 2 : 1;
+  for(let hh = startH; hh <= endH; hh += stepH){
+    const t = document.createElement("div");
+    t.className = "tl-tick";
+    t.style.left = tlPct(hh * 60) + "%";
+    t.innerHTML = `<span>${String(hh).padStart(2,"0")}:00</span>`;
+    axis.appendChild(t);
+  }
+
+  // the facts, as fixed bands
+  tlBands.forEach(b => {
+    if(b.to > b.from){
+      const el = document.createElement("div");
+      el.className = "tl-band";
+      el.style.left = tlPct(b.from) + "%";
+      el.style.width = Math.max(2, tlPct(b.to) - tlPct(b.from)) + "%";
+      el.innerHTML = `<b>${esc(b.label)} ${tlFmt(b.from)}–${tlFmt(b.to)}</b>`;
+      axis.appendChild(el);
+    }else{
+      const el = document.createElement("div");
+      el.className = "tl-mark";
+      el.style.left = tlPct(b.from) + "%";
+      el.innerHTML = `<span>${esc(b.label)} ${tlFmt(b.from)}</span>`;
+      axis.appendChild(el);
+    }
+  });
+
+  // what they told you, where you put it
+  tlPlaced.forEach((p, i) => {
+    const el = document.createElement("div");
+    el.className = "tl-chip";
+    const inside = tlBands.some(b => b.to > b.from && p.mins >= b.from && p.mins <= b.to);
+    if(inside) el.classList.add("clash");
+    el.style.left = Math.min(96, Math.max(4, tlPct(p.mins))) + "%";
+    el.innerHTML = `<span class="w">${esc(p.who)}</span><span class="t">${tlFmt(p.mins)}</span>${esc(p.quote.slice(0, 90))}`;
+    const rm = document.createElement("button");
+    rm.className = "rm"; rm.textContent = "✕"; rm.title = "Take it off the timeline";
+    rm.onclick = (e)=>{ e.stopPropagation(); tlPlaced.splice(i,1); renderTimeline(); saveSession(); };
+    el.appendChild(rm);
+
+    // drag to adjust
+    el.onpointerdown = (e)=>{
+      if(e.target === rm) return;
+      el.setPointerCapture(e.pointerId);
+      const box = axis.getBoundingClientRect();
+      const move = (ev)=>{
+        const frac = Math.min(1, Math.max(0, (ev.clientX - box.left) / box.width));
+        p.mins = Math.round((tlRange.from + frac * (tlRange.to - tlRange.from)) / 5) * 5;
+        renderTimeline();
+      };
+      const up = ()=>{ document.removeEventListener("pointermove", move); document.removeEventListener("pointerup", up); saveSession(); };
+      document.addEventListener("pointermove", move);
+      document.addEventListener("pointerup", up);
+    };
+    axis.appendChild(el);
+  });
+
+  // the pins you haven't placed yet
+  const src = $("tlSources");
+  src.innerHTML = "";
+  const unplaced = pins.filter(p => !tlPlaced.some(t => t.quote === p.quote && t.who === p.who));
+  unplaced.forEach(p => {
+    const row = document.createElement("div");
+    row.className = "src";
+    row.innerHTML = `<span class="q"><b>${esc(p.who)}</b> — ${esc(p.quote.slice(0, 70))}</span>`;
+    const inp = document.createElement("input");
+    inp.placeholder = "21:15"; inp.maxLength = 8;
+    const add = document.createElement("button");
+    add.textContent = "place";
+    const go = ()=>{
+      const mins = tlParseOne(inp.value);
+      if(mins === null){ inp.value = ""; inp.placeholder = "hh:mm"; return; }
+      tlPlaced.push({ who: p.who, quote: p.quote, mins });
+      renderTimeline(); saveSession();
+    };
+    add.onclick = go;
+    inp.onkeydown = (e)=>{ if(e.key === "Enter") go(); };
+    row.appendChild(inp); row.appendChild(add);
+    src.appendChild(row);
+  });
+
+  $("tlEmpty").style.display = (pins.length || tlPlaced.length) ? "none" : "block";
+}
+
+if($("tlHead")) $("tlHead").onclick = ()=>{
+  const b = $("tlBody");
+  b.classList.toggle("show");
+  if(b.classList.contains("show")) renderTimeline();
+};
+
+
+
+/* ================= team play, one screen =================
+   Two to four detectives round a laptop. The game tracks who asked what,
+   passes the turn after each question, and makes everyone commit to a name
+   before the warrant is written. */
+let TEAM = null;          // [{ name, badge, asked }]
+let turnIdx = 0;
+let teamVotes = {};       // player index -> suspectId
+
+const inTeam = () => Array.isArray(TEAM) && TEAM.length > 1;
+const activePlayer = () => inTeam() ? TEAM[turnIdx % TEAM.length] : null;
+
+function renderTeamBar(){
+  const bar = $("teamBar");
+  if(!bar) return;
+  if(!inTeam()){ bar.classList.remove("show"); bar.innerHTML = ""; return; }
+  bar.innerHTML = `<span class="lbl">On the case</span>`;
+  TEAM.forEach((p, i) => {
+    const el = document.createElement("button");
+    el.className = "tmember" + (i === turnIdx % TEAM.length ? " active" : "");
+    el.innerHTML = `<span class="nm">${esc(p.name)}</span><span class="bd">${esc(p.badge)}</span><span class="ct">${p.asked}</span>`;
+    el.onclick = ()=>{ turnIdx = i; renderTeamBar(); };   // hand the keyboard over out of order
+    bar.appendChild(el);
+  });
+  const t = document.createElement("span");
+  t.className = "turn";
+  t.textContent = activePlayer().name + "'s question";
+  bar.appendChild(t);
+  bar.classList.add("show");
+}
+
+function teamSetupCard(onDone){
+  gateMount();
+  const overlay = $("gateOverlay"), card = $("gateCard");
+  const rows = [{ name: DETECTIVE.name || "", badge: DETECTIVE.badge || makeBadgeSafe() },
+                { name: "", badge: makeBadgeSafe() }];
+
+  const draw = ()=>{
+    card.innerHTML = `
+      <div class="stamp">Team</div>
+      <div class="dept">Metropolitan Crime Branch</div>
+      <h2>Who's working this one?</h2>
+      <p>Two to four of you, one screen. The turn passes after each question, and everyone names a suspect before the warrant goes in.</p>
+      <div id="teamSetup"></div>
+      <button id="teamAdd">+ another detective</button>
+      <div class="gate-actions" style="margin-top:14px">
+        <button id="teamGo">Start the case</button>
+        <button id="teamCancel">Solo instead</button>
+      </div>`;
+    const box = card.querySelector("#teamSetup");
+    rows.forEach((r, i) => {
+      const row = document.createElement("div");
+      row.className = "row";
+      const inp = document.createElement("input");
+      inp.placeholder = i === 0 ? "Your name" : "Detective " + (i + 1);
+      inp.value = r.name; inp.maxLength = 20;
+      inp.oninput = ()=>{ r.name = inp.value; };
+      const bd = document.createElement("span");
+      bd.className = "badge"; bd.textContent = r.badge;
+      row.appendChild(inp); row.appendChild(bd);
+      box.appendChild(row);
+    });
+    card.querySelector("#teamAdd").onclick = ()=>{
+      if(rows.length >= 4) return;
+      rows.push({ name: "", badge: makeBadgeSafe() });
+      draw();
+    };
+    card.querySelector("#teamGo").onclick = ()=>{
+      const team = rows.map((r, i) => ({ name: cleanNameSafe(r.name) || ("Detective " + (i + 1)),
+                                         badge: r.badge, asked: 0 }));
+      overlay.classList.remove("show");
+      onDone(team.length > 1 ? team : null);
+    };
+    card.querySelector("#teamCancel").onclick = ()=>{ overlay.classList.remove("show"); onDone(null); };
+  };
+  draw();
+  overlay.classList.add("show");
+}
+
+/* the credentials module keeps these private, so team play gets its own copies */
+function makeBadgeSafe(){
+  const C = "ACDEFHJKLMNPRTVWXY3479";
+  let o = ""; for(let i=0;i<5;i++) o += C[Math.floor(Math.random()*C.length)];
+  return o.slice(0,2) + "-" + o.slice(2);
+}
+function cleanNameSafe(v){
+  return String(v || "").replace(/[^A-Za-z \-']/g, "").replace(/\s+/g, " ").trim().slice(0, 20);
+}
+
+/* ================= the case you walked away from ================= */
+function parkedCase(){
+  try{
+    const s = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
+    if(s && s.caseId && Date.now() - (s.ts || 0) < 12 * 60 * 60 * 1000) return s;
+  }catch(e){}
+  return null;
+}
+
+function renderResume(){
+  const card = $("resumeCard");
+  if(!card) return;
+  const s = parkedCase();
+  const meta = s && CATALOG.length ? CATALOG.find(c => c.id === s.caseId) : null;
+  if(!s || !meta){ card.classList.remove("show"); return; }
+
+  const asked = Object.values(s.histories || {}).reduce((n, ms) => n + ms.filter(x => x.role === "user").length, 0);
+  const pinned = (s.pins || []).length;
+  card.innerHTML = `
+    <div class="rc-stamp">Open</div>
+    <div class="rc-lbl">On your desk</div>
+    <div class="rc-title">${esc(meta.title)}</div>
+    <div class="rc-meta">${esc(meta.theme)} · ${asked} question${asked===1?"":"s"} in${pinned?`, ${pinned} pinned`:""}</div>
+    <div class="rc-acts">
+      <span class="rc-go">⟶ Pick it back up</span>
+      <button class="rc-drop" id="rcDrop">drop the case</button>
+    </div>`;
+  card.classList.add("show");
+  card.onclick = (e)=>{
+    if(e.target && e.target.id === "rcDrop"){
+      e.stopPropagation();
+      clearSession(); renderResume(); SFX.file();
+      return;
+    }
+    e.stopPropagation();
+    restoreSession();
+  };
+}
+
+/* ================= service record ================= */
+const RANKS = [
+  { at: 0,  name: "Probationary Detective", short: "PROB." },
+  { at: 3,  name: "Detective Constable",    short: "DC"    },
+  { at: 8,  name: "Detective Sergeant",     short: "DS"    },
+  { at: 16, name: "Detective Inspector",    short: "DI"    },
+  { at: 28, name: "Chief Inspector",        short: "DCI"   },
+  { at: 44, name: "Superintendent",         short: "SUPT." },
+  { at: 64, name: "Commander",              short: "CDR"   }
+];
+const CASE_POINTS = { easy: 1, medium: 2, hard: 3 };
+
+let RECORD = { closed: {} };   // caseId -> { win, grade, caught, questions, level, ts }
+
+function loadRecord(){
+  try{
+    const raw = localStorage.getItem("serviceRecord");
+    if(raw){ const r = JSON.parse(raw); if(r && r.closed) RECORD = r; }
+  }catch(e){}
+}
+function saveRecord(){ try{ localStorage.setItem("serviceRecord", JSON.stringify(RECORD)); }catch(e){} }
+
+function totalPoints(){
+  return Object.values(RECORD.closed).reduce((n, r) => n + (r.win ? (CASE_POINTS[r.level] || 2) : 0), 0);
+}
+function rankFor(points){
+  let cur = RANKS[0], next = null;
+  for(let i=0;i<RANKS.length;i++){
+    if(points >= RANKS[i].at) cur = RANKS[i];
+    else { next = RANKS[i]; break; }
+  }
+  return { cur, next };
+}
+function closedCount(){ return Object.keys(RECORD.closed).length; }
+function solvedCount(){ return Object.values(RECORD.closed).filter(r=>r.win).length; }
+
+/* the chip carries your rank once you've earned one */
+function rankPrefix(){
+  const { cur } = rankFor(totalPoints());
+  return cur.short === "PROB." ? "Det." : cur.short;
+}
+
+/* ================= per-case atmosphere ================= */
+/* Set this to false and every case looks identical again. */
+const CASE_THEMING = true;
+
+function hexToRGB(hex){
+  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(String(hex || ""));
+  return m ? [parseInt(m[1],16), parseInt(m[2],16), parseInt(m[3],16)] : null;
+}
+
+function applyCaseTheme(){
+  const g = $("screen-game");
+  if(!g) return;
+  if(CASE_THEMING && CASE && CASE.theme_accent){
+    const rgb = hexToRGB(CASE.theme_accent);
+    const a = (alpha) => rgb ? `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})` : "transparent";
+    g.style.setProperty("--accent", CASE.theme_accent);
+    g.style.setProperty("--wash", a(.16));        // the room's colour, bleeding in from the corners
+    g.style.setProperty("--wash-thin", a(.07));   // a wash down from the top edge
+    g.style.setProperty("--accent-soft", a(.20)); // highlighted facts
+    g.style.setProperty("--accent-line", a(.42)); // rules and edges
+    g.style.setProperty("--accent-tape", a(.62)); // the tape on the paper cards
+    g.style.setProperty("--accent-glow", a(.30));
+    g.classList.add("themed");
+  }else{
+    g.classList.remove("themed");
+  }
+}
 
 /* ================= badge check at the door ================= */
 const normBadge = (v) => String(v || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
@@ -1260,7 +2124,7 @@ function saveSession(){
   try{
     localStorage.setItem(SESSION_KEY, JSON.stringify({
       caseId: CASE.id,
-      current, greeted, pins, caseClosed,
+      current, greeted, pins, caseClosed, tlPlaced,
       histories: Object.fromEntries(Object.entries(histories).map(
         ([k, msgs]) => [k, msgs.map(m => ({ role: m.role, content: m.content }))]
       )),
@@ -1283,6 +2147,7 @@ async function restoreSession(){
     histories = saved.histories || {};
     greeted = saved.greeted || {};
     pins = saved.pins || [];
+    tlPlaced = saved.tlPlaced || [];
     caseClosed = !!saved.caseClosed;
     current = null; busy = false;
     Object.keys(CASE.suspects).forEach(id=>{ if(!histories[id]) histories[id] = []; });
@@ -1327,7 +2192,7 @@ let DETECTIVE = { name: "", badge: "" };
 
   function showChip(){
     if(!DETECTIVE.badge) return;
-    document.getElementById("chipName").textContent = DETECTIVE.name ? ("Det. " + DETECTIVE.name) : "Detective";
+    document.getElementById("chipName").textContent = DETECTIVE.name ? (rankPrefix() + " " + DETECTIVE.name) : "Detective";
     document.getElementById("chipNo").textContent = DETECTIVE.badge;
     chip.classList.add("show");
   }

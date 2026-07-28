@@ -174,7 +174,12 @@
   #notebook .pin button{position:absolute;top:6px;right:8px;border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:13px}
   #notebook .empty{font-size:13px;color:var(--ink-soft);font-style:italic;margin-top:4px}
 
-  .suspect-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .suspect-row{display:grid;grid-template-columns:repeat(var(--cols,3),1fr);gap:14px}
+  .suspect-row.many{gap:10px}
+  .suspect-row.many .polaroid{padding:7px 7px 9px}
+  .suspect-row.many .nm{font-size:12px}
+  .suspect-row.many .rl{font-size:9.5px}
+  @media(max-width:900px){.suspect-row{grid-template-columns:repeat(min(var(--cols,3),3),1fr)}}
   @media(max-width:560px){.suspect-row{gap:8px}}
   .polaroid{background:var(--paper);color:var(--ink);border:none;cursor:pointer;padding:10px 10px 12px;border-radius:2px;box-shadow:0 8px 20px rgba(0,0,0,.4);transform:rotate(var(--tilt,0deg));transition:transform .18s ease, outline .1s;text-align:center;outline:3px solid transparent}
   .polaroid:hover{transform:rotate(0deg) translateY(-3px)}
@@ -245,6 +250,7 @@
     overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .modal .minor{font-size:12.5px;color:var(--ink-soft)}
   .modal .close{margin-top:8px;font-family:'Special Elite',monospace;background:none;border:2px solid var(--ink-soft);color:var(--ink-soft);padding:7px 16px;cursor:pointer;font-size:13px;letter-spacing:.1em}
+  .msg .side .playbtn.playing{color:var(--stamp)}
   .verdict-stamp{font-family:'Special Elite',monospace;border:4px solid;display:inline-block;padding:8px 18px;font-size:22px;letter-spacing:.2em;transform:rotate(-5deg);margin:6px 0 12px;text-transform:uppercase}
   .v-win{color:var(--ok);border-color:var(--ok)}
   .v-lose{color:var(--stamp);border-color:var(--stamp)}
@@ -335,9 +341,10 @@
 
 
   /* ---- rank, records and the debrief ---- */
+  .drawer.major .dlabel{background:linear-gradient(180deg,#7a6a4e,#4f4230)}
+  .drawer.major .dname{color:#4a3a1e}
   .drawer.records .dlabel{background:linear-gradient(180deg,#6a7a5e,#47533f)}
-  .drawer.records .dname{color:#dfe7d4}
-  .drawer.captain{grid-column:1 / -1}
+  .drawer.records .dname{color:#3d4a35}
   .folder.done .fbody::after{content:"✓";position:absolute;right:52px;top:26px;font-family:'Special Elite',monospace;
     font-size:13px;color:var(--ok)}
   .folder.miss .fbody::after{content:"✕";position:absolute;right:52px;top:26px;font-family:'Special Elite',monospace;
@@ -407,6 +414,34 @@
   .tl-src .src button:hover{background:rgba(201,162,39,.14)}
   .tl-empty{font-size:12.5px;color:rgba(233,225,203,.38);font-style:italic;margin-top:10px}
 
+
+  /* ---- sound toggle ---- */
+  #sfxBtn{position:fixed;right:18px;bottom:16px;z-index:400;background:linear-gradient(180deg,#242b26,#171c18);
+    border:1px solid rgba(233,225,203,.16);border-radius:3px;color:rgba(233,225,203,.6);cursor:pointer;
+    font-size:15px;padding:8px 11px;line-height:1}
+  #sfxBtn:hover{border-color:var(--tape);color:var(--paper)}
+  @media(max-width:620px){#sfxBtn{right:10px;bottom:10px}}
+
+  /* ---- the case you walked away from ---- */
+  #resumeCard{display:none;margin:0 0 20px;width:100%;max-width:620px;text-align:left;position:relative;cursor:pointer;
+    background:linear-gradient(180deg,var(--paper),var(--paper-2));color:var(--ink);border:none;border-radius:3px;
+    padding:16px 18px 14px;box-shadow:0 14px 30px rgba(0,0,0,.5);
+    animation:prevIn .35s cubic-bezier(.2,.8,.3,1)}
+  #resumeCard.show{display:block}
+  #resumeCard::before{content:"";position:absolute;top:-9px;left:34px;width:92px;height:20px;
+    background:rgba(201,162,39,.55);border-radius:2px;transform:rotate(-3deg)}
+  #resumeCard .rc-stamp{position:absolute;top:12px;right:14px;font-family:'Special Elite',monospace;font-size:9.5px;
+    letter-spacing:.14em;border:2px solid var(--tape);color:#8a6d1f;padding:2px 8px;transform:rotate(5deg);text-transform:uppercase}
+  #resumeCard .rc-lbl{font-family:'Special Elite',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
+  #resumeCard .rc-title{font-family:'Special Elite',monospace;font-size:19px;margin:4px 0 2px}
+  #resumeCard .rc-meta{font-size:13px;color:var(--ink-soft)}
+  #resumeCard .rc-acts{margin-top:11px;display:flex;gap:14px;align-items:center}
+  #resumeCard .rc-go{font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--stamp)}
+  #resumeCard:hover .rc-go{text-decoration:underline}
+  #resumeCard .rc-drop{background:none;border:none;font-family:'Special Elite',monospace;font-size:10.5px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer;padding:0}
+  #resumeCard .rc-drop:hover{color:var(--stamp)}
+
 </style>
 </head>
 <body>
@@ -423,6 +458,8 @@
       <div class="confidential">Confidential</div>
     </header>
     <p id="selectSub">Every file in this drawer is an unsolved case — murders, heists, forgeries, sabotage. Three suspects, all of them lying about something, one of them guilty. Pull a file to read it. Pull it again to take the case.</p>
+    <button id="resumeCard"></button>
+
     <div class="select-grid">
       <div class="cab-stage" id="cabStage">
         <div class="cabinet" id="cabinet">
@@ -504,7 +541,7 @@
 
         <div class="accuse-bar">
           <button id="accuseBtn">⚖ Accuse</button><br>
-          <button id="backBtn">← abandon case, return to the desk</button>
+          <button id="backBtn">← leave the case for now</button>
         </div>
       </main>
     </div>
@@ -639,6 +676,7 @@ let audioNow = null;             // currently playing Audio element
 const chatEl = () => $("chat");
 
 function showScreen(name){
+  if(name !== "game") SFX.roomOff();
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("show"));
   $("screen-"+name).classList.add("show");
   window.scrollTo(0,0);
@@ -648,13 +686,14 @@ function showScreen(name){
 }
 
 /* ================= SELECT screen: the filing cabinet ================= */
-const CAT_ORDER = ["Homicide", "Theft", "Fraud", "Narcotics", "Sabotage"];
+const CAT_ORDER = ["Homicide", "Theft", "Fraud", "Narcotics", "Sabotage", "Major"];
 const CAT_META = {
   Homicide:  { label: "Homicide",        sub: "bodies, blackouts, blunt instruments" },
   Theft:     { label: "Theft & Heist",   sub: "galleries, vaults, empty frames" },
   Fraud:     { label: "Fraud & Forgery", sub: "paper, provenance, impossible luck" },
   Narcotics: { label: "Narcotics",       sub: "hulls, harbours, hidden weight" },
-  Sabotage:  { label: "Sabotage",        sub: "valves, blizzards, ruined machines" }
+  Sabotage:  { label: "Sabotage",        sub: "valves, blizzards, ruined machines" },
+  Major:     { label: "Major Cases",     sub: "five suspects, no shortcuts" }
 };
 const LEVEL_PIPS = { easy: 1, medium: 2, hard: 3 };
 const LEVEL_WORD = { easy: "Straightforward", medium: "Involved", hard: "Difficult" };
@@ -682,7 +721,7 @@ function renderCabinet(){
     if(!counts[cat]) return;
     const meta = CAT_META[cat] || { label: cat, sub: "" };
     const b = document.createElement("button");
-    b.className = "drawer";
+    b.className = "drawer" + (cat === "Major" ? " major" : "");
     b.dataset.cat = cat;
     b.innerHTML = `<span class="dlabel"><span class="dcard">
                      <span class="dname">${esc(meta.label)}</span>
@@ -765,6 +804,7 @@ function openDrawer(cat, btn){
   row.style.setProperty("--fold", (-(FILE_H - step)).toFixed(1) + "px");
 
   panel.classList.add("show");
+  SFX.drawerOpen();
   $("previewHint").innerHTML = "Pull a file to read its label.<br><br>Pull it again and the case is yours.";
 }
 
@@ -774,6 +814,7 @@ function closeDrawer(){
   $("cabStage").classList.remove("open");
   document.querySelectorAll(".drawer").forEach(d => d.classList.remove("sel"));
   $("drawerOpen").classList.remove("show");
+  SFX.drawerShut();
   $("previewHint").innerHTML = "Six drawers. Pull one open.<br><br>Every file inside is unsolved, and every suspect in it is lying about something.";
 }
 
@@ -812,6 +853,7 @@ function raiseFolder(entry){
   if(raisedFolder && raisedFolder.el !== entry.el) raisedFolder.el.classList.remove("raised");
   raisedFolder = entry;
   entry.el.classList.add("raised");
+  SFX.file();
   const c = entry.data;
   $("filePreview").innerHTML = `
       <div class="pstamp">${esc(c.difficulty || "")}</div>
@@ -819,7 +861,7 @@ function raiseFolder(entry){
       <div class="ptitle">${esc(c.title)}</div>
       <div class="ptheme">${esc(c.theme)}</div>
       <div class="pline">${esc(c.settingLine)}</div>
-      <div class="plevel">${pipsHTML(c.level)} ${esc(LEVEL_WORD[c.level] || "")}</div>
+      <div class="plevel">${pipsHTML(c.level)} ${esc(LEVEL_WORD[c.level] || "")}${c.castSize && c.castSize > 3 ? ` · ${c.castSize} suspects` : ""}</div>
       ${RECORD.closed[c.id] ? (()=>{ const r = RECORD.closed[c.id];
         return `<div class="rec"><span class="outcome ${r.win?"won":"lost"}">${r.win?"Case closed":"Wrong arrest"}</span>
                 — <b>${r.questions}</b> questions, warrant graded <b>${esc(r.grade||"solid")}</b>,
@@ -883,6 +925,7 @@ function startCase(c){
 /* ================= GAME screen ================= */
 function enterGame(){
   applyCaseTheme();
+  SFX.roomOn();
   $("gCaseNo").textContent = "Case No. " + CASE.caseNo;
   $("gTitle").textContent = CASE.title;
 
@@ -897,6 +940,9 @@ function enterGame(){
 
   // suspects
   const row = $("suspectRow"); row.innerHTML = "";
+  const cast = Object.keys(CASE.suspects).length;
+  row.style.setProperty("--cols", Math.min(cast, cast > 4 ? 3 : cast));
+  row.classList.toggle("many", cast > 3);
   Object.values(CASE.suspects).forEach(s=>{
     const b = document.createElement("button");
     b.className = "polaroid";
@@ -965,11 +1011,16 @@ function addBubble(kind, text, msgObj, scroll=true){
     const pb = document.createElement("button");
     pb.title="Pin to notebook"; pb.textContent="📌";
     const who = CASE.suspects[current].name;
-    pb.onclick = ()=>{ pins.push({who, quote:text}); renderPins(); };
+    pb.onclick = ()=>{ pins.push({who, quote:text}); SFX.pin(); renderPins(); };
     side.appendChild(pb);
     const vb = document.createElement("button");
-    vb.title="Hear them say it"; vb.textContent="▶";
-    vb.onclick = ()=>speak(text, current, msgObj);
+    vb.title = "Hear them say it"; vb.textContent = "▶";
+    vb.className = "playbtn";
+    if(msgObj) msgObj._btn = vb;
+    vb.onclick = ()=>{
+      if(speakingBtn === vb){ stopAudio(); return; }   // pressing it again shuts them up
+      speak(text, current, msgObj, vb);
+    };
     side.appendChild(vb);
     d.appendChild(side);
   }
@@ -1005,6 +1056,7 @@ async function askSuspect(){
   const input = $("msgInput");
   const q = input.value.trim();
   if(!q || busy || !current || caseClosed) return;
+  SFX.key();
   busy = true; input.value=""; input.disabled=true; $("sendBtn").disabled=true;
   stopListening(false); setListenBar(false);
 
@@ -1032,7 +1084,7 @@ async function askSuspect(){
     histories[current].push(msgObj);
     saveSession();
     addBubble("sus", data.reply, msgObj);
-    if(voiceOn) speak(data.reply, current, msgObj);
+    if(voiceOn) speak(data.reply, current, msgObj, msgObj._btn);
   }catch(err){
     t.remove();
     histories[current].pop();
@@ -1054,6 +1106,7 @@ $("voiceToggle").onclick = ()=>{
 
 function stopAudio(){
   speakSeq++;   // invalidate any clip still being fetched
+  clearPlaying();
   if(audioNow){ audioNow.pause(); audioNow = null; }
   if(window.speechSynthesis) speechSynthesis.cancel();
 }
@@ -1074,16 +1127,30 @@ function pickBrowserVoice(gender, suspectId){
 }
 if(window.speechSynthesis) speechSynthesis.getVoices(); // warm the voice list
 
-let speakSeq = 0; // ticket number: only the latest speak() may play
+let speakSeq = 0;      // ticket number: only the latest speak() may play
+let speakingBtn = null;  // the ▶ that is currently mid-sentence
+
+function setPlaying(btn){
+  if(speakingBtn && speakingBtn !== btn){ speakingBtn.textContent = "▶"; speakingBtn.classList.remove("playing"); }
+  speakingBtn = btn || null;
+  if(btn){ btn.textContent = "⏸"; btn.classList.add("playing"); }
+}
+function clearPlaying(){ setPlaying(null); }
 
 /* split a reply into short groups so the FIRST audio arrives fast
    (we generate + play group 1 while group 2 is still being made) */
-function splitSpeech(text, max = 210){
+function splitSpeech(text, max = 210, first = 95){
   const sentences = String(text).replace(/\s+/g," ").trim().match(/[^.!?…]+[.!?…]*\s*/g) || [text];
   const out=[]; let cur="";
+  const cap = () => out.length === 0 ? first : max;   // keep the opening line short so it lands fast
   for(let sen of sentences){
     sen = sen.trim();
-    if((cur+" "+sen).trim().length <= max) cur = (cur+" "+sen).trim();
+    // a long opening sentence gets split at a comma rather than held back whole
+    if(out.length === 0 && !cur && sen.length > first){
+      const cut = sen.lastIndexOf(",", first);
+      if(cut > 30){ out.push(sen.slice(0, cut + 1).trim()); sen = sen.slice(cut + 1).trim(); }
+    }
+    if((cur+" "+sen).trim().length <= cap()) cur = (cur+" "+sen).trim();
     else { if(cur) out.push(cur); cur = sen; }
   }
   if(cur) out.push(cur);
@@ -1111,8 +1178,9 @@ async function fetchClip(part, suspectId){
   return data.audio;
 }
 
-async function speak(text, suspectId, msgObj){
+async function speak(text, suspectId, msgObj, btn){
   stopAudio();
+  setPlaying(btn || null);
   const myTicket = ++speakSeq;
   const parts = splitSpeech(text);
   const cache = (msgObj && msgObj._clips) || [];
@@ -1146,7 +1214,7 @@ async function speak(text, suspectId, msgObj){
       await new Promise(done=>{ u.onend = done; u.onerror = done; speechSynthesis.speak(u); });
     }
   }finally{
-    if(myTicket === speakSeq) onSuspectFinishedSpeaking();
+    if(myTicket === speakSeq){ clearPlaying(); onSuspectFinishedSpeaking(); }
   }
 }
 
@@ -1242,7 +1310,7 @@ if($("micBtn")) $("micBtn").onclick = ()=>{
 let pendingAccuse = null;
 $("accuseBtn").onclick = ()=>{ if(!caseClosed && CASE){ $("accuseHint").textContent=""; $("accuseOverlay").classList.add("show"); } };
 $("accuseCancel").onclick = ()=>$("accuseOverlay").classList.remove("show");
-$("backBtn").onclick = ()=>{ stopAudio(); clearSession(); history.pushState({ screen: "select" }, ""); showScreen("select"); };
+$("backBtn").onclick = ()=>{ stopAudio(); saveSession(); history.pushState({ screen: "select" }, ""); showScreen("select"); renderResume(); };
 
 $("accuseSubmit").onclick = async ()=>{
   const reasoning = $("accuseReason").value.trim();
@@ -1373,10 +1441,12 @@ async function deliverVerdict(id, reasoning){
     <button class="close" id="verdictBack">Back to the desk</button>
   `;
   $("verdictOverlay").classList.add("show");
+  SFX.stamp();
   $("verdictBack").onclick = ()=>{
     $("verdictOverlay").classList.remove("show");
     clearSession();
     renderCabinet();
+    renderResume();
     showChip();
     showScreen("select");
   };
@@ -1384,16 +1454,188 @@ async function deliverVerdict(id, reasoning){
 
 /* ================= boot ================= */
 loadRecord();
-loadCatalog().then(()=>{ restoreSession(); });
+loadCatalog().then(()=>{ renderResume(); });
 
 window.addEventListener("popstate", ()=>{
   // the browser Back button walks you to the desk, not off the site
-  if($("screen-game").classList.contains("show")){ stopAudio(); clearSession(); showScreen("select"); }
+  if($("screen-game").classList.contains("show")){ stopAudio(); saveSession(); showScreen("select"); renderResume(); }
 });
 
 
 
 
+
+
+/* ================= sound =================
+   Everything here is generated in the browser — no audio files. A drawer roll
+   is filtered noise with a falling cutoff; a stamp is a click over a low thump;
+   the room tone is very quiet brown noise. Change the numbers, change the room. */
+const SFX = (() => {
+  let ctx = null, tone = null, on = true;
+  try { on = localStorage.getItem("sfxOff") !== "1"; } catch(e){}
+
+  function audio(){
+    if(!on) return null;
+    if(!ctx){
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC) return null;
+      try{ ctx = new AC(); }catch(e){ return null; }
+    }
+    if(ctx.state === "suspended") ctx.resume();
+    return ctx;
+  }
+
+  function noise(seconds, brown){
+    const c = audio(); if(!c) return null;
+    const len = Math.max(1, Math.floor(c.sampleRate * seconds));
+    const buf = c.createBuffer(1, len, c.sampleRate);
+    const d = buf.getChannelData(0);
+    let last = 0;
+    for(let i=0;i<len;i++){
+      const w = Math.random() * 2 - 1;
+      if(brown){ last = (last + 0.02 * w) / 1.02; d[i] = last * 3.5; }
+      else d[i] = w;
+    }
+    const src = c.createBufferSource();
+    src.buffer = buf;
+    return src;
+  }
+
+  // a drawer coming out: rolling noise, cutoff falling, then a soft stop
+  function drawer(opening){
+    const c = audio(); if(!c) return;
+    const t = c.currentTime, dur = opening ? 0.5 : 0.38;
+    const src = noise(dur + 0.1, true); if(!src) return;
+    const lp = c.createBiquadFilter(); lp.type = "lowpass";
+    lp.frequency.setValueAtTime(opening ? 1100 : 800, t);
+    lp.frequency.exponentialRampToValueAtTime(opening ? 260 : 180, t + dur);
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(opening ? 0.22 : 0.18, t + 0.06);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    src.connect(lp).connect(g).connect(c.destination);
+    src.start(t); src.stop(t + dur + 0.05);
+
+    const thunk = c.createOscillator(), tg = c.createGain();
+    thunk.type = "sine"; thunk.frequency.setValueAtTime(opening ? 92 : 74, t + dur - 0.02);
+    tg.gain.setValueAtTime(0.0001, t + dur - 0.02);
+    tg.gain.exponentialRampToValueAtTime(0.30, t + dur);
+    tg.gain.exponentialRampToValueAtTime(0.0001, t + dur + 0.20);
+    thunk.connect(tg).connect(c.destination);
+    thunk.start(t + dur - 0.02); thunk.stop(t + dur + 0.25);
+  }
+
+  // paper: a file sliding, or a statement going on the board
+  function paper(bright){
+    const c = audio(); if(!c) return;
+    const t = c.currentTime, dur = bright ? 0.16 : 0.26;
+    const src = noise(dur, false); if(!src) return;
+    const bp = c.createBiquadFilter(); bp.type = "bandpass";
+    bp.frequency.setValueAtTime(bright ? 3600 : 1900, t);
+    bp.Q.value = 0.8;
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(bright ? 0.10 : 0.075, t + 0.03);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    src.connect(bp).connect(g).connect(c.destination);
+    src.start(t); src.stop(t + dur);
+  }
+
+  // one typewriter key
+  function key(){
+    const c = audio(); if(!c) return;
+    const t = c.currentTime;
+    const src = noise(0.035, false); if(!src) return;
+    const hp = c.createBiquadFilter(); hp.type = "highpass"; hp.frequency.value = 1800;
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.13, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.035);
+    src.connect(hp).connect(g).connect(c.destination);
+    src.start(t); src.stop(t + 0.04);
+    const o = c.createOscillator(), og = c.createGain();
+    o.type = "triangle"; o.frequency.setValueAtTime(320, t);
+    og.gain.setValueAtTime(0.06, t);
+    og.gain.exponentialRampToValueAtTime(0.0001, t + 0.06);
+    o.connect(og).connect(c.destination);
+    o.start(t); o.stop(t + 0.07);
+  }
+
+  // the rubber stamp coming down
+  function stamp(){
+    const c = audio(); if(!c) return;
+    const t = c.currentTime;
+    const src = noise(0.07, false); if(!src) return;
+    const bp = c.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 1400; bp.Q.value = 0.7;
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.30, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.07);
+    src.connect(bp).connect(g).connect(c.destination);
+    src.start(t); src.stop(t + 0.08);
+    const o = c.createOscillator(), og = c.createGain();
+    o.type = "sine"; o.frequency.setValueAtTime(110, t); o.frequency.exponentialRampToValueAtTime(58, t + 0.18);
+    og.gain.setValueAtTime(0.42, t);
+    og.gain.exponentialRampToValueAtTime(0.0001, t + 0.26);
+    o.connect(og).connect(c.destination);
+    o.start(t); o.stop(t + 0.3);
+  }
+
+  // the room itself: barely there, and only while you're in it
+  function roomOn(){
+    const c = audio(); if(!c || tone) return;
+    const src = noise(3, true); if(!src) return;
+    src.loop = true;
+    const lp = c.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 380;
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.0001, c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.045, c.currentTime + 2.5);
+    const hum = c.createOscillator(), hg = c.createGain();
+    hum.type = "sine"; hum.frequency.value = 50;
+    hg.gain.setValueAtTime(0.0001, c.currentTime);
+    hg.gain.exponentialRampToValueAtTime(0.014, c.currentTime + 3);
+    src.connect(lp).connect(g).connect(c.destination);
+    hum.connect(hg).connect(c.destination);
+    src.start(); hum.start();
+    tone = { src, hum, g, hg };
+  }
+  function roomOff(){
+    if(!tone || !ctx) return;
+    const t = ctx.currentTime;
+    try{
+      tone.g.gain.exponentialRampToValueAtTime(0.0001, t + 0.6);
+      tone.hg.gain.exponentialRampToValueAtTime(0.0001, t + 0.6);
+      tone.src.stop(t + 0.7); tone.hum.stop(t + 0.7);
+    }catch(e){}
+    tone = null;
+  }
+
+  function setOn(v){
+    on = v;
+    try{ localStorage.setItem("sfxOff", v ? "0" : "1"); }catch(e){}
+    if(!v) roomOff();
+  }
+
+  return {
+    drawerOpen: ()=>drawer(true), drawerShut: ()=>drawer(false),
+    file: ()=>paper(false), pin: ()=>paper(true),
+    key, stamp, roomOn, roomOff,
+    isOn: ()=>on, setOn
+  };
+})();
+
+(function mountSoundButton(){
+  const b = document.createElement("button");
+  b.id = "sfxBtn";
+  b.title = "Sound on/off";
+  b.textContent = SFX.isOn() ? "🔊" : "🔇";
+  b.onclick = (e)=>{
+    e.stopPropagation();
+    const now = !SFX.isOn();
+    SFX.setOn(now);
+    b.textContent = now ? "🔊" : "🔇";
+    if(now){ SFX.file(); if($("screen-game").classList.contains("show")) SFX.roomOn(); }
+  };
+  document.body.appendChild(b);
+})();
 
 /* ================= timeline ================= */
 /* Reads the clock times out of the case file, draws them as fixed bands,
@@ -1555,6 +1797,46 @@ if($("tlHead")) $("tlHead").onclick = ()=>{
   b.classList.toggle("show");
   if(b.classList.contains("show")) renderTimeline();
 };
+
+
+/* ================= the case you walked away from ================= */
+function parkedCase(){
+  try{
+    const s = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
+    if(s && s.caseId && Date.now() - (s.ts || 0) < 12 * 60 * 60 * 1000) return s;
+  }catch(e){}
+  return null;
+}
+
+function renderResume(){
+  const card = $("resumeCard");
+  if(!card) return;
+  const s = parkedCase();
+  const meta = s && CATALOG.length ? CATALOG.find(c => c.id === s.caseId) : null;
+  if(!s || !meta){ card.classList.remove("show"); return; }
+
+  const asked = Object.values(s.histories || {}).reduce((n, ms) => n + ms.filter(x => x.role === "user").length, 0);
+  const pinned = (s.pins || []).length;
+  card.innerHTML = `
+    <div class="rc-stamp">Open</div>
+    <div class="rc-lbl">On your desk</div>
+    <div class="rc-title">${esc(meta.title)}</div>
+    <div class="rc-meta">${esc(meta.theme)} · ${asked} question${asked===1?"":"s"} in${pinned?`, ${pinned} pinned`:""}</div>
+    <div class="rc-acts">
+      <span class="rc-go">⟶ Pick it back up</span>
+      <button class="rc-drop" id="rcDrop">drop the case</button>
+    </div>`;
+  card.classList.add("show");
+  card.onclick = (e)=>{
+    if(e.target && e.target.id === "rcDrop"){
+      e.stopPropagation();
+      clearSession(); renderResume(); SFX.file();
+      return;
+    }
+    e.stopPropagation();
+    restoreSession();
+  };
+}
 
 /* ================= service record ================= */
 const RANKS = [

@@ -551,28 +551,6 @@
   .modebtn.off{opacity:.4;cursor:not-allowed}
   .modebtn.off:hover{border-color:rgba(233,225,203,.16)}
 
-
-  /* ---- room code, visible while you play ---- */
-  #roomHud{position:fixed;top:14px;right:16px;z-index:420;display:none;align-items:center;gap:10px;
-    background:linear-gradient(180deg,#242b26,#171c18);border:1px solid rgba(201,162,39,.45);border-radius:3px;
-    padding:8px 13px;box-shadow:0 8px 18px rgba(0,0,0,.55)}
-  #roomHud.show{display:flex}
-  #roomHud .rh-l{font-family:'Special Elite',monospace;font-size:8.5px;letter-spacing:.2em;
-    text-transform:uppercase;color:rgba(233,225,203,.45);line-height:1.3}
-  #roomHud .rh-c{display:block;font-family:'Special Elite',monospace;font-size:19px;letter-spacing:.3em;color:var(--tape)}
-  #roomHud .rh-n{font-size:10.5px;color:rgba(233,225,203,.5)}
-  @media(max-width:620px){#roomHud{top:8px;right:8px;padding:6px 10px}#roomHud .rh-c{font-size:15px}}
-
-  /* ---- host or join ---- */
-  #roleWrap{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-  #roleHost,#roleJoin{flex:1;min-width:140px;font-family:'Special Elite',monospace;padding:13px 14px;cursor:pointer;
-    font-size:12.5px;letter-spacing:.12em;border-radius:2px;text-transform:uppercase;text-align:center}
-  #roleHost{background:var(--stamp);color:var(--paper);border:none;box-shadow:0 4px 0 rgba(120,20,26,.55)}
-  #roleHost:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(120,20,26,.55)}
-  #roleJoin{background:transparent;color:var(--ink);border:1px solid rgba(42,36,32,.35)}
-  #roleJoin:hover{border-color:var(--stamp);color:var(--stamp)}
-  .role-sub{display:block;font-size:10px;letter-spacing:.04em;text-transform:none;opacity:.75;margin-top:3px}
-
 </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="/supabase-config.js" onerror="console.log('no supabase config — online play stays hidden')"></script>
@@ -811,33 +789,7 @@ if($("keyBtn")) $("keyBtn").onclick = ()=>{
 let audioNow = null;             // currently playing Audio element
 const chatEl = () => $("chat");
 
-function closeAllOverlays(){
-  ["gateOverlay","accuseOverlay","verdictOverlay","credOverlay"].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) el.classList.remove("show");
-  });
-}
-
-function resetDesk(){
-  // whatever state the last case left behind, the desk starts clean
-  closeAllOverlays();
-  gatePassed = false;
-  busy = false;
-  raisedFolder = null;
-  openCat = null;
-  const stage = document.getElementById("cabStage");
-  if(stage) stage.classList.remove("open");
-  const panel = document.getElementById("drawerOpen");
-  if(panel) panel.classList.remove("show");
-  document.querySelectorAll(".drawer").forEach(d=>d.classList.remove("sel"));
-  const prev = document.getElementById("filePreview");
-  if(prev) prev.classList.remove("show");
-  const hint = document.getElementById("previewHint");
-  if(hint) hint.style.display = "";
-}
-
 function showScreen(name){
-  if(name === "select") resetDesk();
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("show"));
   $("screen-"+name).classList.add("show");
   window.scrollTo(0,0);
@@ -1091,14 +1043,8 @@ async function openCase(id, category){
     const info = id ? CATALOG.find(c => c.id === id) : null;
     askBadgeFor(info, ()=>{
       const go = ()=>{ gatePassed = true; openCase(id, category); gatePassed = false; };
-      if(PLAY_MODE === "online" && ONLINE_ROLE === "host" && onlineAvailable() && info){
-        if(ROOM.on){ ONLINE.setCase(info.id); go(); }
-        else ONLINE.createRoom(info.id).then(()=>{
-          ROOM.on = true; wireRoom(); renderRoomBar(); renderRoomHud(); go();
-        }).catch(err=>{
-          alert("Couldn't open the room: " + err.message + "\nStarting it on your own instead.");
-          TEAM = null; go();
-        });
+      if(PLAY_MODE === "online" && onlineAvailable() && info){
+        roomLobbyCard(info, (solo)=>{ if(solo){ TEAM = null; } go(); });
       }else if(PLAY_MODE === "screen"){
         teamSetupCard((team)=>{ TEAM = team; turnIdx = 0; teamVotes = {}; go(); });
       }else{
@@ -2089,136 +2035,9 @@ function renderModeBar(){
     const disabled = (m.id === "online" && !online);
     b.className = "modebtn" + (PLAY_MODE === m.id ? " on" : "") + (disabled ? " off" : "");
     b.innerHTML = `<span class="mt">${esc(m.t)}</span><span class="ms">${esc(m.s)}</span>`;
-    b.onclick = (e)=>{
-      e.stopPropagation();
-      if(disabled) return;
-      if(m.id === "online"){ roleCard(); return; }   // host or join, decided before any case
-      ONLINE_ROLE = null;
-      setMode(m.id);
-    };
+    b.onclick = (e)=>{ e.stopPropagation(); if(!disabled) setMode(m.id); };
     bar.appendChild(b);
   });
-}
-
-
-/* ================= host or join ================= */
-var ONLINE_ROLE = null;      // "host" | "join"
-
-function roleCard(){
-  gateMount();
-  const overlay = $("gateOverlay"), card = $("gateCard");
-  card.innerHTML = `
-    <div class="stamp">Room</div>
-    <div class="dept">Metropolitan Crime Branch</div>
-    <h2>Working it together?</h2>
-    <p>One of you opens the room and picks the case. Everyone else joins with the code.</p>
-    <div id="roleWrap">
-      <button id="roleHost">Open a room<span class="role-sub">you pick the case</span></button>
-      <button id="roleJoin">Join a room<span class="role-sub">you'll need the code</span></button>
-    </div>
-    <div id="lobbyErr"></div>
-    <button id="teamBack">← never mind</button>`;
-
-  const close = ()=>overlay.classList.remove("show");
-  $("roleHost").onclick = async ()=>{
-    ONLINE_ROLE = "host"; setMode("online");
-    $("lobbyErr").textContent = "opening a room…";
-    try{
-      await ONLINE.createRoom(null);          // the room first, the case in a moment
-      ROOM.on = true; wireRoom(); renderRoomBar(); renderRoomHud();
-      hostOpenCard();
-    }catch(e){ $("lobbyErr").textContent = e.message; }
-  };
-  $("roleJoin").onclick = ()=>{ ONLINE_ROLE = "join"; close(); joinCard(); };
-  $("teamBack").onclick = ()=>{ close(); setMode("solo"); };
-  overlay.classList.add("show");
-}
-
-function hostOpenCard(){
-  gateMount();
-  const overlay = $("gateOverlay"), card = $("gateCard");
-  card.innerHTML = `
-    <div class="stamp">Open</div>
-    <div class="dept">Metropolitan Crime Branch</div>
-    <h2>Your room is open.</h2>
-    <p>Give this code to whoever's joining. It stays in the corner of your screen, so they can come in at any point.</p>
-    <div class="cred-issued" style="justify-content:center">
-      <span class="num" id="hostCode" style="font-size:34px;letter-spacing:.34em">${esc(ONLINE.code() || "")}</span>
-    </div>
-    <div id="lobbyErr"></div>
-    <div class="gate-actions">
-      <button id="teamGo">Pick a case</button>
-      <button id="teamSolo">Copy code</button>
-    </div>`;
-  $("teamGo").onclick = ()=>{ overlay.classList.remove("show"); };
-  $("teamSolo").onclick = ()=>{
-    try{ navigator.clipboard.writeText(ONLINE.code() || ""); $("lobbyErr").textContent = "copied."; }
-    catch(e){ $("lobbyErr").textContent = "select it and copy by hand."; }
-  };
-  overlay.classList.add("show");
-}
-
-function joinCard(){
-  gateMount();
-  const overlay = $("gateOverlay"), card = $("gateCard");
-  card.innerHTML = `
-    <div class="stamp">Join</div>
-    <div class="dept">Metropolitan Crime Branch</div>
-    <h2>What's the code?</h2>
-    <p>Four characters, from whoever opened the room. You'll drop straight into their case.</p>
-    <input id="lobbyCode" maxlength="4" placeholder="CODE" autocomplete="off">
-    <div id="lobbyErr"></div>
-    <div class="gate-actions">
-      <button id="teamGo">Join the case</button>
-      <button id="teamSolo">Back</button>
-    </div>`;
-  const err = (m)=>{ $("lobbyErr").textContent = m || ""; };
-  const go = async ()=>{
-    const c = ($("lobbyCode").value || "").trim().toUpperCase();
-    if(c.length < 4) return err("four characters.");
-    err("looking for the room…");
-    try{
-      const res = await ONLINE.joinRoom(c);
-      ROOM.on = true; wireRoom(); renderRoomBar(); renderRoomHud();
-      if(!res.caseId){
-        // in the room, waiting on the host
-        err("");
-        card.innerHTML = `
-          <div class="stamp">Waiting</div>
-          <div class="dept">Metropolitan Crime Branch</div>
-          <h2>You're in room ${esc(ONLINE.code())}.</h2>
-          <p>Nobody's opened a case yet. Sit tight — the moment the host picks one, you'll be pulled straight into it.</p>
-          <div class="gate-actions"><button id="teamGo">Wait at the desk</button></div>`;
-        $("teamGo").onclick = ()=>overlay.classList.remove("show");
-        return;
-      }
-      overlay.classList.remove("show");
-      const r = await fetch("/api/case?id=" + encodeURIComponent(res.caseId));
-      const data = await r.json();
-      if(!r.ok) throw new Error("that room's case wouldn't load.");
-      startCase(data.case);
-    }catch(e){ err(e.message); }
-  };
-  $("teamGo").onclick = go;
-  $("lobbyCode").onkeydown = (e)=>{ if(e.key === "Enter") go(); };
-  $("teamSolo").onclick = ()=>{ overlay.classList.remove("show"); roleCard(); };
-  overlay.classList.add("show");
-  setTimeout(()=>{ try{ $("lobbyCode").focus(); }catch(e){} }, 60);
-}
-
-/* the code stays on screen while you play, so latecomers can still join */
-function renderRoomHud(){
-  let hud = document.getElementById("roomHud");
-  if(!hud){
-    hud = document.createElement("div");
-    hud.id = "roomHud";
-    document.body.appendChild(hud);
-  }
-  if(!ROOM.on || !ONLINE.code()){ hud.classList.remove("show"); return; }
-  const n = ROOM.roster.length || 1;
-  hud.innerHTML = `<span class="rh-l">Room code<span class="rh-c">${esc(ONLINE.code())}</span></span>
-                   <span class="rh-n">${n} in the room</span>`;
-  hud.classList.add("show");
 }
 
 /* ================= online rooms =================
@@ -2247,7 +2066,6 @@ function leaveRoom(){
   try{ ONLINE.leave(); }catch(e){}
   ROOM = { on: false, roster: [], votes: {}, busyWith: null };
   renderRoomBar();
-  renderRoomHud();
   renderTeamBar();
   showScreen("select");
 }
@@ -2258,7 +2076,7 @@ function wireRoom(){
     ROOM.roster = list || [];
     // the room doubles as the team, so the existing bar shows who's here
     TEAM = ROOM.roster.map(p => ({ name: p.name, badge: p.badge || "", asked: 0 }));
-    renderRoomBar(); renderTeamBar(); renderRoomHud();
+    renderRoomBar(); renderTeamBar();
   });
 
   ONLINE.on("select", (p)=>{ if(p && p.suspectId && p.suspectId !== current) selectSuspect(p.suspectId, true); });
@@ -2293,17 +2111,6 @@ function wireRoom(){
   });
 
   ONLINE.on("verdict", (p)=>{ if(p && p.result) paintVerdict(p.result); });
-
-  ONLINE.on("case", async (p)=>{
-    // the host has chosen — everyone follows them into it
-    if(!p || !p.caseId) return;
-    if(CASE && CASE.id === p.caseId) return;
-    try{
-      const r = await fetch("/api/case?id=" + encodeURIComponent(p.caseId));
-      const data = await r.json();
-      if(r.ok) startCase(data.case);
-    }catch(e){}
-  });
 
   ONLINE.on("busy", ()=>setRoomBusy(true));
   ONLINE.on("idle", ()=>setRoomBusy(false));
@@ -2639,8 +2446,6 @@ function gateMount(){
       </div>
     </div>`;
   document.body.appendChild(wrap.firstElementChild);
-  const ov = document.getElementById("gateOverlay");
-  if(ov) ov.onclick = (e)=>{ if(e.target === ov) ov.classList.remove("show"); };
 }
 
 const GATE_LINES = {

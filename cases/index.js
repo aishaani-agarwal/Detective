@@ -60,6 +60,7 @@ function catalog() {
     difficulty: c.difficulty,
     category: c.category || "Homicide",
     level: c.level || "medium",
+    castSize: Object.keys(c.suspects).length,
     settingLine: c.settingLine
   }));
 }

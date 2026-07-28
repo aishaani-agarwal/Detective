@@ -208,13 +208,18 @@ app.post("/api/verdict", async (req, res) => {
   const askedAccused = Number(counts[accusedId] || 0);
   const suspectsPressed = Object.values(counts).filter(v => Number(v) >= 2).length;
 
-  if (askedTotal < 6 || askedAccused < 3) {
+  // A five-hander needs more work than a three-hander before anyone gets a warrant.
+  const castSize = Object.keys(c.suspects).length;
+  const needTotal = Math.max(6, castSize * 2);
+  const needAccused = castSize > 3 ? 4 : 3;
+
+  if (askedTotal < needTotal || askedAccused < needAccused) {
     return res.json({
       denied: true,
       reason: "thin",
-      comment: askedAccused < 3
+      comment: askedAccused < needAccused
         ? `You have barely spoken to ${accusedName}. You may be onto something — but a hunch isn't a case. Go back in and press them.`
-        : "You may be onto something, but you haven't done the interrogating to prove it. Go back in and press all three."
+        : `You may be onto something, but you haven't done the interrogating to prove it. There are ${castSize} people in this file. Go back and work them.`
     });
   }
 
